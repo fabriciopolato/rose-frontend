@@ -13,7 +13,7 @@ export const StyledButton = styled.button<IProps>`
   text-align: center;
   background-color: ${props => props.backgroundColor};
   border-radius: 20px;
-  color: ${props => props.textColor};
+  color: ${props => props.theme.red};
   /* transition: all 0.3s ease; */
   &:hover {
     background-color: ${props => props.backgroundColorOnHover};
