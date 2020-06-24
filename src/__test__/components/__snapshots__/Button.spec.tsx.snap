@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should match previous snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-AxjAm jjFbeg"
+    data-testid="button"
+  />
+</DocumentFragment>
+`;
