@@ -26,7 +26,19 @@ export default createGlobalStyle`
   body {
     background: linear-gradient(180deg, #D1E8FD 0%, #B0C6D9 40.63%);
     font-size: 1.6rem;
-    display:flex;
-    justify-content: center;
+  }
+
+  input {
+    outline: transparent
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
   }
 `;
