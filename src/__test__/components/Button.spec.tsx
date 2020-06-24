@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import Button from '../components/Button';
+import Button from '../../components/Button';
 
 describe('<Button />', () => {
   it('should match previous snapshot', () => {
@@ -27,7 +27,7 @@ describe('<Button />', () => {
       />
     );
 
-    const buttonElement = getByTestId('button');
+    const buttonElement = getByTestId('button') as HTMLButtonElement;
 
     expect(buttonElement).toHaveStyle('background-color: #fff');
     expect(buttonElement).toHaveStyle('color: #000');
@@ -45,7 +45,7 @@ describe('<Button />', () => {
       </Button>
     );
 
-    const buttonElement = getByText('Button Test');
+    const buttonElement = getByText('Button Test') as HTMLButtonElement;
 
     expect(buttonElement).toBeInTheDocument();
   });
