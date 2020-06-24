@@ -22,11 +22,13 @@ export default createGlobalStyle`
     font-size: 10px;
     font-family: 'Raleway', serif;
   }
+  input{outline: none;}
 
   body {
     background: linear-gradient(180deg, #D1E8FD 0%, #B0C6D9 40.63%);
     font-size: 1.6rem;
     display:flex;
     justify-content: center;
+
   }
 `;
