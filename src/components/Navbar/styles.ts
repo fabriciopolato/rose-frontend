@@ -22,7 +22,7 @@ export const Container = styled.div`
 export const Nav = styled.nav`
   width: 136px;
   height: 100%;
-  padding-bottom: 24px;
+  padding-bottom: 8px;
 
   ul {
     height: 100%;
