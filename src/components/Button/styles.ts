@@ -8,16 +8,20 @@ interface IProps {
 }
 
 export const StyledButton = styled.button<IProps>`
-  padding: 4px 17px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
   font-size: 1.6rem;
+  font-weight: bold;
   text-align: center;
   background-color: ${props => props.backgroundColor};
-  border-radius: 20px;
-  color: ${props => props.theme.red};
-  /* transition: all 0.3s ease; */
+  border-radius: 8px;
+  color: ${props => props.textColor};
+  transition: all 200ms ease;
+
   &:hover {
     background-color: ${props => props.backgroundColorOnHover};
     color: ${props => props.textColorOnHover};
-    transition: all 0.3s ease-in-out;
+    transition: all 200ms ease;
   }
 `;
