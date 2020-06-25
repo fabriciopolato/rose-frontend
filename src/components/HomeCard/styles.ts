@@ -45,7 +45,7 @@ export const Container = styled.div<IProps>`
 
       & > p {
         font-weight: normal;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
     }
   }
