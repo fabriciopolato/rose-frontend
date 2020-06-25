@@ -45,7 +45,24 @@ export const Header = styled.header`
   }
 `;
 
+export const Title = styled.div`
+  font-family: Museo;
+  font-weight: 600;
+  font-size: 2.4rem;
+  text-align: center;
+  margin: 16px 0;
+
+  color: ${props => props.theme.white};
+`;
+
 export const ButtonSection = styled.section`
   display: flex;
-  margin: 10px;
+  justify-content: space-between;
+  margin: 0 10px;
+
+  & > button {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    width: 158px;
+  }
 `;
