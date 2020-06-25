@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Button, HomeCard } from '../../components/';
+import { Navbar, Button, HomeCard, Footer } from '../../components/';
 import { Container, Header, ButtonSection, Title } from './styles';
 import headerImg from '../../assets/home/header_img.png';
 import card1 from '../../assets/home/card1.png';
@@ -59,6 +59,7 @@ const Home = () => {
       <HomeCard title="Buscar Profissionais" image={card3}>
         Todos passam por uma curadoria para que respeitem nossa comunidade.
       </HomeCard>
+      <Footer />
     </Container>
   );
 };
