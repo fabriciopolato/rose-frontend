@@ -21,7 +21,7 @@ const ReviewCard: React.FC<IProps> = ({ isLeft = false }) => {
           <img src={ratingStars} alt="estrelas de avaliação" />
         </div>
 
-        <p>Dezembro/2019</p>
+        <small>Dezembro/2019</small>
       </Content>
     </Container>
   );

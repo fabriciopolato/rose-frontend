@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Container>
-      <Modal toggle={toggle} handleToggle={handleToggle} />
+      <Modal toggle={toggle} handleToggle={handleToggle} id="login" />
       <figure>
         <img src={logo} alt="rose" />
       </figure>

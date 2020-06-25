@@ -58,7 +58,7 @@ const Home: React.FC = () => {
         Um lugar totalmente seguro e livre de preconceitos. Compartilhe
         experiências, vamos nos ajudar!
       </HomeCard>
-      <HomeCard title="Sem título" image={card2} isReversed>
+      <HomeCard title="O que está sentindo?" image={card2} isReversed>
         Conta pra gente o que está sentindo e indicaremos uma lista de
         profissionais que possam te ajudar.
       </HomeCard>

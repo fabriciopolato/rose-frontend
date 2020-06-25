@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 import ReviewCard from './ReviewCard';
 import Testimonials from './Testimonials';
 import Footer from './Footer';
+import FeelingCheckbox from './FeelingCheckbox';
+import CarouselCard from './CarouselCard';
 
 export {
   Button,
@@ -16,4 +18,6 @@ export {
   ReviewCard,
   Footer,
   Testimonials,
+  FeelingCheckbox,
+  CarouselCard,
 };
