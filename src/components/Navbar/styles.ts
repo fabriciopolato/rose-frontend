@@ -31,5 +31,14 @@ export const Nav = styled.nav`
     justify-content: space-between;
     align-items: flex-end;
     list-style: none;
+
+    transition: all 400ms ease;
+
+    & > li:hover {
+      cursor: pointer;
+      filter: opacity(50%);
+
+      transition: all 400ms ease;
+    }
   }
 `;

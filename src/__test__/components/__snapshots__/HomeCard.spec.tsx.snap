@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeCard /> should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm jpTWJn"
+  >
+    <article
+      data-testid="row"
+    >
+      <figure>
+        <img
+          alt="Title test"
+          src="test.png"
+        />
+      </figure>
+      <aside>
+        <h3>
+          Title test
+        </h3>
+        <p>
+          Paragraph test
+        </p>
+      </aside>
+    </article>
+  </div>
+</DocumentFragment>
+`;
