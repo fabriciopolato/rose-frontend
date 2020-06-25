@@ -22,7 +22,7 @@ export const Container = styled.div`
 export const Nav = styled.nav`
   width: 136px;
   height: 100%;
-  padding-bottom: 8px;
+  padding-bottom: 14px;
 
   ul {
     height: 100%;
@@ -33,6 +33,10 @@ export const Nav = styled.nav`
     list-style: none;
 
     transition: all 400ms ease;
+
+    & > li {
+      height: 16px;
+    }
 
     & > li:hover {
       cursor: pointer;

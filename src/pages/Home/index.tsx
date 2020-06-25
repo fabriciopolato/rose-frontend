@@ -1,7 +1,11 @@
 import React from 'react';
-import Navbar from '../../components/Navbar';
-import Button from '../../components/Button';
-import HomeCard from '../../components/HomeCard';
+import {
+  Navbar,
+  Button,
+  HomeCard,
+  Testimonials,
+  Footer,
+} from '../../components/';
 import { Container, Header, ButtonSection, Title } from './styles';
 import headerImg from '../../assets/home/header_img.png';
 import card1 from '../../assets/home/card1.png';
@@ -11,7 +15,7 @@ import theme from '../../styles/theme';
 
 const { red, white, black, orange } = theme;
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <Container>
       <Navbar />
@@ -49,7 +53,7 @@ const Home = () => {
           Buscar profissionais
         </Button>
       </ButtonSection>
-      <Title>Rose junto com você</Title>
+      <Title>Rose com você</Title>
       <HomeCard title="Grupos de terapia" image={card1}>
         Um lugar totalmente seguro e livre de preconceitos. Compartilhe
         experiências, vamos nos ajudar!
@@ -61,6 +65,8 @@ const Home = () => {
       <HomeCard title="Buscar Profissionais" image={card3}>
         Todos passam por uma curadoria para que respeitem nossa comunidade.
       </HomeCard>
+      <Testimonials />
+      <Footer />
     </Container>
   );
 };
