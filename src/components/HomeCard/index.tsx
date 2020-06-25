@@ -16,9 +16,9 @@ const HomeCard: React.FC<IProps> = ({
 }) => {
   return (
     <Container isReversed={isReversed}>
-      <article>
+      <article data-testid="row">
         <figure>
-          <img src={image} alt="Pessoas da comunidade LGBTQIA+" />
+          <img src={image} alt={title} />
         </figure>
         <aside>
           <h3>{title}</h3>
