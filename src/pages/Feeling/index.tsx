@@ -1,7 +1,16 @@
 import React from 'react';
 
-import { Navbar, Footer, FeelingCheckbox } from '../../components';
+import {
+  Navbar,
+  Footer,
+  FeelingCheckbox,
+  Input,
+  Button,
+} from '../../components';
 import { Container, Content, CardQuestions, CardCheckboxes } from './styles';
+import theme from '../../styles/theme';
+
+const { orange, white, lightSteelBlue } = theme;
 
 const Feeling: React.FC = () => {
   return (
@@ -24,6 +33,15 @@ const Feeling: React.FC = () => {
             Dúvidas de identidade
           </FeelingCheckbox>
           <FeelingCheckbox id="guidance">Orientação </FeelingCheckbox>
+          <Input type="text" placeholder="Outro:"></Input>
+          <Button
+            backgroundColor={orange}
+            backgroundColorOnHover={lightSteelBlue}
+            textColor={white}
+            textColorOnHover={white}
+          >
+            Buscar Profissional
+          </Button>
         </CardCheckboxes>
       </Content>
       <Footer />

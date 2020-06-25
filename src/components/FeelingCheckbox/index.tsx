@@ -1,15 +1,17 @@
 import React from 'react';
 
+import { Label } from './styles';
+
 interface IProps {
   id: string;
 }
 
 const FeelingCheckbox: React.FC<IProps> = ({ children, id }) => {
   return (
-    <label htmlFor={id}>
+    <Label htmlFor={id}>
       <input type="checkbox" id={id} />
       {children}
-    </label>
+    </Label>
   );
 };
 
