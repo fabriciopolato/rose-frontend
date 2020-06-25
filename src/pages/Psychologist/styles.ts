@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+
+  & > div #filters {
+    height: 451px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
 `;
 
 export const Content = styled.div`
@@ -20,12 +26,12 @@ export const Controls = styled.div`
   & > h1 {
     font-weight: normal;
     font-size: 21px;
-    margin-bottom: 14px;
 
     color: ${props => props.theme.black};
   }
 
   & > button {
+    outline: none;
     width: 100px;
     height: 29px;
     font-size: 1.3rem;
