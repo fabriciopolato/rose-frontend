@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import data from '../../utils/filters.json';
 
 import { Carousel } from 'react-bootstrap';
-import { Navbar, Button, CarouselCard, Modal } from '../../components';
-import { Container, Content, Controls } from './styles';
+import {
+  Navbar,
+  Button,
+  CarouselCard,
+  Modal,
+  SpecialtyCheckbox,
+} from '../../components';
+import { Container, Content, Controls, FiltersSection } from './styles';
 
 import theme from '../../styles/theme';
-const { white, black, salmon, lightSteelBlue, red } = theme;
+const { white, black } = theme;
 
 const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
@@ -40,17 +46,11 @@ const Psychologist: React.FC = () => {
         {data.map(item => (
           <section key={item.title}>
             <h2>{item.title}</h2>
-            {item.buttons.map((button, index) => (
-              <Button
-                key={index}
-                backgroundColor={salmon}
-                backgroundColorOnHover={lightSteelBlue}
-                textColor={red}
-                textColorOnHover={red}
-              >
-                {button}
-              </Button>
-            ))}
+            <FiltersSection>
+              {item.buttons.map((button, index) => (
+                <SpecialtyCheckbox key={index}>{button}</SpecialtyCheckbox>
+              ))}
+            </FiltersSection>
           </section>
         ))}
       </Modal>

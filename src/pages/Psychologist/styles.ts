@@ -7,6 +7,14 @@ export const Container = styled.div`
     height: 451px;
     overflow: hidden;
     overflow-y: scroll;
+
+    & > section > h2 {
+      font-family: Museo;
+      font-weight: 600;
+      font-size: 2rem;
+      color: ${props => props.theme.salmon};
+      margin-bottom: 15px;
+    }
   }
 `;
 
@@ -40,4 +48,14 @@ export const Controls = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 11px;
   }
+`;
+
+export const FiltersSection = styled.section`
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: normal;
+  row-gap: 12px;
+  margin-bottom: 30px;
 `;

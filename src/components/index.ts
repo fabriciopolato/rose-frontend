@@ -8,6 +8,7 @@ import Testimonials from './Testimonials';
 import Footer from './Footer';
 import FeelingCheckbox from './FeelingCheckbox';
 import CarouselCard from './CarouselCard';
+import SpecialtyCheckbox from './SpecialtyCheckbox';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Testimonials,
   FeelingCheckbox,
   CarouselCard,
+  SpecialtyCheckbox,
 };
