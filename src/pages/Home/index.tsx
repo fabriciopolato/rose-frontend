@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Navbar,
   Button,
@@ -26,7 +27,7 @@ const Home: React.FC = () => {
             <p>
               Rose está focada em ajudar a comunidade LGBTQIA+ a achar
               profissionais de psicologia e psiquiatria. A plataforma livre de
-              preconceitos. Você não está sozinhe.
+              preconceitos.
             </p>
           </div>
           <figure>
@@ -36,22 +37,26 @@ const Home: React.FC = () => {
       </Header>
       <Title>Comece por aqui:</Title>
       <ButtonSection>
-        <Button
-          backgroundColor={red}
-          textColor={white}
-          backgroundColorOnHover={orange}
-          textColorOnHover={black}
-        >
-          O que está sentido?
-        </Button>
-        <Button
-          backgroundColor={red}
-          textColor={white}
-          backgroundColorOnHover={orange}
-          textColorOnHover={black}
-        >
-          Buscar profissionais
-        </Button>
+        <Link to="/feeling">
+          <Button
+            backgroundColor={red}
+            textColor={white}
+            backgroundColorOnHover={orange}
+            textColorOnHover={black}
+          >
+            O que está sentido?
+          </Button>
+        </Link>
+        <Link to="/psychologist">
+          <Button
+            backgroundColor={red}
+            textColor={white}
+            backgroundColorOnHover={orange}
+            textColorOnHover={black}
+          >
+            Buscar profissionais
+          </Button>
+        </Link>
       </ButtonSection>
       <Title>Rose com você</Title>
       <HomeCard title="Grupos de terapia" image={card1}>

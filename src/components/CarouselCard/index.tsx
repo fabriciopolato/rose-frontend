@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button } from '..';
 import { Card } from './styles';
@@ -30,15 +31,17 @@ const CarouselCard: React.FC = () => {
           <img src={ratingStars} alt="brilha brilha estrelinha" />
         </div>
       </section>
-      <Button
-        backgroundColor={salmon}
-        backgroundColorOnHover={red}
-        textColor={black}
-        textColorOnHover={white}
-      >
-        Estou livre. <br />
-        Faça sua sessão
-      </Button>
+      <Link to="/profissional/1">
+        <Button
+          backgroundColor={salmon}
+          backgroundColorOnHover={red}
+          textColor={black}
+          textColorOnHover={white}
+        >
+          Estou livre. <br />
+          Faça sua sessão
+        </Button>
+      </Link>
     </Card>
   );
 };

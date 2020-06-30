@@ -8,12 +8,34 @@ export const Container = styled.div`
     overflow: hidden;
     overflow-y: scroll;
 
-    & > section > h2 {
-      font-family: Museo;
-      font-weight: 600;
-      font-size: 2rem;
-      color: ${props => props.theme.salmon};
-      margin-bottom: 15px;
+    & > button {
+      border-radius: 20px;
+      padding: 4px 17.5px;
+      font-size: 1.4rem;
+      display: block;
+      margin: 0 auto;
+      margin-top: 14px;
+    }
+
+    & > section {
+      input[type='range'] {
+        margin-bottom: 30px;
+      }
+
+      input[type='text'] {
+        border-radius: 11px;
+        background-color: ${props => props.theme.salmon};
+        padding: 8px 0 8px 12px;
+        font-size: 1.3rem;
+      }
+
+      h2 {
+        font-family: Museo;
+        font-weight: 600;
+        font-size: 2rem;
+        color: ${props => props.theme.salmon};
+        margin-bottom: 15px;
+      }
     }
   }
 `;
@@ -22,7 +44,7 @@ export const Content = styled.div`
   width: 100%;
   max-width: 1248px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 0 30px;
 `;
 
 export const Controls = styled.div`
