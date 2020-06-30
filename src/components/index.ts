@@ -9,6 +9,7 @@ import Footer from './Footer';
 import FeelingCheckbox from './FeelingCheckbox';
 import CarouselCard from './CarouselCard';
 import SpecialtyCheckbox from './SpecialtyCheckbox';
+import Slider from './Slider';
 
 export {
   Button,
@@ -22,4 +23,5 @@ export {
   FeelingCheckbox,
   CarouselCard,
   SpecialtyCheckbox,
+  Slider,
 };

@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import data from '../../utils/filters.json';
+import Carousel from 'react-slick';
 
-import { Carousel } from 'react-bootstrap';
 import {
   Navbar,
   Button,
   CarouselCard,
   Modal,
   SpecialtyCheckbox,
+  Slider,
+  Input,
 } from '../../components';
+
 import { Container, Content, Controls, FiltersSection } from './styles';
 
 import theme from '../../styles/theme';
-const { white, black } = theme;
+const { white, black, orange, lightSteelBlue } = theme;
 
 const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
@@ -20,6 +23,15 @@ const Psychologist: React.FC = () => {
   const handleToggle = () => {
     setToggle(!toggle);
   };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <Container>
       <Navbar />
@@ -36,10 +48,13 @@ const Psychologist: React.FC = () => {
             Filtro
           </Button>
         </Controls>
-        <Carousel indicators={false}>
-          <Carousel.Item>
-            <CarouselCard />
-          </Carousel.Item>
+
+        <Carousel {...settings}>
+          <CarouselCard />
+          <CarouselCard />
+          <CarouselCard />
+          <CarouselCard />
+          <CarouselCard />
         </Carousel>
       </Content>
       <Modal toggle={toggle} handleToggle={handleToggle} id="filters">
@@ -53,6 +68,22 @@ const Psychologist: React.FC = () => {
             </FiltersSection>
           </section>
         ))}
+        <section>
+          <h2>Valor:</h2>
+          <Slider min={0} max={100} />
+        </section>
+        <section>
+          <h2>Plano de Saúde:</h2>
+          <Input type="text" placeholder="Nome do seu plano de saúde" />
+        </section>
+        <Button
+          backgroundColor={orange}
+          backgroundColorOnHover={lightSteelBlue}
+          textColor={white}
+          textColorOnHover={white}
+        >
+          BUSCAR PROFISSIONAIS
+        </Button>
       </Modal>
     </Container>
   );
