@@ -33,14 +33,34 @@ export default createGlobalStyle`
     font-size: 10px;
     font-family: 'Raleway', serif;
   }
+  input{outline: none;}
 
   body {
     background: linear-gradient(180deg, #D1E8FD 0%, #B0C6D9 40.63%);
     font-size: 1.6rem;
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+  }
+
+  input {
+    outline: transparent
+  }
+
+  figure {
+    margin: 0;
+=======
     -webkit-font-smoothing: antialiased;
+>>>>>>> master
   }
 
   ul {
     list-style: none;
+<<<<<<< HEAD
+    padding: 0;
+>>>>>>> 44916db0a93b87052368f7b1229eba63f1aed379
+=======
+>>>>>>> master
   }
 `;
