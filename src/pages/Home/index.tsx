@@ -37,7 +37,7 @@ const Home: React.FC = () => {
       </Header>
       <Title>Comece por aqui:</Title>
       <ButtonSection>
-        <Link to="/feeling">
+        <Link to="/o-que-esta-sentindo">
           <Button
             backgroundColor={red}
             textColor={white}
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
             O que está sentido?
           </Button>
         </Link>
-        <Link to="/psychologist">
+        <Link to="/busque-profissionais">
           <Button
             backgroundColor={red}
             textColor={white}

@@ -4,6 +4,7 @@ import magnifier from '../../assets/navbar/magnifier.svg';
 import profile from '../../assets/navbar/profile.svg';
 import menu from '../../assets/navbar/menu.svg';
 import { Modal } from '../../components/';
+import { Link } from 'react-router-dom';
 
 import { Container, Nav } from './styles';
 
@@ -17,9 +18,11 @@ const Navbar: React.FC = () => {
   return (
     <Container>
       <Modal toggle={toggle} handleToggle={handleToggle} id="login" />
-      <figure>
-        <img src={logo} alt="rose" />
-      </figure>
+      <Link to="/">
+        <figure>
+          <img src={logo} alt="rose" />
+        </figure>
+      </Link>
       <Nav>
         <ul>
           <li onClick={handleToggle}>

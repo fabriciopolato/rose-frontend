@@ -8,6 +8,7 @@ import {
   ProfileCard,
   CredentialSection,
   ReviewSection,
+  IconsContact,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
@@ -35,14 +36,16 @@ const PsychologistDetails: React.FC = () => {
             <FaStar size={9} color={white} />
             <p>5 avaliações</p>
           </ReviewSection>
-          <div>
-            <FaWhatsapp />
-            <FaRegEnvelope />
-            <p>50 min / R$100</p>
-            <p>Planos de saúde: Amil, Bradesco</p>
-          </div>
+          <IconsContact>
+            <FaWhatsapp color={white} size={20} />
+            <FaRegEnvelope color={white} size={20} />
+          </IconsContact>
+
+          <strong>50 min / R$100</strong>
+          <p>Planos de saúde: Amil, Bradesco</p>
         </div>
       </ProfileCard>
+
       <Footer />
     </Container>
   );

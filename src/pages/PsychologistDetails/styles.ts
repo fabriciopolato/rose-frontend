@@ -35,6 +35,11 @@ export const ProfileCard = styled.div`
       height: 100%;
     }
   }
+  strong {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 11px;
+  }
 `;
 
 export const CredentialSection = styled.section`
@@ -49,11 +54,16 @@ export const CredentialSection = styled.section`
 export const ReviewSection = styled.section`
   display: flex;
   align-items: center;
-  margin-top: 4px;
+  margin: 4px 0 16px 0;
 
   p {
     font-size: 0.9rem;
     text-decoration: underline;
     margin-left: 7px;
+  }
+`;
+export const IconsContact = styled.section`
+  & > svg {
+    margin: 0 40px 8px 5px;
   }
 `;
