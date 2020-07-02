@@ -10,7 +10,7 @@ export const Container = styled.div<IProps>`
 
   width: 100%;
   height: 100%;
-  padding: 0 10px;
+  padding: 0 25px;
 
   position: fixed;
   top: 0;
@@ -50,8 +50,7 @@ export const Content = styled.div`
   position: relative;
   width: 100%;
   max-width: 480px;
-  height: 240px;
-  padding: 24px;
+  /* padding: 12px; */
 
   background: linear-gradient(180deg, #e8798d 9.38%, #d94a64 89.06%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

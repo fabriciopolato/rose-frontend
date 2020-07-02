@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
-import { Navbar, Footer, Input } from '../../components';
+import { Navbar, Footer, Input, Button, Modal } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import theme from '../../styles/theme';
 
@@ -15,10 +15,17 @@ import {
   FullDescription,
   Triangle,
   ProfessionalReviews,
+  ModalContent,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
-  const { white } = theme;
+  const { white, black, orange, salmon } = theme;
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <Container>
       <Navbar />
@@ -60,19 +67,53 @@ const PsychologistDetails: React.FC = () => {
           direção ao seu propósito.
         </p>
       </ShortDescription>
+
+      {/* todo: funcionalidade do calendário */}
       <Schedule>
         <h2>Horários Disponíveis:</h2>
+        <Button
+          textColor={black}
+          textColorOnHover={white}
+          backgroundColorOnHover={orange}
+          backgroundColor={orange}
+          onClick={handleToggle}
+        >
+          20:30h
+        </Button>
+        <Modal
+          toggle={toggle}
+          handleToggle={handleToggle}
+          id="schedule-confirmation"
+        >
+          <ModalContent>
+            <h2>Confirmar sessão</h2>
+            <h4>Hoje - 29/05/2020</h4>
+            <p>20:30</p>
+            <Button
+              textColor={black}
+              textColorOnHover={black}
+              backgroundColor={salmon}
+              backgroundColorOnHover={orange}
+            >
+              CONFIRMAR
+            </Button>
+          </ModalContent>
+        </Modal>
         <Input type="date" />
         <p>
           Remarcações podem ocorrer em até 12 horas antes sem custo adicional
         </p>
       </Schedule>
+
+      {/* todo: funcionalidade do dropdown */}
       <FullDescription>
         <div>
           <Triangle />
           <h2>Perfil Profissional</h2>
         </div>
       </FullDescription>
+
+      {/* todo: funcionalidade do dropdown */}
       <ProfessionalReviews>
         <div>
           <h2>Avaliações</h2>
