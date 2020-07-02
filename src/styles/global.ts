@@ -12,6 +12,17 @@ export default createGlobalStyle`
     font-style: normal;
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
   html, body {
     width: 100vw;
     max-width: 100%;
@@ -28,6 +39,7 @@ export default createGlobalStyle`
     background: linear-gradient(180deg, #D1E8FD 0%, #B0C6D9 40.63%);
     font-size: 1.6rem;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
   }
@@ -38,12 +50,17 @@ export default createGlobalStyle`
 
   figure {
     margin: 0;
+=======
+    -webkit-font-smoothing: antialiased;
+>>>>>>> master
   }
 
   ul {
-    margin: 0;
     list-style: none;
+<<<<<<< HEAD
     padding: 0;
 >>>>>>> 44916db0a93b87052368f7b1229eba63f1aed379
+=======
+>>>>>>> master
   }
 `;

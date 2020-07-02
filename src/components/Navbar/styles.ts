@@ -22,7 +22,7 @@ export const Container = styled.div`
 export const Nav = styled.nav`
   width: 136px;
   height: 100%;
-  padding-bottom: 24px;
+  padding-bottom: 8px;
 
   ul {
     height: 100%;
@@ -31,5 +31,14 @@ export const Nav = styled.nav`
     justify-content: space-between;
     align-items: flex-end;
     list-style: none;
+
+    transition: all 400ms ease;
+
+    & > li:hover {
+      cursor: pointer;
+      filter: opacity(50%);
+
+      transition: all 400ms ease;
+    }
   }
 `;
