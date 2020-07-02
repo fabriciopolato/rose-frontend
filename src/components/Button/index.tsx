@@ -15,6 +15,7 @@ const Button: React.FC<IProps> = ({
   textColor,
   backgroundColorOnHover,
   textColorOnHover,
+  ...rest
 }) => (
   <StyledButton
     data-testid="button"
@@ -22,6 +23,7 @@ const Button: React.FC<IProps> = ({
     textColor={textColor}
     backgroundColorOnHover={backgroundColorOnHover}
     textColorOnHover={textColorOnHover}
+    {...rest}
   >
     {children}
   </StyledButton>

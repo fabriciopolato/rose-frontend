@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Profissional",
+    "buttons": ["Psicóloge", "Psiquiatra"]
+  },
+  {
+    "title": "Identidade de gênero",
+    "buttons": [
+      "Mulher Cis",
+      "Homem Cis",
+      "Mulher Trans",
+      "Homem Trans",
+      "Não Binário",
+      "Todos"
+    ]
+  },
+  {
+    "title": "Membro da Comunidade:",
+    "buttons": [
+      "Lésbica",
+      "Gay",
+      "Bissexual",
+      "Transgênero",
+      "Transsexual",
+      "Two Spirit",
+      "Queer",
+      "Intersex",
+      "Assexual",
+      "Pansexual",
+      "Não Binário",
+      "Outros",
+      "Todos"
+    ]
+  },
+  {
+    "title": "Raça/Etnia",
+    "buttons": ["Asiática", "Branca", "Indígena", "Negra", "Outras", "Todos"]
+  },
+  {
+    "title": "Especialidade",
+    "buttons": [
+      "Ansiedade",
+      "Depressão",
+      "Auto-Estima",
+      "Identidade",
+      "Relações",
+      "Traumas",
+      "Fobias",
+      "Bipolaridade",
+      "Bordeline",
+      "TOC",
+      "Dislexia",
+      "Outros"
+    ]
+  }
+]

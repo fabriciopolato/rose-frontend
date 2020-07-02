@@ -3,8 +3,8 @@ import logo from '../../assets/navbar/logo.svg';
 import magnifier from '../../assets/navbar/magnifier.svg';
 import profile from '../../assets/navbar/profile.svg';
 import menu from '../../assets/navbar/menu.svg';
+import { Modal } from '../../components/';
 
-import Modal from '../../components/Modal';
 import { Container, Nav } from './styles';
 
 const Navbar: React.FC = () => {
@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Container>
-      <Modal toggle={toggle} handleToggle={handleToggle} />
+      <Modal toggle={toggle} handleToggle={handleToggle} id="login" />
       <figure>
         <img src={logo} alt="rose" />
       </figure>
