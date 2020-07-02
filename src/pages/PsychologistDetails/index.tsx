@@ -12,6 +12,9 @@ import {
   IconsContact,
   ShortDescription,
   Schedule,
+  FullDescription,
+  Triangle,
+  ProfessionalReviews,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
@@ -64,6 +67,18 @@ const PsychologistDetails: React.FC = () => {
           Remarcações podem ocorrer em até 12 horas antes sem custo adicional
         </p>
       </Schedule>
+      <FullDescription>
+        <div>
+          <Triangle />
+          <h2>Perfil Profissional</h2>
+        </div>
+      </FullDescription>
+      <ProfessionalReviews>
+        <div>
+          <h2>Avaliações</h2>
+          <Triangle />
+        </div>
+      </ProfessionalReviews>
       <Footer />
     </Container>
   );
