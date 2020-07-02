@@ -1,14 +1,17 @@
 import React from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
-import { Navbar, Footer } from '../../components/index';
+import { Navbar, Footer, Input } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import theme from '../../styles/theme';
+
 import {
   Container,
   ProfileCard,
   CredentialSection,
   ReviewSection,
   IconsContact,
+  ShortDescription,
+  Schedule,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
@@ -45,7 +48,22 @@ const PsychologistDetails: React.FC = () => {
           <p>Planos de saúde: Amil, Bradesco</p>
         </div>
       </ProfileCard>
-
+      <ShortDescription>
+        <p>
+          Olá! sou psicóloga há 6 anos e possuo experiência em casos de
+          ansiedade, depressão, autoestima e conflitos familiares. Acredito na
+          busca do autoconhecimento para melhoria na resolução de conflitos,
+          trazendo o equilíbrio e a harmonia. Aguardo você para caminharmos em
+          direção ao seu propósito.
+        </p>
+      </ShortDescription>
+      <Schedule>
+        <h2>Horários Disponíveis:</h2>
+        <Input type="date" />
+        <p>
+          Remarcações podem ocorrer em até 12 horas antes sem custo adicional
+        </p>
+      </Schedule>
       <Footer />
     </Container>
   );
