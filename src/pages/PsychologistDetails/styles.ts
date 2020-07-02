@@ -127,6 +127,7 @@ export const FullDescription = styled.section`
 
     > h2 {
       font-family: 'Museo';
+      font-size: 2rem;
     }
   }
 `;
@@ -146,6 +147,7 @@ export const ProfessionalReviews = styled.section`
 
     > h2 {
       font-family: 'Museo';
+      font-size: 2rem;
     }
   }
 `;
@@ -156,4 +158,36 @@ export const Triangle = styled.div`
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-top: 20px solid ${props => props.theme.white};
+`;
+
+export const ModalContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: ${props => props.theme.white};
+  margin: 30px 0 25px;
+
+  h2 {
+    font-family: 'Museo';
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-weight: 100;
+    font-size: 1.6rem;
+    margin-bottom: 2px;
+  }
+
+  p {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  button {
+    font-size: 1.6rem;
+    width: 190px;
+    height: 47px;
+  }
 `;
