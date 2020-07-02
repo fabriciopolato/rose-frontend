@@ -5,6 +5,7 @@ export const Container = styled.div`
   max-width: 1248px;
   min-height: 100vh;
   font-size: 1.3rem;
+  color: ${props => props.theme.black};
 `;
 
 export const ProfileCard = styled.div`
@@ -109,4 +110,50 @@ export const Schedule = styled.section`
     font-size: 1.7rem;
     padding: 16px 0 10px 12px;
   }
+`;
+
+export const FullDescription = styled.section`
+  background-color: ${props => props.theme.orange};
+  width: 348px;
+  border-radius: 11px;
+  margin-left: auto;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 106px;
+    margin: 0 16px 0 31px;
+
+    > h2 {
+      font-family: 'Museo';
+    }
+  }
+`;
+
+export const ProfessionalReviews = styled.section`
+  background-color: ${props => props.theme.salmon};
+  width: 348px;
+  border-radius: 11px;
+  margin-right: auto;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 106px;
+    margin: 0 29px 0 19px;
+
+    > h2 {
+      font-family: 'Museo';
+    }
+  }
+`;
+
+export const Triangle = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid ${props => props.theme.white};
 `;
