@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
-import { Navbar, Footer, Input, Button, Modal } from '../../components';
+import { Navbar, Footer, Input, Button, Modal, ReviewCard } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import theme from '../../styles/theme';
 
@@ -18,20 +18,25 @@ import {
   ModalContent,
   FullDescriptionHiddenContent,
   FullDescriptionItem,
+  ProfessionalReviewsHiddenContent,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
   const { white, black, orange, salmon } = theme;
   const [toggle, setToggle] = useState(false);
   const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
+  const [isReviewsOpen, setIsReviewsOpen] = useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
   };
 
-  const handleDropdown = () => {
+  const handleFullDescriptionDropdown = () => {
     setIsFullDescriptionOpen(!isFullDescriptionOpen);
-    setIsFullDescriptionOpen(!isFullDescriptionOpen);
+  };
+
+  const handleReviewsDropdown = () => {
+    setIsReviewsOpen(!isReviewsOpen);
   };
 
   return (
@@ -109,7 +114,7 @@ const PsychologistDetails: React.FC = () => {
       {/* todo: funcionalidade do dropdown */}
       <FullDescription>
         <div>
-          <Triangle onClick={handleDropdown} isReversed={isFullDescriptionOpen} />
+          <Triangle onClick={handleFullDescriptionDropdown} isReversed={isFullDescriptionOpen} />
           <h2>Perfil Profissional</h2>
         </div>
         <FullDescriptionHiddenContent isOpen={isFullDescriptionOpen}>
@@ -161,7 +166,7 @@ const PsychologistDetails: React.FC = () => {
               rerum modi iure ad odio distinctio accusantium? Reiciendis!
             </p>
           </FullDescriptionItem>
-          <Triangle onClick={handleDropdown} isReversed={isFullDescriptionOpen} />
+          <Triangle onClick={handleFullDescriptionDropdown} isReversed={isFullDescriptionOpen} />
         </FullDescriptionHiddenContent>
       </FullDescription>
 
@@ -169,8 +174,12 @@ const PsychologistDetails: React.FC = () => {
       <ProfessionalReviews>
         <div>
           <h2>Avaliações</h2>
-          <Triangle onClick={handleDropdown} isReversed={isFullDescriptionOpen} />
+          <Triangle onClick={handleReviewsDropdown} isReversed={isReviewsOpen} />
         </div>
+        <ProfessionalReviewsHiddenContent isOpen={isReviewsOpen}>
+          <ReviewCard isLeft />
+          <ReviewCard />
+        </ProfessionalReviewsHiddenContent>
       </ProfessionalReviews>
       <Footer />
     </Container>

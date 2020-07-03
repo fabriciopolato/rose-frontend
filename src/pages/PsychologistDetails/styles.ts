@@ -167,6 +167,7 @@ export const ProfessionalReviews = styled.section`
   width: 348px;
   border-radius: 11px;
   margin-right: auto;
+  padding: 0 10px;
 
   > div {
     display: flex;
@@ -179,6 +180,28 @@ export const ProfessionalReviews = styled.section`
       font-family: 'Museo';
       font-size: 2rem;
     }
+  }
+`;
+
+interface IPropsReviewsHiddenContent {
+  isOpen: boolean;
+}
+
+export const ProfessionalReviewsHiddenContent = styled.section<IPropsReviewsHiddenContent>`
+  overflow: hidden;
+  height: ${props => (props.isOpen ? '100%' : 0)};
+  transition: height 200ms;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-family: 'Museo';
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  > div {
   }
 `;
 
