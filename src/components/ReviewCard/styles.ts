@@ -5,7 +5,7 @@ interface IProps {
 }
 
 export const Container = styled.div<IProps>`
-  width: 85%;
+  width: 300px;
   background-color: ${props => props.theme.white};
   border-radius: 11px;
   margin-bottom: 8px;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -114,6 +114,7 @@ export const Schedule = styled.section`
 
 export const FullDescription = styled.section`
   background-color: ${props => props.theme.orange};
+  height: 100%;
   width: 348px;
   border-radius: 11px;
   margin-left: auto;
@@ -123,7 +124,7 @@ export const FullDescription = styled.section`
     justify-content: space-between;
     align-items: center;
     height: 106px;
-    margin: 0 16px 0 31px;
+    margin-right: 16px;
 
     > h2 {
       font-family: 'Museo';
@@ -132,16 +133,24 @@ export const FullDescription = styled.section`
   }
 `;
 
-export const FullDescriptionHiddenContent = styled.section`
-  height: auto;
-  padding: 0 15px 19px 6px;
+interface IPropsFullDescriptionHiddenContent {
+  isOpen: boolean;
+}
+
+export const FullDescriptionHiddenContent = styled.section<IPropsFullDescriptionHiddenContent>`
+  overflow: hidden;
+  height: ${props => (props.isOpen ? '100%' : 0)};
+  padding: ${props => (props.isOpen ? '0 15px 19px 6px' : '0 15px 0 6px')};
+  transition: height 200ms;
 `;
 
 export const FullDescriptionItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-column-gap: 20px;
+
   width: 100%;
+  margin-bottom: 16px;
 
   > h3 {
     font-family: 'Museo';
@@ -158,6 +167,7 @@ export const ProfessionalReviews = styled.section`
   width: 348px;
   border-radius: 11px;
   margin-right: auto;
+  padding: 0 10px;
 
   > div {
     display: flex;
@@ -173,12 +183,45 @@ export const ProfessionalReviews = styled.section`
   }
 `;
 
-export const Triangle = styled.div`
+interface IPropsReviewsHiddenContent {
+  isOpen: boolean;
+}
+
+export const ProfessionalReviewsHiddenContent = styled.section<IPropsReviewsHiddenContent>`
+  overflow: hidden;
+  height: ${props => (props.isOpen ? '100%' : 0)};
+  transition: height 200ms;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-family: 'Museo';
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  > div {
+  }
+`;
+
+interface IPropsTriangle {
+  isReversed: boolean;
+}
+
+export const Triangle = styled.div<IPropsTriangle>`
   width: 0;
   height: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-top: 20px solid ${props => props.theme.white};
+  margin-left: 31px;
+
+  ${props =>
+    props.isReversed &&
+    css`
+      transform: rotate(180deg);
+    `}
 `;
 
 export const ModalContent = styled.div`
