@@ -23,9 +23,15 @@ import {
 const PsychologistDetails: React.FC = () => {
   const { white, black, orange, salmon } = theme;
   const [toggle, setToggle] = useState(false);
+  const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
+  };
+
+  const handleDropdown = () => {
+    setIsFullDescriptionOpen(!isFullDescriptionOpen);
+    setIsFullDescriptionOpen(!isFullDescriptionOpen);
   };
 
   return (
@@ -62,11 +68,10 @@ const PsychologistDetails: React.FC = () => {
       </ProfileCard>
       <ShortDescription>
         <p>
-          Olá! sou psicóloga há 6 anos e possuo experiência em casos de
-          ansiedade, depressão, autoestima e conflitos familiares. Acredito na
-          busca do autoconhecimento para melhoria na resolução de conflitos,
-          trazendo o equilíbrio e a harmonia. Aguardo você para caminharmos em
-          direção ao seu propósito.
+          Olá! sou psicóloga há 6 anos e possuo experiência em casos de ansiedade, depressão,
+          autoestima e conflitos familiares. Acredito na busca do autoconhecimento para melhoria na
+          resolução de conflitos, trazendo o equilíbrio e a harmonia. Aguardo você para caminharmos
+          em direção ao seu propósito.
         </p>
       </ShortDescription>
 
@@ -82,11 +87,7 @@ const PsychologistDetails: React.FC = () => {
         >
           20:30h
         </Button>
-        <Modal
-          toggle={toggle}
-          handleToggle={handleToggle}
-          id="schedule-confirmation"
-        >
+        <Modal toggle={toggle} handleToggle={handleToggle} id="schedule-confirmation">
           <ModalContent>
             <h2>Confirmar sessão</h2>
             <h4>Hoje - 29/05/2020</h4>
@@ -102,18 +103,16 @@ const PsychologistDetails: React.FC = () => {
           </ModalContent>
         </Modal>
         <Input type="date" />
-        <p>
-          Remarcações podem ocorrer em até 12 horas antes sem custo adicional
-        </p>
+        <p>Remarcações podem ocorrer em até 12 horas antes sem custo adicional</p>
       </Schedule>
 
       {/* todo: funcionalidade do dropdown */}
       <FullDescription>
         <div>
-          <Triangle />
+          <Triangle onClick={handleDropdown} isReversed={isFullDescriptionOpen} />
           <h2>Perfil Profissional</h2>
         </div>
-        <FullDescriptionHiddenContent>
+        <FullDescriptionHiddenContent isOpen={isFullDescriptionOpen}>
           <FullDescriptionItem>
             <h3>Experiência</h3>
             <ul>
@@ -129,6 +128,40 @@ const PsychologistDetails: React.FC = () => {
               <li>Sono</li>
             </ul>
           </FullDescriptionItem>
+          <FullDescriptionItem>
+            <h3>Especialidade</h3>
+            <ul>
+              <li>Mindfulness</li>
+              <li>Evolução emocional</li>
+              <li>Saúde mental</li>
+            </ul>
+          </FullDescriptionItem>
+          <FullDescriptionItem>
+            <h3>Formação</h3>
+            <ul>
+              <li>
+                - Graduação em Naturologia Aplicada - Universidade do Sul de Santa Catarina (UNISUL)
+                - 2005
+              </li>
+              <li>
+                - Pós-graduada em Neurociência e Futuro Sustentado de Pessoas e Organizações -
+                Faculdade de Ciências Médicas da Santa Casa de São Paulo - 2018
+              </li>
+              <li>
+                - Curso de Atualização em Transtorno Ansioso e Depressivo - Hospital Israelita
+                Albert Einstein - 2019
+              </li>
+              <li>- Formação em Inteligência Emocional - Florida Christian University - 2016</li>
+            </ul>
+          </FullDescriptionItem>
+          <FullDescriptionItem>
+            <h3>Descrição Profissional</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia itaque quibusdam dolor
+              rerum modi iure ad odio distinctio accusantium? Reiciendis!
+            </p>
+          </FullDescriptionItem>
+          <Triangle onClick={handleDropdown} isReversed={isFullDescriptionOpen} />
         </FullDescriptionHiddenContent>
       </FullDescription>
 
@@ -136,7 +169,7 @@ const PsychologistDetails: React.FC = () => {
       <ProfessionalReviews>
         <div>
           <h2>Avaliações</h2>
-          <Triangle />
+          <Triangle onClick={handleDropdown} isReversed={isFullDescriptionOpen} />
         </div>
       </ProfessionalReviews>
       <Footer />
