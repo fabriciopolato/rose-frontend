@@ -132,6 +132,27 @@ export const FullDescription = styled.section`
   }
 `;
 
+export const FullDescriptionHiddenContent = styled.section`
+  height: auto;
+  padding: 0 15px 19px 6px;
+`;
+
+export const FullDescriptionItem = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 20px;
+  width: 100%;
+
+  > h3 {
+    font-family: 'Museo';
+    font-weight: bold;
+  }
+
+  li {
+    margin-bottom: 3px;
+  }
+`;
+
 export const ProfessionalReviews = styled.section`
   background-color: ${props => props.theme.salmon};
   width: 348px;

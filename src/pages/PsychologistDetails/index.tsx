@@ -16,6 +16,8 @@ import {
   Triangle,
   ProfessionalReviews,
   ModalContent,
+  FullDescriptionHiddenContent,
+  FullDescriptionItem,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
@@ -111,6 +113,23 @@ const PsychologistDetails: React.FC = () => {
           <Triangle />
           <h2>Perfil Profissional</h2>
         </div>
+        <FullDescriptionHiddenContent>
+          <FullDescriptionItem>
+            <h3>Experiência</h3>
+            <ul>
+              <li>Ansiedade</li>
+              <li>Autoconhecimento</li>
+              <li>Doenças</li>
+              <li>Psicossomáticas</li>
+              <li>Equilibrio</li>
+              <li>Emocional</li>
+              <li>Estresse</li>
+              <li>Meditação</li>
+              <li>Mindfulness</li>
+              <li>Sono</li>
+            </ul>
+          </FullDescriptionItem>
+        </FullDescriptionHiddenContent>
       </FullDescription>
 
       {/* todo: funcionalidade do dropdown */}
