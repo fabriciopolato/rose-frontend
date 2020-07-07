@@ -21,8 +21,7 @@ export const Container = styled.div<IProps>`
   align-items: center;
   z-index: 10;
 
-  animation: ${props => (props.toggle ? 'fadeIn' : 'fadeOut')} 400ms ease
-    forwards;
+  animation: ${props => (props.toggle ? 'fadeIn' : 'fadeOut')} 400ms ease forwards;
   transition: visibility 400ms linear;
 
   @keyframes fadeIn {

@@ -230,7 +230,7 @@ export const ModalContent = styled.div`
   align-items: center;
   flex-direction: column;
   color: ${props => props.theme.white};
-  margin: 30px 0 25px;
+  margin: 18px 0 13px;
 
   h2 {
     font-family: 'Museo';
