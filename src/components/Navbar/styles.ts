@@ -20,8 +20,27 @@ export const Container = styled.div`
   }
 
   #login {
+    h2 {
+      margin: 0;
+      margin-top: 20px;
+    }
+  }
+
+  #menu {
     width: 221px;
-    height: 264px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+
+    figure {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      img {
+        width: 100%;
+      }
+    }
 
     h2 {
       margin-top: 18px;
@@ -31,10 +50,41 @@ export const Container = styled.div`
       margin-bottom: 11px;
     }
   }
+
+  hr {
+    border: 0.836111px solid rgba(0, 0, 0, 0.15);
+    position: relative;
+  }
+
+  form {
+    label {
+      font-size: 1.1rem;
+      color: ${props => props.theme.black};
+    }
+  }
 `;
 
-export const ModalMenu = styled.div`
-  position: absolute;
+export const DivisionLine = styled.p`
+  margin-top: -10px;
+  color: rgba(0, 0, 0, 0.15);
+
+  span {
+  }
+`;
+
+export const SocialMediaIcons = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  img {
+    margin: 0 5px;
+  }
+`;
+
+export const PrivacyTerms = styled.p`
+  font-size: 0.9rem;
+  color: ${props => props.theme.black};
 `;
 
 export const Nav = styled.nav`
