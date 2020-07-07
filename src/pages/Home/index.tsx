@@ -12,11 +12,12 @@ import headerImg from '../../assets/home/header_img.png';
 import card1 from '../../assets/home/card1.png';
 import card2 from '../../assets/home/card2.png';
 import card3 from '../../assets/home/card3.png';
-import theme from '../../styles/theme';
+import { useTheme } from 'styled-components'
 
-const { red, white, black, orange } = theme;
 
 const Home: React.FC = () => {
+  const { red, white, black, orange } = useTheme();
+
   return (
     <Container>
       <Navbar />

@@ -14,8 +14,7 @@ import {
 
 import { Container, Content, Controls, FiltersSection } from './styles';
 
-import theme from '../../styles/theme';
-const { white, black, orange, lightSteelBlue } = theme;
+import { useTheme } from 'styled-components'
 
 const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
@@ -23,6 +22,8 @@ const Psychologist: React.FC = () => {
   const handleToggle = () => {
     setToggle(!toggle);
   };
+
+  const { white, black, orange, lightSteelBlue } = useTheme();
 
   const settings = {
     dots: false,

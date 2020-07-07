@@ -8,11 +8,12 @@ import {
   Button,
 } from '../../components';
 import { Container, Content, CardQuestions, CardCheckboxes } from './styles';
-import theme from '../../styles/theme';
+import { useTheme } from 'styled-components'
 
-const { orange, white, lightSteelBlue } = theme;
 
 const Feeling: React.FC = () => {
+  const { orange, white, lightSteelBlue } = useTheme();
+
   return (
     <Container>
       <Navbar />

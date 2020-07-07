@@ -7,11 +7,12 @@ import { Card } from './styles';
 import polatinho from '../../assets/polato.jpeg';
 import ratingStars from '../../assets/rating-stars.svg';
 
-import theme from '../../styles/theme';
+import { useTheme } from 'styled-components'
 
-const { salmon, red, white, black } = theme;
 
 const CarouselCard: React.FC = () => {
+  const { salmon, red, white, black } = useTheme();
+
   return (
     <Card>
       <figure>
