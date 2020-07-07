@@ -6,18 +6,29 @@ import menu from '../../assets/navbar/menu.svg';
 import { Modal } from '../../components/';
 import { Link } from 'react-router-dom';
 
-import { Container, Nav } from './styles';
+import { Container, Nav, ModalMenu } from './styles';
 
 const Navbar: React.FC = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
+  const handleToggleMenu = () => {
+    setToggleMenu(!toggleMenu);
   };
 
   return (
     <Container>
-      <Modal toggle={toggle} handleToggle={handleToggle} id="login" />
+      <ModalMenu>
+        <Modal toggle={toggleMenu} handleToggle={handleToggleMenu} id="login">
+          <h2>Menu</h2>
+          <ul>
+            <li>O que você está sentindo?</li>
+            <li>Buscar profissionais</li>
+            <li>Meu Perfil</li>
+            <li>FAQ</li>
+            <li>Contato</li>
+          </ul>
+        </Modal>
+      </ModalMenu>
       <Link to="/">
         <figure>
           <img src={logo} alt="rose" />
@@ -25,13 +36,13 @@ const Navbar: React.FC = () => {
       </Link>
       <Nav>
         <ul>
-          <li onClick={handleToggle}>
+          <li onClick={handleToggleMenu}>
             <img src={magnifier} alt="pesquisar" />
           </li>
-          <li onClick={handleToggle}>
+          <li onClick={handleToggleMenu}>
             <img src={profile} alt="perfil" />
           </li>
-          <li onClick={handleToggle}>
+          <li onClick={handleToggleMenu}>
             <img src={menu} alt="menu" />
           </li>
         </ul>

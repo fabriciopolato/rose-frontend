@@ -21,8 +21,7 @@ export const Container = styled.div<IProps>`
   align-items: center;
   z-index: 10;
 
-  animation: ${props => (props.toggle ? 'fadeIn' : 'fadeOut')} 400ms ease
-    forwards;
+  animation: ${props => (props.toggle ? 'fadeIn' : 'fadeOut')} 400ms ease forwards;
   transition: visibility 400ms linear;
 
   @keyframes fadeIn {
@@ -50,7 +49,7 @@ export const Content = styled.div`
   position: relative;
   width: 100%;
   max-width: 480px;
-  /* padding: 12px; */
+  padding: 12px;
 
   background: linear-gradient(180deg, #e8798d 9.38%, #d94a64 89.06%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -9,6 +9,7 @@ export const Container = styled.div`
   border-radius: 0 0 11px 11px;
   height: 64px;
   padding: 0 16px;
+  position: relative;
 
   & > figure {
     height: 48px;
@@ -17,6 +18,23 @@ export const Container = styled.div`
       height: 100%;
     }
   }
+
+  #login {
+    width: 221px;
+    height: 264px;
+
+    h2 {
+      margin-top: 18px;
+    }
+
+    li {
+      margin-bottom: 11px;
+    }
+  }
+`;
+
+export const ModalMenu = styled.div`
+  position: absolute;
 `;
 
 export const Nav = styled.nav`
