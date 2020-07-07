@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
 import { Navbar, Footer, Input, Button, Modal, ReviewCard } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
-import theme from '../../styles/theme';
+import { useTheme } from 'styled-components'
 
 import {
   Container,
@@ -22,7 +22,6 @@ import {
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
-  const { white, black, orange, salmon } = theme;
   const [toggle, setToggle] = useState(false);
   const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
@@ -38,6 +37,8 @@ const PsychologistDetails: React.FC = () => {
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
   };
+
+  const { white, black, orange, salmon } = useTheme();
 
   return (
     <Container>

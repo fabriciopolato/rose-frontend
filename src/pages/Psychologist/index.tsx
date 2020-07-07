@@ -14,15 +14,16 @@ import {
 
 import { Container, Content, Controls, FiltersSection } from './styles';
 
-import theme from '../../styles/theme';
-const { white, black, orange, lightSteelBlue } = theme;
+import { useTheme } from 'styled-components'
 
 const Psychologist: React.FC = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const handleToggle = () => {
     setToggle(!toggle);
   };
+
+  const { white, black, orange, lightSteelBlue } = useTheme();
 
   const settings = {
     dots: false,
@@ -70,7 +71,7 @@ const Psychologist: React.FC = () => {
         ))}
         <section>
           <h2>Valor:</h2>
-          <Slider min={0} max={100} />
+          <Slider />
         </section>
         <section>
           <h2>Plano de Saúde:</h2>
