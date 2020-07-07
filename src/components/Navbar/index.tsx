@@ -5,6 +5,7 @@ import profile from '../../assets/navbar/profile.svg';
 import menu from '../../assets/navbar/menu.svg';
 import { Modal } from '../../components/';
 import { Link } from 'react-router-dom';
+import bgMenu from '../../assets/bg-menu.svg';
 
 import { Container, Nav, ModalMenu } from './styles';
 
@@ -18,7 +19,7 @@ const Navbar: React.FC = () => {
   return (
     <Container>
       <ModalMenu>
-        <Modal toggle={toggleMenu} handleToggle={handleToggleMenu} id="login">
+        <Modal toggle={toggleMenu} handleToggle={handleToggleMenu} id="menu">
           <h2>Menu</h2>
           <ul>
             <li>O que você está sentindo?</li>
@@ -27,6 +28,9 @@ const Navbar: React.FC = () => {
             <li>FAQ</li>
             <li>Contato</li>
           </ul>
+          <figure>
+            <img src={bgMenu} alt="rose flower" />
+          </figure>
         </Modal>
       </ModalMenu>
       <Link to="/">

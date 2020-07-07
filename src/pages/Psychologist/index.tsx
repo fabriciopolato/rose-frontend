@@ -14,10 +14,10 @@ import {
 
 import { Container, Content, Controls, FiltersSection } from './styles';
 
-import { useTheme } from 'styled-components'
+import { useTheme } from 'styled-components';
 
 const Psychologist: React.FC = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);

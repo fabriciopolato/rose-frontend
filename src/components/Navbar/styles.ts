@@ -19,9 +19,21 @@ export const Container = styled.div`
     }
   }
 
-  #login {
+  #menu {
     width: 221px;
-    height: 264px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+
+    figure {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      img {
+        width: 100%;
+      }
+    }
 
     h2 {
       margin-top: 18px;

@@ -9,11 +9,11 @@ const Slider: React.FC = () => {
   return (
     <Container>
       <InputRange
-        formatLabel={() => ''}
+        // formatLabel={() => ''}
         onChange={value => setValue(value)}
         value={value}
         minValue={0}
-        maxValue={100}
+        maxValue={300}
       />
     </Container>
   );

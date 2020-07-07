@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import bg from '../../assets/bg.svg';
+import bgHome from '../../assets/bg-home.svg';
 
 export const Container = styled.div`
-  background: url(${bg}) 0 0 no-repeat;
+  background: url(${bgHome}) no-repeat -270px -260px;
   min-height: 100vh;
+  background-attachment: fixed;
+  background-size: 170%;
 `;
 
 export const Header = styled.header`
@@ -46,7 +48,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.div`
-  font-family: Museo;
+  font-family: 'Museo';
   font-weight: 600;
   font-size: 2.4rem;
   text-align: center;

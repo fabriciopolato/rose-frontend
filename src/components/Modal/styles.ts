@@ -56,12 +56,6 @@ export const Content = styled.div`
   border-radius: 22px;
   z-index: 20;
 
-  & > img {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-  }
-
   & > h2 {
     font-family: Museo;
     font-weight: 600;
@@ -86,4 +80,10 @@ export const Content = styled.div`
       color: ${props => props.theme.white};
     }
   }
+`;
+
+export const CloseIcon = styled.img`
+  position: absolute;
+  top: 24px;
+  right: 24px;
 `;
