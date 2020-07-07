@@ -22,7 +22,13 @@ export const Container = styled.div`
   #login {
     h2 {
       margin: 0;
-      margin-top: 20px;
+      margin-top: 40px;
+      font-size: 2rem;
+    }
+
+    input {
+      height: 38px;
+      margin-bottom: 15px;
     }
   }
 
@@ -51,24 +57,44 @@ export const Container = styled.div`
     }
   }
 
-  hr {
-    border: 0.836111px solid rgba(0, 0, 0, 0.15);
-    position: relative;
-  }
-
   form {
     label {
       font-size: 1.1rem;
       color: ${props => props.theme.black};
     }
+
+    button {
+      display: block;
+      margin: 8px auto;
+      text-transform: uppercase;
+    }
   }
 `;
 
-export const DivisionLine = styled.p`
-  margin-top: -10px;
+export const BackgroundImage = styled.img`
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
+export const DivisionLine = styled.div`
   color: rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   span {
+    margin: 0 1px;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.15);
+    width: 88px;
   }
 `;
 
@@ -85,6 +111,8 @@ export const SocialMediaIcons = styled.div`
 export const PrivacyTerms = styled.p`
   font-size: 0.9rem;
   color: ${props => props.theme.black};
+  margin: 0 29px;
+  text-align: center;
 `;
 
 export const Nav = styled.nav`

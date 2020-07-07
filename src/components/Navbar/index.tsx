@@ -9,7 +9,15 @@ import bgMenu from '../../assets/bg-menu.svg';
 import { useTheme } from 'styled-components';
 import facebook from '../../assets/navbar/facebook.svg';
 import gmail from '../../assets/navbar/gmail.svg';
-import { Container, Nav, SocialMediaIcons, PrivacyTerms, DivisionLine } from './styles';
+import {
+  Container,
+  Nav,
+  SocialMediaIcons,
+  PrivacyTerms,
+  DivisionLine,
+  BackgroundImage,
+} from './styles';
+import bgLogin from '../../assets/bg-login.svg';
 
 const Navbar: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -27,6 +35,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Container>
+      {/* Modal Menu */}
       <Modal toggle={toggleMenu} handleToggle={handleToggleMenu} id="menu">
         <h2>Menu</h2>
         <ul>
@@ -40,15 +49,19 @@ const Navbar: React.FC = () => {
           <img src={bgMenu} alt="rose flower" />
         </figure>
       </Modal>
-      <Modal toggle={toggleLogin} handleToggle={handleToggleLogin} id="login">
+
+      {/* Modal Login */}
+      <Modal closeIconLeft toggle={toggleLogin} handleToggle={handleToggleLogin} id="login">
+        <BackgroundImage src={bgLogin} alt="rose flower" />
         <h2>Login</h2>
         <SocialMediaIcons>
           <img src={gmail} alt="gmail login" />
           <img src={facebook} alt="facebook login" />
         </SocialMediaIcons>
-        <hr />
         <DivisionLine>
+          <hr />
           <span>ou</span>
+          <hr />
         </DivisionLine>
         <form>
           <label>E-mail:</label>

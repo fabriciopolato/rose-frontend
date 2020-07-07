@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface IProps {
   toggle: boolean;
@@ -57,7 +57,7 @@ export const Content = styled.div`
   z-index: 20;
 
   & > h2 {
-    font-family: Museo;
+    font-family: 'Museo';
     font-weight: 600;
     font-size: 2.4rem;
 
@@ -82,8 +82,20 @@ export const Content = styled.div`
   }
 `;
 
-export const CloseIcon = styled.img`
+interface IPropsCloseIcon {
+  isLeft: boolean;
+}
+
+export const CloseIcon = styled.img<IPropsCloseIcon>`
   position: absolute;
   top: 24px;
-  right: 24px;
+
+  ${props =>
+    props.isLeft
+      ? css`
+          left: 24px;
+        `
+      : css`
+          right: 24px;
+        `}
 `;
