@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from './styles';
+import InputRange, { Range } from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
-interface IProps {
-  min: number;
-  max: number;
-}
+const Slider: React.FC = () => {
+  const [value, setValue] = useState<number | Range>(50);
 
-const Slider: React.FC<IProps> = ({ min, max }) => {
   return (
     <Container>
-      <input type="range" min={min} max={max} />
+      <InputRange
+        formatLabel={() => ''}
+        onChange={value => setValue(value)}
+        value={value}
+        minValue={0}
+        maxValue={100}
+      />
     </Container>
   );
 };
