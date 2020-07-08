@@ -6,6 +6,36 @@ export const Container = styled.div`
   min-height: 100vh;
   font-size: 1.3rem;
   color: ${props => props.theme.black};
+
+  #review {
+    > h2 {
+
+    }
+
+    > div {
+
+      > span {
+
+      }
+
+      > div {
+
+      }
+    }
+
+    label {
+
+      > textarea {
+
+      }
+    }
+  }
+`;
+
+export const BackgroundImage = styled.img`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 export const ProfileCard = styled.div`
@@ -201,7 +231,11 @@ export const ProfessionalReviewsHiddenContent = styled.section<IPropsReviewsHidd
     text-align: center;
   }
 
-  > div {
+  > p {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.36);
+    font-size: 1.2rem;
+    margin: 0 0 29px 12px !important;
   }
 `;
 
