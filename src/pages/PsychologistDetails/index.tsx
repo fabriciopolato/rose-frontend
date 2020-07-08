@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
 import { Navbar, Footer, Input, Button, Modal, ReviewCard } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
-import { useTheme } from 'styled-components'
+import { useTheme } from 'styled-components';
+import bgReview from '../../assets/bg-login.svg';
 
 import {
   Container,
@@ -19,15 +20,21 @@ import {
   FullDescriptionHiddenContent,
   FullDescriptionItem,
   ProfessionalReviewsHiddenContent,
+  BackgroundImage,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
   const [toggle, setToggle] = useState(false);
+  const [toggleReview, setToggleReview] = useState(false);
   const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
+  };
+
+  const handleToggleReview = () => {
+    setToggleReview(!toggleReview);
   };
 
   const handleFullDescriptionDropdown = () => {
@@ -178,10 +185,45 @@ const PsychologistDetails: React.FC = () => {
           <Triangle onClick={handleReviewsDropdown} isReversed={isReviewsOpen} />
         </div>
         <ProfessionalReviewsHiddenContent isOpen={isReviewsOpen}>
+          <p onClick={handleToggleReview}>
+            <u>Avalie o profissional</u>
+          </p>
           <ReviewCard isLeft />
           <ReviewCard />
         </ProfessionalReviewsHiddenContent>
       </ProfessionalReviews>
+      <Modal closeIconLeft id="review" handleToggle={handleToggleReview} toggle={toggleReview}>
+        <BackgroundImage src={bgReview} alt="Flores Rose" />
+
+        <h2>
+          Avalie o <br />
+          Profissional
+        </h2>
+
+        <div>
+          <span>Fabiana Guedes</span>
+          <div>
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+          </div>
+        </div>
+
+        <label htmlFor="testimonial">
+          Depoimento:
+          <textarea name="testimonial" id="testimonial" maxLength={200} placeholder="Máximo 200 caracteres" />
+        </label>
+        <Button
+          backgroundColor={salmon}
+          backgroundColorOnHover={salmon}
+          textColor={black}
+          textColorOnHover={black}
+        >
+          Enviar Avaliação
+        </Button>
+      </Modal>
       <Footer />
     </Container>
   );

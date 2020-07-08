@@ -6,6 +6,85 @@ export const Container = styled.div`
   min-height: 100vh;
   font-size: 1.3rem;
   color: ${props => props.theme.black};
+
+  #review {
+    > h2 {
+      margin: 43px 0 20px;
+
+      font-size: 1.9rem;
+      line-height: 23px;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      min-height: 37px;
+
+      margin-bottom: 5px;
+
+      > span {
+        color: ${props => props.theme.white};
+        font-size: 1.3rem;
+        text-transform: uppercase;
+      }
+
+      > div {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    label {
+      position: relative;
+
+      font-size: 1.1rem;
+      color: ${props => props.theme.white};
+
+      > textarea {
+        resize: none;
+
+        height: 96px;
+        width: 100%;
+
+        margin: 3px 0 9px;
+        padding: 3px 8px;
+
+        font-size: 1.2rem;
+        color: ${props => props.theme.black};
+
+        background: ${props => props.theme.white};
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 9px;
+
+        ::placeholder {
+          height: 100%;
+
+          text-align: right;
+          line-height: 168px;
+          color: rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+
+    > button {
+      display: block;
+
+      margin: 0 auto 12px;
+      padding: 12px 28px;
+
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+  }
+`;
+
+export const BackgroundImage = styled.img`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 export const ProfileCard = styled.div`
@@ -201,7 +280,11 @@ export const ProfessionalReviewsHiddenContent = styled.section<IPropsReviewsHidd
     text-align: center;
   }
 
-  > div {
+  > p {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.36);
+    font-size: 1.2rem;
+    margin: 0 0 29px 12px !important;
   }
 `;
 

@@ -30,7 +30,7 @@ export const Container = styled.div`
       }
 
       h2 {
-        font-family: Museo;
+        font-family: 'Museo';
         font-weight: 600;
         font-size: 2rem;
         color: ${props => props.theme.salmon};

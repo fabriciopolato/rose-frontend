@@ -21,7 +21,7 @@ import bgLogin from '../../assets/bg-login.svg';
 
 const Navbar: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [toggleLogin, setToggleLogin] = useState(true);
+  const [toggleLogin, setToggleLogin] = useState(false);
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
     setToggleLogin(!toggleLogin);
   };
 
-  const { orange, salmon, black, white, lightSteelBlue } = useTheme();
+  const { salmon, black, white, lightSteelBlue } = useTheme();
 
   return (
     <Container>
