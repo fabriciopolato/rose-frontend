@@ -25,7 +25,7 @@ import {
 
 const PsychologistDetails: React.FC = () => {
   const [toggle, setToggle] = useState(false);
-  const [toggleReview, setToggleReview] = useState(true);
+  const [toggleReview, setToggleReview] = useState(false);
   const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
 
@@ -34,7 +34,7 @@ const PsychologistDetails: React.FC = () => {
   };
 
   const handleToggleReview = () => {
-    setToggleReview(!toggle);
+    setToggleReview(!toggleReview);
   };
 
   const handleFullDescriptionDropdown = () => {
@@ -195,21 +195,25 @@ const PsychologistDetails: React.FC = () => {
       <Modal closeIconLeft id="review" handleToggle={handleToggleReview} toggle={toggleReview}>
         <BackgroundImage src={bgReview} alt="Flores Rose" />
 
-        <h2>Avalie o profissional</h2>
+        <h2>
+          Avalie o <br />
+          Profissional
+        </h2>
 
         <div>
           <span>Fabiana Guedes</span>
           <div>
-            <FaStar size={9} color={salmon} />
-            <FaStar size={9} color={salmon} />
-            <FaStar size={9} color={salmon} />
-            <FaStar size={9} color={salmon} />
-            <FaStar size={9} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
+            <FaStar size={14} color={salmon} />
           </div>
         </div>
 
         <label htmlFor="testimonial">
-          <textarea name="testimonial" id="testimonial" />
+          Depoimento:
+          <textarea name="testimonial" id="testimonial" maxLength={200} placeholder="Máximo 200 caracteres" />
         </label>
         <Button
           backgroundColor={salmon}

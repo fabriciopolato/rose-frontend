@@ -28,7 +28,7 @@ export const Card = styled.div`
   }
 
   & > h2 {
-    font-family: Museo;
+    font-family: 'Museo';
     font-weight: 600;
     font-size: 2.4rem;
     text-align: center;
