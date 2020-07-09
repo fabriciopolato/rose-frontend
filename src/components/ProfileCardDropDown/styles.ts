@@ -26,7 +26,7 @@ export const Content = styled.div<IPropsContent>`
 `;
 
 export const CardTitle = styled.div`
-  padding: 17px 15px;
+  padding: 17px 30px;
   display: flex;
   justify-content: space-between;
 `;

@@ -26,7 +26,7 @@ export const MyDoctor = styled.div`
   color: ${props => props.theme.white};
   justify-content: space-between;
   padding-bottom: 15px;
-  margin: 0 15px;
+  margin: 0 30px;
 
   h2 {
     font-weight: bold;
@@ -40,4 +40,36 @@ export const MyDoctor = styled.div`
 `;
 
 export const NextSchedulesContainer = styled.div``;
-export const NextSchedules = styled.div``;
+export const NextSchedules = styled.div`
+  color: ${props => props.theme.white};
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 30px;
+    font-size: 1.6rem;
+
+    > h2 {
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    > p {
+      margin-bottom: 22px;
+    }
+  }
+
+  > div {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 10px;
+  }
+
+  button {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 10px 15px;
+    font-size: 1.1rem;
+    width: 140px;
+    height: 38px;
+  }
+`;

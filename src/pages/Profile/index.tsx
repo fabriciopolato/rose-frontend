@@ -59,12 +59,13 @@ const Profile: React.FC = () => {
         >
           <NextSchedulesContainer>
             <NextSchedules>
-              <div>
+              <section>
                 <h2>Fabiana Guedes</h2>
-                <p>Hoje - 29/05/2020</p>
-                <br />
-                <p>20:30</p>
-              </div>
+                <p>
+                  Hoje - 29/05/2020 <br />
+                  20:30
+                </p>
+              </section>
               <div>
                 <Button
                   textColor={black}
