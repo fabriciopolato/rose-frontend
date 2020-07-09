@@ -73,3 +73,32 @@ export const NextSchedules = styled.div`
     height: 38px;
   }
 `;
+
+export const MyPastSessions = styled.div``;
+export const PastSchedules = styled.div`
+  color: ${props => props.theme.white};
+  margin-bottom: 22px;
+  section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+    font-size: 1.6rem;
+
+    > h2 {
+      font-weight: bold;
+      font-size: 1.6rem;
+      margin-bottom: 7px;
+    }
+
+    div {
+      display: flex;
+
+      > p {
+        margin: 0 25px;
+      }
+      span {
+        margin-bottom: 11px;
+      }
+    }
+  }
+`;

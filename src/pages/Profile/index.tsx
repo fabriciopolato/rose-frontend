@@ -6,6 +6,8 @@ import {
   MyDoctorContainer,
   NextSchedules,
   NextSchedulesContainer,
+  MyPastSessions,
+  PastSchedules,
 } from './styles';
 import { FaHeart } from 'react-icons/fa';
 import { Navbar, Footer, ProfileCardDropDown, Button } from '../../components';
@@ -97,7 +99,31 @@ const Profile: React.FC = () => {
           onClick={() => setIsPreviousSchedulesOpen(!isPreviousSchedulesOpen)}
           title="Histórico"
           isOpen={isPreviousSchedulesOpen}
-        ></ProfileCardDropDown>
+        >
+          <MyPastSessions>
+            <PastSchedules>
+              <section>
+                <h2>Fabiana Guedes</h2>
+                <div>
+                  <p>29/05/2020 </p>
+                  <span>20:30</span>
+                </div>
+                <div>
+                  <p>29/05/2020 </p>
+                  <span>20:30</span>
+                </div>
+                <div>
+                  <p>29/05/2020 </p>
+                  <span>20:30</span>
+                </div>
+                <div>
+                  <p>29/05/2020 </p>
+                  <span>20:30</span>
+                </div>
+              </section>
+            </PastSchedules>
+          </MyPastSessions>
+        </ProfileCardDropDown>
         <ProfileCardDropDown
           onClick={() => setIsPaymentsOpen(!isPaymentsOpen)}
           title="Pagamentos"
