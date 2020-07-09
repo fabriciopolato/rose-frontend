@@ -26,7 +26,7 @@ export const MyDoctor = styled.div`
   color: ${props => props.theme.white};
   justify-content: space-between;
   padding-bottom: 15px;
-  margin: 0 30px;
+  margin: 0 25px 0 30px;
 
   h2 {
     font-weight: bold;
