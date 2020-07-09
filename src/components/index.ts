@@ -10,6 +10,7 @@ import FeelingCheckbox from './FeelingCheckbox';
 import CarouselCard from './CarouselCard';
 import SpecialtyCheckbox from './SpecialtyCheckbox';
 import Slider from './Slider';
+import ProfileCardDropDown from './ProfileCardDropDown';
 
 export {
   Button,
@@ -24,4 +25,5 @@ export {
   CarouselCard,
   SpecialtyCheckbox,
   Slider,
+  ProfileCardDropDown,
 };

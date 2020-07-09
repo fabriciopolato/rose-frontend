@@ -4,6 +4,7 @@ import { Navbar, Footer, Input, Button, Modal, ReviewCard } from '../../componen
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
 import bgReview from '../../assets/bg-login.svg';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -105,21 +106,22 @@ const PsychologistDetails: React.FC = () => {
             <h2>Confirmar sessão</h2>
             <h4>Hoje - 29/05/2020</h4>
             <p>20:30</p>
-            <Button
-              textColor={black}
-              textColorOnHover={black}
-              backgroundColor={salmon}
-              backgroundColorOnHover={orange}
-            >
-              CONFIRMAR
-            </Button>
+            <Link to="/perfil/1">
+              <Button
+                textColor={black}
+                textColorOnHover={black}
+                backgroundColor={salmon}
+                backgroundColorOnHover={orange}
+              >
+                CONFIRMAR
+              </Button>
+            </Link>
           </ModalContent>
         </Modal>
         <Input type="date" />
         <p>Remarcações podem ocorrer em até 12 horas antes sem custo adicional</p>
       </Schedule>
 
-      {/* todo: funcionalidade do dropdown */}
       <FullDescription>
         <div>
           <Triangle onClick={handleFullDescriptionDropdown} isReversed={isFullDescriptionOpen} />
@@ -213,7 +215,12 @@ const PsychologistDetails: React.FC = () => {
 
         <label htmlFor="testimonial">
           Depoimento:
-          <textarea name="testimonial" id="testimonial" maxLength={200} placeholder="Máximo 200 caracteres" />
+          <textarea
+            name="testimonial"
+            id="testimonial"
+            maxLength={200}
+            placeholder="Máximo 200 caracteres"
+          />
         </label>
         <Button
           backgroundColor={salmon}
