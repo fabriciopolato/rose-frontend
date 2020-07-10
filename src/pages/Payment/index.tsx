@@ -1,7 +1,18 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
-import { Container, Content } from './styles';
-import { Navbar, Footer, Button, Input } from '../../components';
+import {
+  Container,
+  Content,
+  FormContainer,
+  InputPayment,
+  InputContainer,
+  InputExpirationCVV,
+  ProtectedInfo,
+  SaveInfoToggle,
+} from './styles';
+import { Navbar, Footer, Button } from '../../components';
+import { FiCreditCard } from 'react-icons/fi';
+import { FaLock } from 'react-icons/fa';
 
 const Payment: React.FC = () => {
   const { red, white, orange } = useTheme();
@@ -11,35 +22,52 @@ const Payment: React.FC = () => {
       <Navbar />
       <Content>
         <h1>Pagamento</h1>
-        <form>
-          <label htmlFor=""></label>
-          <Input />
+        <FormContainer>
+          <form>
+            <label htmlFor="">Número do cartão</label>
+            <InputContainer>
+              <FiCreditCard />
+              <InputPayment placeholder="**** **** **** 1234" />
+              <FiCreditCard />
+            </InputContainer>
 
-          <label htmlFor=""></label>
-          <Input />
+            <section>
+              <div>
+                <label htmlFor="">Data de expiração</label>
+                <InputExpirationCVV>
+                  <InputPayment placeholder="08/24" />
+                </InputExpirationCVV>
+              </div>
+              <div>
+                <label htmlFor="">CVV</label>
+                <InputExpirationCVV>
+                  <InputPayment placeholder="999" />
+                </InputExpirationCVV>
+              </div>
+            </section>
 
-          <label htmlFor=""></label>
-          <Input />
-
-          <label htmlFor=""></label>
-          <Input />
-          <div>
-            <img src="" alt="" />
-            <p>Seus dados estão protegidos</p>
-          </div>
-          <div>
-            <p></p>
-            <input type="radio" />
-          </div>
-          <Button
-            backgroundColor={orange}
-            backgroundColorOnHover={red}
-            textColor={white}
-            textColorOnHover={white}
-          >
-            pagar
-          </Button>
-        </form>
+            <label htmlFor="">Nome escrito no cartão</label>
+            <InputContainer>
+              <InputPayment placeholder="eliana leite silva" />
+            </InputContainer>
+            <ProtectedInfo>
+              <FaLock size={13} />
+              <p>Seus dados estão protegidos</p>
+            </ProtectedInfo>
+            <SaveInfoToggle>
+              <p>Salvar informações do cartão</p>
+              <input type="radio" />
+            </SaveInfoToggle>
+            <Button
+              backgroundColor={orange}
+              backgroundColorOnHover={red}
+              textColor={white}
+              textColorOnHover={white}
+            >
+              pagar
+            </Button>
+          </form>
+        </FormContainer>
       </Content>
       <Footer />
     </Container>
