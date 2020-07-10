@@ -39,7 +39,7 @@ export const MyDoctor = styled.div`
   }
 `;
 
-export const NextSchedulesContainer = styled.div``;
+// export const NextSchedulesContainer = styled.div``;
 export const NextSchedules = styled.div`
   color: ${props => props.theme.white};
 
@@ -74,7 +74,6 @@ export const NextSchedules = styled.div`
   }
 `;
 
-export const MyPastSessions = styled.div``;
 export const PastSchedules = styled.div`
   color: ${props => props.theme.white};
   margin-bottom: 22px;
@@ -98,6 +97,34 @@ export const PastSchedules = styled.div`
       }
       span {
         margin-bottom: 11px;
+      }
+    }
+  }
+`;
+
+export const Payments = styled.div`
+  color: ${props => props.theme.white};
+  margin-bottom: 22px;
+  section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+    font-size: 1.6rem;
+
+    > h2 {
+      font-weight: bold;
+      font-size: 1.6rem;
+      margin-bottom: 7px;
+    }
+
+    div {
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        margin: 0 33px 11px 0;
+        color: #0081f0;
+        font-size: 1rem;
       }
     }
   }

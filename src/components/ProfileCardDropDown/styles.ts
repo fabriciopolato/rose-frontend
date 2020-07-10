@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface IProps {
+  isOpen: boolean;
+}
+
+export const Container = styled.div<IProps>`
   width: 100%;
   height: auto;
   background-color: ${props => props.theme.orange};
   border-radius: 11px;
-  margin-bottom: 2px;
+  margin-bottom: ${props => (props.isOpen ? '8px' : '2px')};
   color: ${props => props.theme.black};
   overflow: hidden;
   transition: all 0.2s;
@@ -16,11 +20,7 @@ export const Container = styled.div`
   }
 `;
 
-interface IPropsContent {
-  isOpen: boolean;
-}
-
-export const Content = styled.div<IPropsContent>`
+export const Content = styled.div<IProps>`
   height: ${props => (props.isOpen ? '100%' : '0')};
   overflow: hidden;
 `;
