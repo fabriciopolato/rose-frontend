@@ -8,6 +8,7 @@ import {
   NextSchedules,
   PastSchedules,
   Payments,
+  TherapyGroups,
 } from './styles';
 
 import { FaHeart } from 'react-icons/fa';
@@ -93,7 +94,24 @@ const Profile: React.FC = () => {
           onClick={() => setIsGroupsOpen(!isGroupsOpen)}
           title="Grupos de Terapia"
           isOpen={isGroupsOpen}
-        ></ProfileCardDropDown>
+        >
+          <TherapyGroups>
+            <p>
+              Venha particiar dos nossos Grupos de Terapia, um lugar totalmente seguro e livre de
+              preconceitos, compartilhe experiências, escute o próximo. Grupos são semanais e
+              totalmente grátis.
+            </p>
+            <Button
+              backgroundColor={salmon}
+              backgroundColorOnHover={red}
+              textColor={black}
+              textColorOnHover={black}
+            >
+              ver grupos
+            </Button>
+          </TherapyGroups>
+        </ProfileCardDropDown>
+
         <ProfileCardDropDown
           onClick={() => setIsPreviousSchedulesOpen(!isPreviousSchedulesOpen)}
           title="Histórico"
