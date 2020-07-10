@@ -10,7 +10,7 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 
 const ProfileCardDropDown: React.FC<IProps> = ({ title, isOpen, children, ...rest }) => {
   return (
-    <Container {...rest}>
+    <Container isOpen={isOpen} {...rest}>
       <CardTitle>
         <h2>{title}</h2>
         {isOpen && <img src={closeIcon} alt="Fechar" />}

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+
 import {
   Container,
   Content,
   MyDoctor,
   MyDoctorContainer,
   NextSchedules,
-  NextSchedulesContainer,
-  MyPastSessions,
   PastSchedules,
+  Payments,
 } from './styles';
+
 import { FaHeart } from 'react-icons/fa';
 import { Navbar, Footer, ProfileCardDropDown, Button } from '../../components';
 import { useTheme } from 'styled-components';
@@ -59,35 +60,33 @@ const Profile: React.FC = () => {
           title="Próximas Consultas"
           isOpen={isNextSchedulesOpen}
         >
-          <NextSchedulesContainer>
-            <NextSchedules>
-              <section>
-                <h2>Fabiana Guedes</h2>
-                <p>
-                  Hoje - 29/05/2020 <br />
-                  20:30
-                </p>
-              </section>
-              <div>
-                <Button
-                  textColor={black}
-                  textColorOnHover={white}
-                  backgroundColor={salmon}
-                  backgroundColorOnHover={red}
-                >
-                  Cancelamento
-                </Button>
-                <Button
-                  textColor={black}
-                  textColorOnHover={black}
-                  backgroundColor={lightSteelBlue}
-                  backgroundColorOnHover={red}
-                >
-                  ACESSAR SALA
-                </Button>
-              </div>
-            </NextSchedules>
-          </NextSchedulesContainer>
+          <NextSchedules>
+            <section>
+              <h2>Fabiana Guedes</h2>
+              <p>
+                Hoje - 29/05/2020 <br />
+                20:30
+              </p>
+            </section>
+            <div>
+              <Button
+                textColor={black}
+                textColorOnHover={white}
+                backgroundColor={salmon}
+                backgroundColorOnHover={red}
+              >
+                Cancelamento
+              </Button>
+              <Button
+                textColor={black}
+                textColorOnHover={black}
+                backgroundColor={lightSteelBlue}
+                backgroundColorOnHover={red}
+              >
+                ACESSAR SALA
+              </Button>
+            </div>
+          </NextSchedules>
         </ProfileCardDropDown>
 
         <ProfileCardDropDown
@@ -100,35 +99,56 @@ const Profile: React.FC = () => {
           title="Histórico"
           isOpen={isPreviousSchedulesOpen}
         >
-          <MyPastSessions>
-            <PastSchedules>
-              <section>
-                <h2>Fabiana Guedes</h2>
-                <div>
-                  <p>29/05/2020 </p>
-                  <span>20:30</span>
-                </div>
-                <div>
-                  <p>29/05/2020 </p>
-                  <span>20:30</span>
-                </div>
-                <div>
-                  <p>29/05/2020 </p>
-                  <span>20:30</span>
-                </div>
-                <div>
-                  <p>29/05/2020 </p>
-                  <span>20:30</span>
-                </div>
-              </section>
-            </PastSchedules>
-          </MyPastSessions>
+          <PastSchedules>
+            <section>
+              <h2>Fabiana Guedes</h2>
+              <div>
+                <p>29/05/2020 </p>
+                <span>20:30</span>
+              </div>
+              <div>
+                <p>29/05/2020 </p>
+                <span>20:30</span>
+              </div>
+              <div>
+                <p>29/05/2020 </p>
+                <span>20:30</span>
+              </div>
+              <div>
+                <p>29/05/2020 </p>
+                <span>20:30</span>
+              </div>
+            </section>
+          </PastSchedules>
         </ProfileCardDropDown>
+
         <ProfileCardDropDown
           onClick={() => setIsPaymentsOpen(!isPaymentsOpen)}
           title="Pagamentos"
           isOpen={isPaymentsOpen}
-        ></ProfileCardDropDown>
+        >
+          <Payments>
+            <section>
+              <h2>Fabiana Guedes</h2>
+              <div>
+                <p>29/05/2020 </p>
+                <span>pagamento efetuado</span>
+              </div>
+              <div>
+                <p>29/05/2020 </p>
+                <span>pagamento efetuado</span>
+              </div>
+              <div>
+                <p>29/05/2020 </p>
+                <span>pagamento efetuado</span>
+              </div>
+              <div>
+                <p>29/05/2020 </p>
+                <span>pagamento efetuado</span>
+              </div>
+            </section>
+          </Payments>
+        </ProfileCardDropDown>
       </Content>
       <Footer />
     </Container>
