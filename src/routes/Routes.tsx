@@ -6,6 +6,7 @@ import Feeling from '../pages/Feeling';
 import Psychologist from '../pages/Psychologist';
 import PsychologistDetails from '../pages/PsychologistDetails';
 import Profile from '../pages/Profile';
+import Payment from '../pages/Payment';
 
 const Routes: React.FC = () => (
   <Router>
@@ -15,6 +16,7 @@ const Routes: React.FC = () => (
       <Route exact path="/busque-profissionais" component={Psychologist} />
       <Route exact path="/profissional/:id" component={PsychologistDetails} />
       <Route exact path="/perfil/:id" component={Profile} />
+      <Route exact path="/pagamentos/:id" component={Payment} />
     </Switch>
   </Router>
 );
