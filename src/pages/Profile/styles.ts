@@ -129,3 +129,21 @@ export const Payments = styled.div`
     }
   }
 `;
+
+export const TherapyGroups = styled.div`
+  > p {
+    font-size: 1rem;
+    margin: 0 30px;
+    /* text-align: justify; */
+  }
+
+  > button {
+    height: 38px;
+    width: 140px;
+    font-size: 1.1rem;
+    display: block;
+    margin: 24px auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-transform: uppercase;
+  }
+`;
