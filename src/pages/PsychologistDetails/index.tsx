@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
 import { Navbar, Footer, Input, Button, Modal, ReviewCard } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
@@ -29,6 +29,41 @@ const PsychologistDetails: React.FC = () => {
   const [toggleReview, setToggleReview] = useState(false);
   const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
+  const [descriptionHeight, setDescriptionHeight] = useState(0);
+  const [reviewHeight, setReviewHeight] = useState(0);
+
+  const descriptionElement = useRef({} as HTMLDivElement);
+  const reviewElement = useRef({} as HTMLDivElement);
+
+  useEffect(() => {
+    const element = descriptionElement.current;
+    const parentStyles = getComputedStyle(element);
+
+    let totalHeight = parseInt(parentStyles.paddingBottom);
+
+    element.childNodes.forEach(child => {
+      const childStyles = getComputedStyle(child as HTMLElement);
+      totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
+    });
+
+    setDescriptionHeight(totalHeight);
+  }, [isFullDescriptionOpen]);
+
+  useEffect(() => {
+    const element = reviewElement.current;
+    const parentStyles = getComputedStyle(element);
+
+    let totalHeight = parseInt(parentStyles.paddingBottom);
+
+    element.childNodes.forEach(child => {
+      const childStyles = getComputedStyle(child as HTMLElement);
+      totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
+    });
+
+    console.log(totalHeight);
+
+    setReviewHeight(totalHeight);
+  }, [isReviewsOpen]);
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -127,7 +162,11 @@ const PsychologistDetails: React.FC = () => {
           <Triangle onClick={handleFullDescriptionDropdown} isReversed={isFullDescriptionOpen} />
           <h2>Perfil Profissional</h2>
         </div>
-        <FullDescriptionHiddenContent isOpen={isFullDescriptionOpen}>
+        <FullDescriptionHiddenContent
+          ref={descriptionElement}
+          height={descriptionHeight}
+          isOpen={isFullDescriptionOpen}
+        >
           <FullDescriptionItem>
             <h3>Experiência</h3>
             <ul>
@@ -186,7 +225,11 @@ const PsychologistDetails: React.FC = () => {
           <h2>Avaliações</h2>
           <Triangle onClick={handleReviewsDropdown} isReversed={isReviewsOpen} />
         </div>
-        <ProfessionalReviewsHiddenContent isOpen={isReviewsOpen}>
+        <ProfessionalReviewsHiddenContent
+          ref={reviewElement}
+          height={reviewHeight}
+          isOpen={isReviewsOpen}
+        >
           <p onClick={handleToggleReview}>
             <u>Avalie o profissional</u>
           </p>
