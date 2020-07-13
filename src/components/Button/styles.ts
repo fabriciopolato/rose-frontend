@@ -11,6 +11,8 @@ export const StyledButton = styled.button<IProps>`
   outline: none;
   border: none;
   padding: 8px 16px;
+  width: 140px;
+  height: 38px;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;

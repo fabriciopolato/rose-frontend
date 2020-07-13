@@ -7,14 +7,17 @@ import { Card } from './styles';
 import polatinho from '../../assets/polato.jpeg';
 import ratingStars from '../../assets/rating-stars.svg';
 
-import { useTheme } from 'styled-components'
+import { useTheme } from 'styled-components';
 
+export interface IProps {
+  isTherapyGroup?: boolean;
+}
 
-const CarouselCard: React.FC = () => {
-  const { salmon, red, white, black } = useTheme();
+const CarouselCard: React.FC<IProps> = ({ isTherapyGroup = false }) => {
+  const { salmon, red, white, black, lightSteelBlue } = useTheme();
 
   return (
-    <Card>
+    <Card isTherapyGroup={isTherapyGroup}>
       <figure>
         <img src={polatinho} alt="Polenta" />
       </figure>
@@ -29,20 +32,33 @@ const CarouselCard: React.FC = () => {
         <div>
           <strong>50 min / R$100</strong>
           <p>CRP: 0254861 </p>
-          <img src={ratingStars} alt="brilha brilha estrelinha" />
+          <img src={ratingStars} alt="estrelas de avaliação" />
         </div>
       </section>
-      <Link to="/profissional/1">
-        <Button
-          backgroundColor={salmon}
-          backgroundColorOnHover={red}
-          textColor={black}
-          textColorOnHover={white}
-        >
-          Estou livre. <br />
-          Faça sua sessão
-        </Button>
-      </Link>
+      {isTherapyGroup ? (
+        <Link to="/grupos-terapia/bissexuais">
+          <Button
+            backgroundColor={white}
+            backgroundColorOnHover={lightSteelBlue}
+            textColor={black}
+            textColorOnHover={white}
+          >
+            INSCREVA-SE
+          </Button>
+        </Link>
+      ) : (
+        <Link to="/profissional/1">
+          <Button
+            backgroundColor={salmon}
+            backgroundColorOnHover={red}
+            textColor={black}
+            textColorOnHover={white}
+          >
+            Estou livre. <br />
+            Faça sua sessão
+          </Button>
+        </Link>
+      )}
     </Card>
   );
 };
