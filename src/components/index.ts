@@ -11,6 +11,8 @@ import CarouselCard from './CarouselCard';
 import SpecialtyCheckbox from './SpecialtyCheckbox';
 import Slider from './Slider';
 import ProfileCardDropDown from './ProfileCardDropDown';
+import ProfileCard from './ProfileCard';
+import FullDescription from './FullDescription';
 
 export {
   Button,
@@ -26,4 +28,6 @@ export {
   SpecialtyCheckbox,
   Slider,
   ProfileCardDropDown,
+  ProfileCard,
+  FullDescription,
 };
