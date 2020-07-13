@@ -58,7 +58,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 1.6rem 'Roboto', sans-serif;
+    font: 1.6rem 'Raleway', sans-serif;
   }
 
   a {

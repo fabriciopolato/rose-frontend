@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
-import { Navbar, Footer, Input, Button, Modal, ReviewCard } from '../../components';
+import { Navbar, Footer, Input, Button, Modal, ReviewCard, ProfileCard } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
 import bgReview from '../../assets/bg-login.svg';
@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 import {
   Container,
-  ProfileCard,
   CredentialSection,
   ReviewSection,
   IconsContact,
@@ -60,8 +59,6 @@ const PsychologistDetails: React.FC = () => {
       totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
     });
 
-    console.log(totalHeight);
-
     setReviewHeight(totalHeight);
   }, [isReviewsOpen]);
 
@@ -86,10 +83,7 @@ const PsychologistDetails: React.FC = () => {
   return (
     <Container>
       <Navbar />
-      <ProfileCard>
-        <figure>
-          <img src={profissional} alt="professional profile pic" />
-        </figure>
+      <ProfileCard imgSource={profissional}>
         <div>
           <div>
             <h1>Pedro Siqueira</h1>
