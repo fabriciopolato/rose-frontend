@@ -1,6 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
-import { Navbar, Footer, Input, Button, Modal, ReviewCard, ProfileCard } from '../../components';
+import {
+  Navbar,
+  Footer,
+  Input,
+  Button,
+  Modal,
+  ReviewCard,
+  ProfileCard,
+  FullDescription,
+} from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
 import bgReview from '../../assets/bg-login.svg';
@@ -13,7 +22,6 @@ import {
   IconsContact,
   ShortDescription,
   Schedule,
-  FullDescription,
   Triangle,
   ProfessionalReviews,
   ModalContent,

@@ -36,10 +36,11 @@ export default createGlobalStyle`
 
   body {
     background: linear-gradient(180deg, #D1E8FD 0%, #B0C6D9 40.63%);
-
     -webkit-font-smoothing: antialiased;
     scrollbar-width: thin;
     scrollbar-color: #90A4AE #CFD8DC;
+
+    color: ${props => props.theme.black}
   }
 
   body::-webkit-scrollbar {
