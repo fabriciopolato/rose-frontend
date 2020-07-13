@@ -214,13 +214,15 @@ export const FullDescription = styled.section`
 
 interface IPropsFullDescriptionHiddenContent {
   isOpen: boolean;
+  height: number;
 }
 
 export const FullDescriptionHiddenContent = styled.section<IPropsFullDescriptionHiddenContent>`
   overflow: hidden;
-  height: ${props => (props.isOpen ? '100%' : 0)};
+  height: ${props => (props.isOpen ? `${String(props.height)}px` : 0)};
   padding: ${props => (props.isOpen ? '0 15px 19px 6px' : '0 15px 0 6px')};
-  transition: height 200ms;
+
+  transition: height 600ms;
 `;
 
 export const FullDescriptionItem = styled.div`
@@ -264,15 +266,16 @@ export const ProfessionalReviews = styled.section`
 
 interface IPropsReviewsHiddenContent {
   isOpen: boolean;
+  height: number;
 }
 
 export const ProfessionalReviewsHiddenContent = styled.section<IPropsReviewsHiddenContent>`
   overflow: hidden;
-  height: ${props => (props.isOpen ? '100%' : 0)};
-  transition: height 200ms;
+  height: ${props => (props.isOpen ? `${String(props.height)}px` : 0)};
   width: 100%;
   display: flex;
   flex-direction: column;
+  transition: height 600ms;
 
   h2 {
     font-family: 'Museo';
