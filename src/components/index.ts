@@ -13,6 +13,7 @@ import Slider from './Slider';
 import ProfileCardDropDown from './ProfileCardDropDown';
 import ProfileCard from './ProfileCard';
 import FullDescription from './FullDescription';
+import ProfessionalReview from './ProfessionalReview';
 
 export {
   Button,
@@ -30,4 +31,5 @@ export {
   ProfileCardDropDown,
   ProfileCard,
   FullDescription,
+  ProfessionalReview,
 };
