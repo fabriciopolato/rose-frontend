@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.section`
   background-color: ${props => props.theme.orange};
   height: 100%;
   width: 348px;
@@ -41,16 +41,33 @@ export const Triangle = styled.div<IPropsTriangle>`
     `}
 `;
 
-// interface IPropsReviewsHiddenContent {
-//   isOpen: boolean;
-//   height: number;
-// }
+interface IPropsFullDescriptionHiddenContent {
+  isOpen: boolean;
+  height: number;
+}
 
-// export const ProfessionalReviewsHiddenContent = styled.section<IPropsReviewsHiddenContent>`
-//   overflow: hidden;
-//   height: ${props => (props.isOpen ? `${String(props.height)}px` : 0)};
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   transition: height 600ms;
-// `;
+export const FullDescriptionHiddenContent = styled.section<IPropsFullDescriptionHiddenContent>`
+  overflow: hidden;
+  height: ${props => (props.isOpen ? `${String(props.height)}px` : 0)};
+  padding: ${props => (props.isOpen ? '0 15px 19px 6px' : '0 15px 0 6px')};
+
+  transition: height 600ms;
+`;
+
+export const FullDescriptionItem = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 20px;
+
+  width: 100%;
+  margin-bottom: 16px;
+
+  > h3 {
+    font-family: 'Museo';
+    font-weight: bold;
+  }
+
+  li {
+    margin-bottom: 3px;
+  }
+`;

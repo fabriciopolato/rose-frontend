@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import profissional from '../../assets/profissional/bob.jpg';
 import {
   Navbar,
@@ -6,13 +6,12 @@ import {
   Input,
   Button,
   Modal,
-  ReviewCard,
+  ProfessionalReview,
   ProfileCard,
   FullDescription,
 } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
-import bgReview from '../../assets/bg-login.svg';
 import { Link } from 'react-router-dom';
 
 import {
@@ -22,68 +21,14 @@ import {
   IconsContact,
   ShortDescription,
   Schedule,
-  Triangle,
-  ProfessionalReviews,
   ModalContent,
-  FullDescriptionHiddenContent,
-  FullDescriptionItem,
-  ProfessionalReviewsHiddenContent,
-  BackgroundImage,
 } from './styles';
 
 const PsychologistDetails: React.FC = () => {
   const [toggle, setToggle] = useState(false);
-  const [toggleReview, setToggleReview] = useState(false);
-  const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
-  const [isReviewsOpen, setIsReviewsOpen] = useState(false);
-  const [descriptionHeight, setDescriptionHeight] = useState(0);
-  const [reviewHeight, setReviewHeight] = useState(0);
-
-  const descriptionElement = useRef({} as HTMLDivElement);
-  const reviewElement = useRef({} as HTMLDivElement);
-
-  useEffect(() => {
-    const element = descriptionElement.current;
-    const parentStyles = getComputedStyle(element);
-
-    let totalHeight = parseInt(parentStyles.paddingBottom);
-
-    element.childNodes.forEach(child => {
-      const childStyles = getComputedStyle(child as HTMLElement);
-      totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
-    });
-
-    setDescriptionHeight(totalHeight);
-  }, [isFullDescriptionOpen]);
-
-  useEffect(() => {
-    const element = reviewElement.current;
-    const parentStyles = getComputedStyle(element);
-
-    let totalHeight = parseInt(parentStyles.paddingBottom);
-
-    element.childNodes.forEach(child => {
-      const childStyles = getComputedStyle(child as HTMLElement);
-      totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
-    });
-
-    setReviewHeight(totalHeight);
-  }, [isReviewsOpen]);
 
   const handleToggle = () => {
     setToggle(!toggle);
-  };
-
-  const handleToggleReview = () => {
-    setToggleReview(!toggleReview);
-  };
-
-  const handleFullDescriptionDropdown = () => {
-    setIsFullDescriptionOpen(!isFullDescriptionOpen);
-  };
-
-  const handleReviewsDropdown = () => {
-    setIsReviewsOpen(!isReviewsOpen);
   };
 
   const { white, black, orange, salmon } = useTheme();
@@ -159,123 +104,10 @@ const PsychologistDetails: React.FC = () => {
         <p>Remarcações podem ocorrer em até 12 horas antes sem custo adicional</p>
       </Schedule>
 
-      <FullDescription>
-        <div>
-          <Triangle onClick={handleFullDescriptionDropdown} isReversed={isFullDescriptionOpen} />
-          <h2>Perfil Profissional</h2>
-        </div>
-        <FullDescriptionHiddenContent
-          ref={descriptionElement}
-          height={descriptionHeight}
-          isOpen={isFullDescriptionOpen}
-        >
-          <FullDescriptionItem>
-            <h3>Experiência</h3>
-            <ul>
-              <li>Ansiedade</li>
-              <li>Autoconhecimento</li>
-              <li>Doenças</li>
-              <li>Psicossomáticas</li>
-              <li>Equilibrio</li>
-              <li>Emocional</li>
-              <li>Estresse</li>
-              <li>Meditação</li>
-              <li>Mindfulness</li>
-              <li>Sono</li>
-            </ul>
-          </FullDescriptionItem>
-          <FullDescriptionItem>
-            <h3>Especialidade</h3>
-            <ul>
-              <li>Mindfulness</li>
-              <li>Evolução emocional</li>
-              <li>Saúde mental</li>
-            </ul>
-          </FullDescriptionItem>
-          <FullDescriptionItem>
-            <h3>Formação</h3>
-            <ul>
-              <li>
-                - Graduação em Naturologia Aplicada - Universidade do Sul de Santa Catarina (UNISUL)
-                - 2005
-              </li>
-              <li>
-                - Pós-graduada em Neurociência e Futuro Sustentado de Pessoas e Organizações -
-                Faculdade de Ciências Médicas da Santa Casa de São Paulo - 2018
-              </li>
-              <li>
-                - Curso de Atualização em Transtorno Ansioso e Depressivo - Hospital Israelita
-                Albert Einstein - 2019
-              </li>
-              <li>- Formação em Inteligência Emocional - Florida Christian University - 2016</li>
-            </ul>
-          </FullDescriptionItem>
-          <FullDescriptionItem>
-            <h3>Descrição Profissional</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia itaque quibusdam dolor
-              rerum modi iure ad odio distinctio accusantium? Reiciendis!
-            </p>
-          </FullDescriptionItem>
-          <Triangle onClick={handleFullDescriptionDropdown} isReversed={isFullDescriptionOpen} />
-        </FullDescriptionHiddenContent>
-      </FullDescription>
+      <FullDescription />
 
       {/* todo: funcionalidade do dropdown */}
-      <ProfessionalReviews>
-        <div>
-          <h2>Avaliações</h2>
-          <Triangle onClick={handleReviewsDropdown} isReversed={isReviewsOpen} />
-        </div>
-        <ProfessionalReviewsHiddenContent
-          ref={reviewElement}
-          height={reviewHeight}
-          isOpen={isReviewsOpen}
-        >
-          <p onClick={handleToggleReview}>
-            <u>Avalie o profissional</u>
-          </p>
-          <ReviewCard isLeft />
-          <ReviewCard />
-        </ProfessionalReviewsHiddenContent>
-      </ProfessionalReviews>
-      <Modal closeIconLeft id="review" handleToggle={handleToggleReview} toggle={toggleReview}>
-        <BackgroundImage src={bgReview} alt="Flores Rose" />
-
-        <h2>
-          Avalie o <br />
-          Profissional
-        </h2>
-
-        <div>
-          <span>Fabiana Guedes</span>
-          <div>
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-          </div>
-        </div>
-
-        <label htmlFor="testimonial">
-          Depoimento:
-          <textarea
-            name="testimonial"
-            id="testimonial"
-            maxLength={200}
-            placeholder="Máximo 200 caracteres"
-          />
-        </label>
-        <Button
-          backgroundColor={salmon}
-          backgroundColorOnHover={salmon}
-          textColor={black}
-          textColorOnHover={black}
-        >
-          Enviar Avaliação
-        </Button>
-      </Modal>
+      <ProfessionalReview />
       <Footer />
     </Container>
   );
