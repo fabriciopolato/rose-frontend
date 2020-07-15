@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import data from '../../utils/filters.json';
 import Carousel from 'react-slick';
 
@@ -15,9 +15,21 @@ import {
 import { Container, Content, Controls, FiltersSection } from './styles';
 
 import { useTheme } from 'styled-components';
+import { fetchAllProfessionals } from '../../services/api';
+import { Professional } from '../../services/api';
 
 const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
+  const [psychologists, setPsychologists] = useState<Professional[]>([]);
+
+  const getAllProfessionals = async () => {
+    const response = await fetchAllProfessionals();
+    setPsychologists(response);
+  };
+
+  useEffect(() => {
+    getAllProfessionals();
+  }, []);
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -51,11 +63,9 @@ const Psychologist: React.FC = () => {
         </Controls>
 
         <Carousel {...settings}>
-          <CarouselCard />
-          <CarouselCard />
-          <CarouselCard />
-          <CarouselCard />
-          <CarouselCard />
+          {psychologists.map(professional => (
+            <CarouselCard key={professional._id} {...professional} />
+          ))}
         </Carousel>
       </Content>
       <Modal toggle={toggle} handleToggle={handleToggle} id="filters">

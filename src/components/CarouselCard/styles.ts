@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
-import { IProps } from '.';
+
+interface IProps {
+  isTherapyGroup: boolean;
+}
 
 export const Card = styled.div<IProps>`
   ${props =>

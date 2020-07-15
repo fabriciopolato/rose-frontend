@@ -7,19 +7,19 @@ interface WorkingHours {
   endTime: string;
 }
 
-interface Professional {
+export interface Professional {
   _id: string;
-  name?: string;
+  name: string;
   email: string;
   password: string;
   crp: string;
-  avatar?: string;
+  avatar: string;
   whatsapp?: string;
   workingHours?: WorkingHours;
   education?: string[];
-  specialties?: string[];
+  specialties: string[];
   experience?: string[];
-  price?: number;
+  price: number;
   virtualRoom?: string;
   longDescription?: string;
   shortDescription?: string;
@@ -27,11 +27,11 @@ interface Professional {
   reviews?: string[];
 }
 
-export const getProfessionals = async (): Promise<Professional[] | Error> => {
+export const fetchAllProfessionals = async (): Promise<Professional[]> => {
   try {
     const response = await api.get('psychologist');
     return response.data;
   } catch (error) {
-    return error;
+    return [];
   }
 };

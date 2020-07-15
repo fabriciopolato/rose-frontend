@@ -18,12 +18,12 @@ const TherapyGroup: React.FC = () => {
       <Navbar />
       <h1>Grupos de Terapia</h1>
       <Content>
-        <Carousel {...settings}>
+        {/* <Carousel {...settings}>
           <CarouselCard isTherapyGroup />
           <CarouselCard />
           <CarouselCard />
           <CarouselCard />
-        </Carousel>
+        </Carousel> */}
       </Content>
     </Container>
   );
