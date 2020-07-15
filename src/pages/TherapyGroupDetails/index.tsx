@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Footer, ProfileCard, FullDescription, Button } from '../../components';
 import { useTheme } from 'styled-components';
 import { Container, ProfessionalInfo, Schedules } from './styles';
 import { ShortDescription } from '../PsychologistDetails/styles';
-import profissional from '../../assets/profissional/bob.jpg';
+import { fetchOneProfessional, Professional } from '../../services/api';
+import { useParams, useHistory } from 'react-router-dom';
 
 const TherapyGroupDetails: React.FC = () => {
+  const [professional, setProfessional] = useState({} as Professional);
   const { black, white, lightSteelBlue } = useTheme();
+  const { id } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    getProfessional();
+  }, []);
+
+  const getProfessional = async () => {
+    try {
+      const response = await fetchOneProfessional(id);
+      setProfessional(response.data);
+    } catch (error) {
+      history.push('grupos-terapia');
+      console.error(error);
+    }
+  };
 
   return (
     <Container>
       <Navbar />
-      <ProfileCard imgSource={profissional}>
+      <ProfileCard imgSource={professional.avatar}>
         <div>
           <div>
             <h1>Bissexuais e Preconceitos</h1>
@@ -21,18 +39,13 @@ const TherapyGroupDetails: React.FC = () => {
           </section>
 
           <ProfessionalInfo>
-            <h2>Julio Fernandes</h2>
-            <p>CRP: 0254861</p>
+            <h2>{professional.name}</h2>
+            <p>CRP: {professional.crp}</p>
           </ProfessionalInfo>
         </div>
       </ProfileCard>
       <ShortDescription>
-        <p>
-          Olá! sou psicóloga há 6 anos e possuo experiência em casos de ansiedade, depressão,
-          autoestima e conflitos familiares. Acredito na busca do autoconhecimento para melhoria na
-          resolução de conflitos, trazendo o equilíbrio e a harmonia. Aguardo você para caminharmos
-          em direção ao seu propósito.
-        </p>
+        <p>{professional.shortDescription}</p>
       </ShortDescription>
       <Schedules>
         <h2>Horário: toda segunda-feira, 18h</h2>
