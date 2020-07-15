@@ -63,9 +63,11 @@ const Psychologist: React.FC = () => {
         </Controls>
 
         <Carousel {...settings}>
-          {psychologists.map(professional => (
-            <CarouselCard key={professional._id} {...professional} />
-          ))}
+          {psychologists.length
+            ? psychologists.map(professional => (
+                <CarouselCard key={professional._id} {...professional} />
+              ))
+            : null}
         </Carousel>
       </Content>
       <Modal toggle={toggle} handleToggle={handleToggle} id="filters">
