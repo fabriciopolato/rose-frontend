@@ -27,7 +27,6 @@ import { fetchOneProfessional, Professional } from '../../services/api';
 const PsychologistDetails: React.FC = () => {
   const [professional, setProfessional] = useState({} as Professional);
   const [toggle, setToggle] = useState(false);
-
   const { id } = useParams();
   const history = useHistory();
 

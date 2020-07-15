@@ -49,7 +49,7 @@ const CarouselCard: React.FC<IProps> = ({
         </div>
       </section>
       {isTherapyGroup ? (
-        <Link to="/grupos-terapia/bissexuais">
+        <Link to={`/grupos-terapia/${id}`}>
           <Button
             backgroundColor={white}
             backgroundColorOnHover={lightSteelBlue}
