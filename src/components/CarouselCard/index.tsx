@@ -16,6 +16,7 @@ export interface IProps {
   specialties: string[];
   price: number;
   crp: string;
+  _id: string;
 }
 
 const CarouselCard: React.FC<IProps> = ({
@@ -25,6 +26,7 @@ const CarouselCard: React.FC<IProps> = ({
   specialties,
   price,
   crp,
+  _id: id,
 }) => {
   const { salmon, red, white, black, lightSteelBlue } = useTheme();
 
@@ -58,7 +60,7 @@ const CarouselCard: React.FC<IProps> = ({
           </Button>
         </Link>
       ) : (
-        <Link to="/profissional/1">
+        <Link to={`/profissional/${id}`}>
           <Button
             backgroundColor={salmon}
             backgroundColorOnHover={red}

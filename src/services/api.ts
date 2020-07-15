@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const api = axios.create({ baseURL: 'http://localhost:3001' });
 
@@ -16,22 +16,21 @@ export interface Professional {
   avatar: string;
   whatsapp?: string;
   workingHours?: WorkingHours;
-  education?: string[];
+  education: string[];
   specialties: string[];
-  experience?: string[];
+  experience: string[];
   price: number;
-  virtualRoom?: string;
-  longDescription?: string;
-  shortDescription?: string;
-  appointments?: Object;
-  reviews?: string[];
+  virtualRoom: string;
+  longDescription: string;
+  shortDescription: string;
+  appointments: Object;
+  reviews: string[];
 }
 
-export const fetchAllProfessionals = async (): Promise<Professional[]> => {
-  try {
-    const response = await api.get('psychologist');
-    return response.data;
-  } catch (error) {
-    return [];
-  }
+export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professional[]>> => {
+  return await api.get('psychologist');
+};
+
+export const fetchOneProfessional = async (id: string): Promise<AxiosResponse<Professional>> => {
+  return await api.get(`psychologist/${id}`);
 };

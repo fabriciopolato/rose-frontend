@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import profissional from '../../assets/profissional/bob.jpg';
+import React, { useState, useEffect } from 'react';
 import {
   Navbar,
   Footer,
@@ -12,7 +11,7 @@ import {
 } from '../../components';
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import {
   Container,
@@ -23,9 +22,28 @@ import {
   Schedule,
   ModalContent,
 } from './styles';
+import { fetchOneProfessional, Professional } from '../../services/api';
 
 const PsychologistDetails: React.FC = () => {
+  const [professional, setProfessional] = useState({} as Professional);
   const [toggle, setToggle] = useState(false);
+
+  const { id } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    getProfessional();
+  }, []);
+
+  const getProfessional = async () => {
+    try {
+      const response = await fetchOneProfessional(id);
+      setProfessional(response.data);
+    } catch (error) {
+      history.push('busque-profissionais');
+      console.error(error);
+    }
+  };
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -33,16 +51,20 @@ const PsychologistDetails: React.FC = () => {
 
   const { white, black, orange, salmon } = useTheme();
 
+  if (!professional.name) {
+    return <span>loading...</span>;
+  }
+
   return (
     <Container>
       <Navbar />
-      <ProfileCard imgSource={profissional}>
+      <ProfileCard imgSource={professional.avatar}>
         <div>
           <div>
-            <h1>Pedro Siqueira</h1>
+            <h1>{professional.name}</h1>
           </div>
           <CredentialSection>
-            <p>CRP: 0254861</p>
+            <p>CRP: {professional.crp}</p>
             <FaRegHeart size={20} color={white} />
           </CredentialSection>
           <ReviewSection>
@@ -51,24 +73,24 @@ const PsychologistDetails: React.FC = () => {
             <FaStar size={9} color={white} />
             <FaStar size={9} color={white} />
             <FaStar size={9} color={white} />
-            <p>5 avaliações</p>
+            <p>{professional.reviews.length} avaliações</p>
           </ReviewSection>
           <IconsContact>
             <FaWhatsapp color={white} size={20} />
             <FaRegEnvelope color={white} size={20} />
           </IconsContact>
 
-          <strong>50 min / R$100</strong>
+          <strong>
+            50 min /{' '}
+            {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
+              professional.price
+            )}
+          </strong>
           <p>Planos de saúde: Amil, Bradesco</p>
         </div>
       </ProfileCard>
       <ShortDescription>
-        <p>
-          Olá! sou psicóloga há 6 anos e possuo experiência em casos de ansiedade, depressão,
-          autoestima e conflitos familiares. Acredito na busca do autoconhecimento para melhoria na
-          resolução de conflitos, trazendo o equilíbrio e a harmonia. Aguardo você para caminharmos
-          em direção ao seu propósito.
-        </p>
+        <p>{professional.shortDescription}</p>
       </ShortDescription>
 
       {/* todo: funcionalidade do calendário */}
@@ -104,7 +126,12 @@ const PsychologistDetails: React.FC = () => {
         <p>Remarcações podem ocorrer em até 12 horas antes sem custo adicional</p>
       </Schedule>
 
-      <FullDescription />
+      <FullDescription
+        experiences={professional.experience}
+        specialties={professional.specialties}
+        education={professional.education}
+        description={professional.longDescription}
+      />
 
       {/* todo: funcionalidade do dropdown */}
       <ProfessionalReview />

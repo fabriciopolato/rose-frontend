@@ -22,14 +22,18 @@ const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   const [psychologists, setPsychologists] = useState<Professional[]>([]);
 
-  const getAllProfessionals = async () => {
-    const response = await fetchAllProfessionals();
-    setPsychologists(response);
-  };
-
   useEffect(() => {
     getAllProfessionals();
   }, []);
+
+  const getAllProfessionals = async () => {
+    try {
+      const response = await fetchAllProfessionals();
+      setPsychologists(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleToggle = () => {
     setToggle(!toggle);

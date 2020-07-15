@@ -37,9 +37,9 @@ const TherapyGroupDetails: React.FC = () => {
       <Schedules>
         <h2>Horário: toda segunda-feira, 18h</h2>
       </Schedules>
-      <FullDescription>
+      {/* <FullDescription>
         <h2>TESTE</h2>
-      </FullDescription>
+      </FullDescription> */}
       <Footer />
       <Button
         backgroundColor={white}
