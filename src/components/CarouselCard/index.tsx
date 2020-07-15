@@ -11,27 +11,38 @@ import { useTheme } from 'styled-components';
 
 export interface IProps {
   isTherapyGroup?: boolean;
+  name: string;
+  avatar: string;
+  specialties: string[];
+  price: number;
+  crp: string;
 }
 
-const CarouselCard: React.FC<IProps> = ({ isTherapyGroup = false }) => {
+const CarouselCard: React.FC<IProps> = ({
+  isTherapyGroup = false,
+  name,
+  avatar,
+  specialties,
+  price,
+  crp,
+}) => {
   const { salmon, red, white, black, lightSteelBlue } = useTheme();
 
   return (
     <Card isTherapyGroup={isTherapyGroup}>
       <figure>
-        <img src={polatinho} alt="Polenta" />
+        <img src={avatar} alt={name} />
       </figure>
-      <h2>Polenta</h2>
+      <h2>{name}</h2>
       <section>
         <ul>
-          <li>Propósito</li>
-          <li>Sem Mac</li>
-          <li>Suvaco Podre</li>
-          <li>Sem Justificado</li>
+          {specialties.map(elem => (
+            <li key={elem}>{elem}</li>
+          ))}
         </ul>
         <div>
-          <strong>50 min / R$100</strong>
-          <p>CRP: 0254861 </p>
+          <strong>50 min / R${price}</strong>
+          <p>CRP: {crp} </p>
           <img src={ratingStars} alt="estrelas de avaliação" />
         </div>
       </section>
