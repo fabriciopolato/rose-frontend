@@ -35,3 +35,9 @@ export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professiona
 export const fetchOneProfessional = async (id: string): Promise<AxiosResponse<Professional>> => {
   return await api.get(`psychologist/${id}`);
 };
+
+export const fetchFilteredProfessionals = async (
+  query: string
+): Promise<AxiosResponse<Professional[]>> => {
+  return await api.get(`psychologist${query}`);
+};

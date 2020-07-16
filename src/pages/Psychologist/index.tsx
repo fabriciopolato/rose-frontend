@@ -15,20 +15,35 @@ import {
 import { Container, Content, Controls, FiltersSection } from './styles';
 
 import { useTheme } from 'styled-components';
-import { fetchAllProfessionals } from '../../services/api';
+import { fetchAllProfessionals, fetchFilteredProfessionals } from '../../services/api';
 import { Professional } from '../../services/api';
+import { useLocation } from 'react-router-dom';
 
 const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
   const [psychologists, setPsychologists] = useState<Professional[]>([]);
+  const { search } = useLocation();
 
   useEffect(() => {
-    getAllProfessionals();
+    if (search) {
+      getFilteredProfessionals();
+    } else {
+      getAllProfessionals();
+    }
   }, []);
 
   const getAllProfessionals = async () => {
     try {
       const response = await fetchAllProfessionals();
+      setPsychologists(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getFilteredProfessionals = async () => {
+    try {
+      const response = await fetchFilteredProfessionals(search);
       setPsychologists(response.data);
     } catch (error) {
       console.error(error);
