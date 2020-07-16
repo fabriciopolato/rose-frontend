@@ -3,9 +3,14 @@ import React, { useState, ChangeEvent } from 'react';
 import { Navbar, Footer, FeelingCheckbox, Input, Button } from '../../components';
 import { Container, Content, CardQuestions, CardCheckboxes } from './styles';
 import { useTheme } from 'styled-components';
+import { useHistory } from 'react-router-dom';
+
+interface Feelings {
+  [key: string]: boolean;
+}
 
 const Feeling: React.FC = () => {
-  const [feelings, setFeelings] = useState({
+  const [feelings, setFeelings] = useState<Feelings>({
     ansiedade: false,
     depressão: false,
     'baixa_auto-estima': false,
@@ -15,10 +20,30 @@ const Feeling: React.FC = () => {
   });
 
   const { orange, white, lightSteelBlue } = useTheme();
+  const history = useHistory();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     setFeelings({ ...feelings, [name]: checked });
+  };
+
+  const handlePushQuery = () => {
+    let query = '?';
+    for (const feeling in feelings) {
+      if (feelings[feeling]) {
+        query += `${feeling}=true&`;
+      }
+    }
+
+    const queryArr = query.split('');
+    queryArr.pop();
+    query = queryArr.join('');
+
+    if (query === '?') {
+      history.push(`busque-profissionais`);
+    }
+
+    history.push(`busque-profissionais${query}`);
   };
 
   return (
@@ -79,6 +104,7 @@ const Feeling: React.FC = () => {
           </FeelingCheckbox>
           <Input type="text" placeholder="Outro:"></Input>
           <Button
+            onClick={handlePushQuery}
             backgroundColor={orange}
             backgroundColorOnHover={lightSteelBlue}
             textColor={white}
