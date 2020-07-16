@@ -25,6 +25,7 @@ export interface Professional {
   shortDescription: string;
   appointments: Object;
   reviews: string[];
+  healthInsurance: string[];
 }
 
 export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professional[]>> => {
