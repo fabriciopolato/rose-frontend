@@ -85,7 +85,15 @@ const PsychologistDetails: React.FC = () => {
               professional.price
             )}
           </strong>
-          <p>Planos de saúde: Amil, Bradesco</p>
+          <p>
+            Planos de saúde:{' '}
+            {professional.healthInsurance.map((insurance, index, arr) => {
+              if (index === arr.length - 1) {
+                return insurance;
+              }
+              return `${insurance}, `;
+            })}
+          </p>
         </div>
       </ProfileCard>
       <ShortDescription>
@@ -132,7 +140,6 @@ const PsychologistDetails: React.FC = () => {
         description={professional.longDescription}
       />
 
-      {/* todo: funcionalidade do dropdown */}
       <ProfessionalReview />
       <Footer />
     </Container>

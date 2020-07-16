@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  height: 205px;
+  min-height: 205px;
   overflow: hidden;
   background-color: ${props => props.theme.salmon};
   border-radius: 11px;
