@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Container,
@@ -11,16 +11,36 @@ import {
   TherapyGroups,
 } from './styles';
 
+import { Patient, fetchPatient } from '../../services/api';
+
 import { FaHeart } from 'react-icons/fa';
 import { Navbar, Footer, ProfileCardDropDown, Button } from '../../components';
 import { useTheme } from 'styled-components';
+import { useParams, useHistory } from 'react-router-dom';
 
 const Profile: React.FC = () => {
+  const [patient, setPatient] = useState({} as Patient);
   const [isMyDoctorsOpen, setIsMyDoctorsOpen] = useState(false);
   const [isNextSchedulesOpen, setIsNextSchedulesOpen] = useState(false);
   const [isGroupsOpen, setIsGroupsOpen] = useState(false);
   const [isPreviousSchedulesOpen, setIsPreviousSchedulesOpen] = useState(false);
   const [isPaymentsOpen, setIsPaymentsOpen] = useState(false);
+
+  const { id } = useParams();
+  const { push } = useHistory();
+
+  useEffect(() => {
+    getPatient();
+  }, []);
+
+  const getPatient = async () => {
+    try {
+      const response = await fetchPatient(id);
+      setPatient(response.data);
+    } catch (error) {
+      push('/');
+    }
+  };
 
   const { red, white, black, salmon, lightSteelBlue } = useTheme();
 
