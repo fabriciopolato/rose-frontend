@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import logo from '../../assets/navbar/logo.svg';
 import magnifier from '../../assets/navbar/magnifier.svg';
 import profile from '../../assets/navbar/profile.svg';
@@ -18,10 +18,36 @@ import {
   BackgroundImage,
 } from './styles';
 import bgLogin from '../../assets/bg-login.svg';
+import { fetchPatientLogin } from '../../services/api';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
 
 const Navbar: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [toggleLogin, setToggleLogin] = useState(false);
+  const [toggleLogin, setToggleLogin] = useState(true);
+  const [formData, setFormData] = useState(initialValues);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetchPatientLogin(formData);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -63,12 +89,29 @@ const Navbar: React.FC = () => {
           <span>ou</span>
           <hr />
         </DivisionLine>
-        <form>
-          <label>E-mail:</label>
-          <Input />
-          <label>Senha:</label>
-          <Input />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">E-mail:</label>
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="joãosnow@winterfell.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="password">Senha:</label>
+          <Input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="********"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
           <Button
+            type="submit"
             backgroundColor={salmon}
             backgroundColorOnHover={lightSteelBlue}
             textColor={black}
