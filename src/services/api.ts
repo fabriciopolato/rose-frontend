@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-const api = axios.create({ baseURL: 'http://localhost:3001' });
+export const api = axios.create({ baseURL: 'http://localhost:3001' });
 
 interface WorkingHours {
   startTime: string;
@@ -28,7 +28,7 @@ export interface Professional {
   healthInsurance: string[];
 }
 
-interface Patient {
+export interface Patient {
   _id: string;
   name: string;
   email: string;
@@ -69,4 +69,8 @@ export const fetchPatientLogin = async (
   console.log('Login data: ', loginData);
 
   return await api.post('patient/login', loginData);
+};
+
+export const fetchPatient = async (id: string): Promise<AxiosResponse<Patient>> => {
+  return await api.get(`patient/${id}`);
 };

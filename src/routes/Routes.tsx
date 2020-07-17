@@ -9,6 +9,7 @@ import Profile from '../pages/Profile';
 import Payment from '../pages/Payment';
 import TherapyGroup from '../pages/TherapyGroup';
 import TherapyGroupDetails from '../pages/TherapyGroupDetails';
+import PrivateRoute from './PrivateRoute';
 
 const Routes: React.FC = () => (
   <Router>
@@ -17,7 +18,7 @@ const Routes: React.FC = () => (
       <Route exact path="/o-que-esta-sentindo" component={Feeling} />
       <Route exact path="/busque-profissionais" component={Psychologist} />
       <Route exact path="/profissional/:id" component={PsychologistDetails} />
-      <Route exact path="/perfil/:id" component={Profile} />
+      <PrivateRoute exact path="/perfil/:id" component={Profile} />
       <Route exact path="/pagamentos/:id" component={Payment} />
       <Route exact path="/grupos-terapia" component={TherapyGroup} />
       <Route exact path="/grupos-terapia/:name" component={TherapyGroupDetails} />

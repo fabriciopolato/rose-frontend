@@ -4,7 +4,7 @@ import magnifier from '../../assets/navbar/magnifier.svg';
 import profile from '../../assets/navbar/profile.svg';
 import menu from '../../assets/navbar/menu.svg';
 import { Modal, Button, Input } from '../../components/';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import bgMenu from '../../assets/bg-menu.svg';
 import { useTheme } from 'styled-components';
 import facebook from '../../assets/navbar/facebook.svg';
@@ -19,6 +19,7 @@ import {
 } from './styles';
 import bgLogin from '../../assets/bg-login.svg';
 import { fetchPatientLogin } from '../../services/api';
+import { setTokenInLocalStorage } from '../../services/localStorage';
 
 const initialValues = {
   email: '',
@@ -27,8 +28,10 @@ const initialValues = {
 
 const Navbar: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [toggleLogin, setToggleLogin] = useState(true);
+  const [toggleLogin, setToggleLogin] = useState(false);
   const [formData, setFormData] = useState(initialValues);
+
+  const history = useHistory();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -43,7 +46,10 @@ const Navbar: React.FC = () => {
 
     try {
       const response = await fetchPatientLogin(formData);
-      console.log(response.data);
+      setTokenInLocalStorage(response.data.token);
+
+      setFormData(initialValues);
+      history.push(`/perfil/${response.data.patient._id}`);
     } catch (error) {
       console.error(error);
     }
