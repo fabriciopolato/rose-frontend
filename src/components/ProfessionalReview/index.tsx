@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components';
 import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
 import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
-import { FaStar } from 'react-icons/fa';
+import { ReactComponent as Star } from '../../assets/review-star.svg';
 
 interface Props {
   handleSubmit(starReview: number, reviewTextArea: string): void;
@@ -16,7 +16,7 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
 
-  const { black, salmon } = useTheme();
+  const { black, salmon, orange } = useTheme();
 
   const reviewElement = useRef({} as HTMLDivElement);
 
@@ -40,6 +40,8 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
 
   const handleToggleReview = () => {
     setToggleReview(!toggleReview);
+    setStarReview(0);
+    setReviewTextArea('');
   };
 
   const handleReviewTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -76,11 +78,31 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
         <div>
           <span>Fabiana Guedes</span>
           <div>
-            <FaStar onClick={() => setStarReview(1)} size={14} color={salmon} />
-            <FaStar onClick={() => setStarReview(2)} size={14} color={salmon} />
-            <FaStar onClick={() => setStarReview(3)} size={14} color={salmon} />
-            <FaStar onClick={() => setStarReview(4)} size={14} color={salmon} />
-            <FaStar onClick={() => setStarReview(5)} size={14} color={salmon} />
+            <Star
+              onClick={() => setStarReview(1)}
+              color={orange}
+              fill={starReview >= 1 ? orange : 'none'}
+            />
+            <Star
+              onClick={() => setStarReview(2)}
+              color={orange}
+              fill={starReview >= 2 ? orange : 'none'}
+            />
+            <Star
+              onClick={() => setStarReview(3)}
+              color={orange}
+              fill={starReview >= 3 ? orange : 'none'}
+            />
+            <Star
+              onClick={() => setStarReview(4)}
+              color={orange}
+              fill={starReview >= 4 ? orange : 'none'}
+            />
+            <Star
+              onClick={() => setStarReview(5)}
+              color={orange}
+              fill={starReview >= 5 ? orange : 'none'}
+            />
           </div>
         </div>
 
