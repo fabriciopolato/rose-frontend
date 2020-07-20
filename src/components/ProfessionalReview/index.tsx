@@ -1,14 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { useTheme } from 'styled-components';
 import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
 import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
 import { FaStar } from 'react-icons/fa';
 
-const ProfessionalReview: React.FC = () => {
+interface Props {
+  handleSubmit(starReview: number, reviewTextArea: string): void;
+}
+
+const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [reviewHeight, setReviewHeight] = useState(0);
   const [toggleReview, setToggleReview] = useState(false);
+  const [reviewTextArea, setReviewTextArea] = useState('');
+  const [starReview, setStarReview] = useState(0);
 
   const { black, salmon } = useTheme();
 
@@ -34,6 +40,10 @@ const ProfessionalReview: React.FC = () => {
 
   const handleToggleReview = () => {
     setToggleReview(!toggleReview);
+  };
+
+  const handleReviewTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewTextArea(e.target.value);
   };
 
   return (
@@ -66,17 +76,19 @@ const ProfessionalReview: React.FC = () => {
         <div>
           <span>Fabiana Guedes</span>
           <div>
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
-            <FaStar size={14} color={salmon} />
+            <FaStar onClick={() => setStarReview(1)} size={14} color={salmon} />
+            <FaStar onClick={() => setStarReview(2)} size={14} color={salmon} />
+            <FaStar onClick={() => setStarReview(3)} size={14} color={salmon} />
+            <FaStar onClick={() => setStarReview(4)} size={14} color={salmon} />
+            <FaStar onClick={() => setStarReview(5)} size={14} color={salmon} />
           </div>
         </div>
 
         <label htmlFor="testimonial">
           Depoimento:
           <textarea
+            value={reviewTextArea}
+            onChange={handleReviewTextArea}
             name="testimonial"
             id="testimonial"
             maxLength={200}
@@ -84,6 +96,7 @@ const ProfessionalReview: React.FC = () => {
           />
         </label>
         <Button
+          onClick={() => handleSubmit(starReview, reviewTextArea)}
           backgroundColor={salmon}
           backgroundColorOnHover={salmon}
           textColor={black}

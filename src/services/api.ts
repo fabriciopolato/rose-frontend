@@ -49,6 +49,13 @@ interface LoginData {
   password: string;
 }
 
+interface Review {
+  psychologistId: string;
+  patientId: string;
+  rate: number;
+  description: string;
+}
+
 export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professional[]>> => {
   return await api.get('psychologist');
 };
@@ -66,11 +73,13 @@ export const fetchFilteredProfessionals = async (
 export const fetchPatientLogin = async (
   loginData: LoginData
 ): Promise<AxiosResponse<PatientLogin>> => {
-  console.log('Login data: ', loginData);
-
   return await api.post('patient/login', loginData);
 };
 
 export const fetchPatient = async (id: string): Promise<AxiosResponse<Patient>> => {
   return await api.get(`patient/${id}`);
+};
+
+export const fetchCreateReview = async (reviewData: Review): Promise<AxiosResponse<Review>> => {
+  return await api.post('reviews', reviewData);
 };
