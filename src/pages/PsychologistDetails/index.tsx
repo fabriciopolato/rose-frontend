@@ -59,7 +59,7 @@ const PsychologistDetails: React.FC = () => {
   const handleSubmitReview = (starReview: number, reviewTextArea: string) => {
     const reviewData = {
       psychologistId: id,
-      patientId: getUserFromLocalStorage()!,
+      patientId: JSON.parse(getUserFromLocalStorage()!),
       rate: starReview,
       description: reviewTextArea,
     };
