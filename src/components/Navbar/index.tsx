@@ -19,7 +19,7 @@ import {
 } from './styles';
 import bgLogin from '../../assets/bg-login.svg';
 import { fetchPatientLogin } from '../../services/api';
-import { setTokenInLocalStorage } from '../../services/localStorage';
+import { setTokenInLocalStorage, setUserInLocalStorage } from '../../services/localStorage';
 
 const initialValues = {
   email: '',
@@ -47,6 +47,7 @@ const Navbar: React.FC = () => {
     try {
       const response = await fetchPatientLogin(formData);
       setTokenInLocalStorage(response.data.token);
+      setUserInLocalStorage(response.data.patient._id);
 
       setFormData(initialValues);
       history.push(`/perfil/${response.data.patient._id}`);

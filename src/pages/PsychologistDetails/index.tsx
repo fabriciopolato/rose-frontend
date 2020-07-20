@@ -12,6 +12,8 @@ import {
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
 import { Link, useParams, useHistory } from 'react-router-dom';
+import { fetchCreateReview } from '../../services/api';
+import { getUserFromLocalStorage } from '../../services/localStorage';
 
 import {
   Container,
@@ -53,6 +55,16 @@ const PsychologistDetails: React.FC = () => {
   if (!professional.name) {
     return <span>loading...</span>;
   }
+
+  const handleSubmitReview = (starReview: number, reviewTextArea: string) => {
+    const reviewData = {
+      psychologistId: id,
+      patientId: JSON.parse(getUserFromLocalStorage()!),
+      rate: starReview,
+      description: reviewTextArea,
+    };
+    fetchCreateReview(reviewData);
+  };
 
   return (
     <Container>
@@ -140,7 +152,7 @@ const PsychologistDetails: React.FC = () => {
         description={professional.longDescription}
       />
 
-      <ProfessionalReview />
+      <ProfessionalReview handleSubmit={handleSubmitReview} />
       <Footer />
     </Container>
   );
