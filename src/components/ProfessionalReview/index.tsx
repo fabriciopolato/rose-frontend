@@ -5,9 +5,15 @@ import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
 import { ModalContext } from '../../contexts/ModalContext';
+import { fetchProfessionalReviews } from '../../services/api';
+import { useParams } from 'react-router-dom';
 
 interface Props {
   handleSubmit(starReview: number, reviewTextArea: string): void;
+}
+
+interface IParams {
+  id: string;
 }
 
 const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
@@ -15,6 +21,8 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [reviewHeight, setReviewHeight] = useState(0);
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
+
+  const { id } = useParams() as IParams;
 
   const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext)
 
@@ -35,6 +43,17 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
 
     setReviewHeight(totalHeight);
   }, [isReviewsOpen]);
+  
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetchProfessionalReviews(id);
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    })()
+  }, []);
 
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
