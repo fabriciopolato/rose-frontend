@@ -5,7 +5,7 @@ import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
 import { ModalContext } from '../../contexts/ModalContext';
-import { fetchProfessionalReviews } from '../../services/api';
+import { fetchProfessionalReviews, IProfesionalReview } from '../../services/api';
 import { useParams } from 'react-router-dom';
 
 interface Props {
@@ -21,6 +21,8 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [reviewHeight, setReviewHeight] = useState(0);
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
+
+  const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([])
 
   const { id } = useParams() as IParams;
 
@@ -48,7 +50,8 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
     (async () => {
       try {
         const response = await fetchProfessionalReviews(id);
-        console.log(response.data)
+
+        setProfessionalReviews(response.data)
       } catch (error) {
         console.error(error)
       }
@@ -85,8 +88,13 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
           <p onClick={handleProfessionalReviewToggle}>
             <u>Avalie o profissional</u>
           </p>
-          <ReviewCard isLeft />
-          <ReviewCard />
+
+          {professionalReviews.map((review, index) => (
+           index % 2 === 0 
+            ? <ReviewCard isLeft key={review._id} review={review} />
+            : <ReviewCard key={review._id} review={review} />
+          ))}
+
         </ProfessionalReviewsHiddenContent>
       </Container>
       <Modal

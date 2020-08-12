@@ -1,27 +1,29 @@
 import React from 'react';
 import { Content, Container } from './styles';
 import ratingStars from '../../assets/rating-stars.svg';
+import { IProfesionalReview } from '../../services/api';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 interface IProps {
   isLeft?: boolean;
+  review: IProfesionalReview;
 }
 
-const ReviewCard: React.FC<IProps> = ({ isLeft = false }) => {
+const ReviewCard: React.FC<IProps> = ({ isLeft = false, review }) => {
   return (
     <Container isLeft={isLeft}>
       <Content>
-        <p>
-          Eu costumo dizer que a Joana fez doutorado em Anjologia porque ela não
-          é daqui não... Profissional espetacular: conhecedora, competente,
-          disponível, amável; tudo que eu precisava no momento
-        </p>
+        <p>{review.description}</p>
 
         <div>
-          <strong>Ricky Almeida</strong>
+          <strong>{review.patient.name}</strong>
           <img src={ratingStars} alt="estrelas de avaliação" />
         </div>
 
-        <small>Dezembro/2019</small>
+        <small>
+          <Moment format="MMMM/YYYY">{review.createdAt}</Moment>
+        </small>
       </Content>
     </Container>
   );
