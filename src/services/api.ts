@@ -49,11 +49,21 @@ interface LoginData {
   password: string;
 }
 
-interface Review {
+interface CreateReview {
   psychologistId: string;
   patientId: string;
   rate: number;
   description: string;
+}
+
+export interface IProfesionalReview {
+  _id: string;
+  patient: {
+    name: string,
+  };
+  rate: number;
+  description: string;
+  createdAt: string;
 }
 
 export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professional[]>> => {
@@ -80,6 +90,10 @@ export const fetchPatient = async (id: string): Promise<AxiosResponse<Patient>> 
   return await api.get(`patient/${id}`);
 };
 
-export const fetchCreateReview = async (reviewData: Review): Promise<AxiosResponse<Review>> => {
+export const fetchCreateReview = async (reviewData: CreateReview): Promise<AxiosResponse<CreateReview>> => {
   return await api.post('reviews', reviewData);
 };
+
+export const fetchProfessionalReviews = async (id: string): Promise<AxiosResponse<IProfesionalReview[]>> => {
+  return await api.get(`reviews/${id}`);
+}

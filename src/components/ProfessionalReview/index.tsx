@@ -1,20 +1,32 @@
-import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
+import React, { useState, useRef, useEffect, ChangeEvent, useContext } from 'react';
 import { useTheme } from 'styled-components';
 import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
 import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
+import { ModalContext } from '../../contexts/ModalContext';
+import { fetchProfessionalReviews, IProfesionalReview } from '../../services/api';
+import { useParams } from 'react-router-dom';
 
 interface Props {
   handleSubmit(starReview: number, reviewTextArea: string): void;
 }
 
+interface IParams {
+  id: string;
+}
+
 const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [reviewHeight, setReviewHeight] = useState(0);
-  const [toggleReview, setToggleReview] = useState(false);
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
+
+  const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([])
+
+  const { id } = useParams() as IParams;
+
+  const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext)
 
   const { black, salmon, orange } = useTheme();
 
@@ -33,16 +45,29 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
 
     setReviewHeight(totalHeight);
   }, [isReviewsOpen]);
+  
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetchProfessionalReviews(id);
+
+        setProfessionalReviews(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    })()
+  }, []);
 
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
   };
 
-  const handleToggleReview = () => {
-    setToggleReview(!toggleReview);
-    setStarReview(0);
-    setReviewTextArea('');
-  };
+  // TODO: refactor context to handle form
+  // const handleToggleReview = () => {
+  //   setToggleReview(!toggleReview);
+  //   setStarReview(0);
+  //   setReviewTextArea('');
+  // };
 
   const handleReviewTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewTextArea(e.target.value);
@@ -60,14 +85,24 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
           height={reviewHeight}
           isOpen={isReviewsOpen}
         >
-          <p onClick={handleToggleReview}>
+          <p onClick={handleProfessionalReviewToggle}>
             <u>Avalie o profissional</u>
           </p>
-          <ReviewCard isLeft />
-          <ReviewCard />
+
+          {professionalReviews.map((review, index) => (
+           index % 2 === 0 
+            ? <ReviewCard isLeft key={review._id} review={review} />
+            : <ReviewCard key={review._id} review={review} />
+          ))}
+
         </ProfessionalReviewsHiddenContent>
       </Container>
-      <Modal closeIconLeft id="review" handleToggle={handleToggleReview} toggle={toggleReview}>
+      <Modal
+        closeIconLeft
+        id="review"
+        handleToggle={handleProfessionalReviewToggle}
+        toggle={professionalReviewToggle}
+      >
         <BackgroundImage src={bgReview} alt="Flores Rose" />
 
         <h2>

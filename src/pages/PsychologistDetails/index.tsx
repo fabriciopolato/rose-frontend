@@ -34,7 +34,9 @@ const PsychologistDetails: React.FC = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { scheduleToggle, handleToggle } = useContext(ModalContext)
+  const { 
+    scheduleToggle, handleScheduleToggle, handleProfessionalReviewToggle
+  } = useContext(ModalContext)
 
   useEffect(() => {
     getProfessional();
@@ -66,6 +68,7 @@ const PsychologistDetails: React.FC = () => {
 
     try {
       await fetchCreateReview(reviewData);
+      handleProfessionalReviewToggle();
     } catch (error) {
       console.error(error)
     }
@@ -125,11 +128,11 @@ const PsychologistDetails: React.FC = () => {
           textColorOnHover={white}
           backgroundColorOnHover={orange}
           backgroundColor={orange}
-          onClick={handleToggle}
+          onClick={handleScheduleToggle}
         >
           20:30h
         </Button>
-        <Modal toggle={scheduleToggle} handleToggle={handleToggle} id="schedule-confirmation">
+        <Modal toggle={scheduleToggle} handleToggle={handleScheduleToggle} id="schedule-confirmation">
           <ModalContent>
             <h2>Confirmar sessão</h2>
             <h4>Hoje - 29/05/2020</h4>
