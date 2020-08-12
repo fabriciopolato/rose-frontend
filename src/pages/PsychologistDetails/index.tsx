@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Navbar,
   Footer,
@@ -24,13 +24,17 @@ import {
   Schedule,
   ModalContent,
 } from './styles';
+
 import { fetchOneProfessional, Professional } from '../../services/api';
+
+import { ModalContext } from '../../contexts/ModalContext';
 
 const PsychologistDetails: React.FC = () => {
   const [professional, setProfessional] = useState({} as Professional);
-  const [toggle, setToggle] = useState(false);
   const { id } = useParams();
   const history = useHistory();
+
+  const { scheduleToggle, handleToggle } = useContext(ModalContext)
 
   useEffect(() => {
     getProfessional();
@@ -46,24 +50,25 @@ const PsychologistDetails: React.FC = () => {
     }
   };
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
-
   const { white, black, orange, salmon } = useTheme();
 
   if (!professional.name) {
     return <span>loading...</span>;
   }
 
-  const handleSubmitReview = (starReview: number, reviewTextArea: string) => {
+  const handleSubmitReview = async (starReview: number, reviewTextArea: string) => {
     const reviewData = {
       psychologistId: id,
       patientId: JSON.parse(getUserFromLocalStorage()!),
       rate: starReview,
       description: reviewTextArea,
     };
-    fetchCreateReview(reviewData);
+
+    try {
+      await fetchCreateReview(reviewData);
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   return (
@@ -124,7 +129,7 @@ const PsychologistDetails: React.FC = () => {
         >
           20:30h
         </Button>
-        <Modal toggle={toggle} handleToggle={handleToggle} id="schedule-confirmation">
+        <Modal toggle={scheduleToggle} handleToggle={handleToggle} id="schedule-confirmation">
           <ModalContent>
             <h2>Confirmar sessão</h2>
             <h4>Hoje - 29/05/2020</h4>
