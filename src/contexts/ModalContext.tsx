@@ -3,20 +3,29 @@ import React, { createContext, useState  } from 'react';
 
 interface IModalContext {
   scheduleToggle: boolean;
-  handleToggle: () => void;
+  professionalReviewToggle: boolean;
+  handleScheduleToggle: () => void;
+  handleProfessionalReviewToggle: () => void;
 }
 
 export const ModalContext = createContext({} as IModalContext);
 
 const ModalContextProvider: React.FC = ({ children }) => {
   const [scheduleToggle, setScheduleToggle] = useState(false);
+  const [professionalReviewToggle, setProfessionalReviewToggle] = useState(false);
 
-  const handleToggle = () => {
+  const handleScheduleToggle = () => {
     setScheduleToggle(!scheduleToggle);
   };
 
+  const handleProfessionalReviewToggle = () => {
+    setProfessionalReviewToggle(!professionalReviewToggle);
+  };
+
   return (
-    <ModalContext.Provider value={{ scheduleToggle, handleToggle }}>
+    <ModalContext.Provider value={
+      { scheduleToggle, professionalReviewToggle, handleScheduleToggle, handleProfessionalReviewToggle }
+    }>
       {children}
     </ModalContext.Provider>
   );

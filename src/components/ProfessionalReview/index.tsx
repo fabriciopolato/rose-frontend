@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
+import React, { useState, useRef, useEffect, ChangeEvent, useContext } from 'react';
 import { useTheme } from 'styled-components';
 import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
 import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
+import { ModalContext } from '../../contexts/ModalContext';
 
 interface Props {
   handleSubmit(starReview: number, reviewTextArea: string): void;
@@ -12,9 +13,10 @@ interface Props {
 const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [reviewHeight, setReviewHeight] = useState(0);
-  const [toggleReview, setToggleReview] = useState(false);
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
+
+  const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext)
 
   const { black, salmon, orange } = useTheme();
 
@@ -38,11 +40,12 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
     setIsReviewsOpen(!isReviewsOpen);
   };
 
-  const handleToggleReview = () => {
-    setToggleReview(!toggleReview);
-    setStarReview(0);
-    setReviewTextArea('');
-  };
+  // TODO: refactor context to handle form
+  // const handleToggleReview = () => {
+  //   setToggleReview(!toggleReview);
+  //   setStarReview(0);
+  //   setReviewTextArea('');
+  // };
 
   const handleReviewTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewTextArea(e.target.value);
@@ -60,14 +63,19 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
           height={reviewHeight}
           isOpen={isReviewsOpen}
         >
-          <p onClick={handleToggleReview}>
+          <p onClick={handleProfessionalReviewToggle}>
             <u>Avalie o profissional</u>
           </p>
           <ReviewCard isLeft />
           <ReviewCard />
         </ProfessionalReviewsHiddenContent>
       </Container>
-      <Modal closeIconLeft id="review" handleToggle={handleToggleReview} toggle={toggleReview}>
+      <Modal
+        closeIconLeft
+        id="review"
+        handleToggle={handleProfessionalReviewToggle}
+        toggle={professionalReviewToggle}
+      >
         <BackgroundImage src={bgReview} alt="Flores Rose" />
 
         <h2>
