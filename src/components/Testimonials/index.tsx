@@ -7,11 +7,11 @@ const Testimonials: React.FC = () => {
     <Container>
       <Content>
         <h2>Depoimentos</h2>
-        <ReviewCard isLeft />
+        {/* <ReviewCard isLeft />
         <ReviewCard />
         <ReviewCard isLeft />
         <ReviewCard />
-        <ReviewCard isLeft />
+        <ReviewCard isLeft /> */}
       </Content>
     </Container>
   );
