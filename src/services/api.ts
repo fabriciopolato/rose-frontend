@@ -56,7 +56,7 @@ interface CreateReview {
   description: string;
 }
 
-interface ProfesionalReview {
+export interface IProfesionalReview {
   _id: string;
   patient: {
     name: string,
@@ -94,6 +94,6 @@ export const fetchCreateReview = async (reviewData: CreateReview): Promise<Axios
   return await api.post('reviews', reviewData);
 };
 
-export const fetchProfessionalReviews = async (id: string): Promise<AxiosResponse<ProfesionalReview[]>> => {
+export const fetchProfessionalReviews = async (id: string): Promise<AxiosResponse<IProfesionalReview[]>> => {
   return await api.get(`reviews/${id}`);
 }
