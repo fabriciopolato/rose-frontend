@@ -22,11 +22,11 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
 
-  const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([])
+  const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([]);
 
   const { id } = useParams() as IParams;
 
-  const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext)
+  const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext);
 
   const { black, salmon, orange } = useTheme();
 
@@ -45,18 +45,18 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
 
     setReviewHeight(totalHeight);
   }, [isReviewsOpen]);
-  
+
   useEffect(() => {
     (async () => {
       try {
         const response = await fetchProfessionalReviews(id);
 
-        setProfessionalReviews(response.data)
+        setProfessionalReviews(response.data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    })()
-  }, []);
+    })();
+  }, [id]);
 
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
@@ -89,12 +89,13 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
             <u>Avalie o profissional</u>
           </p>
 
-          {professionalReviews.map((review, index) => (
-           index % 2 === 0 
-            ? <ReviewCard isLeft key={review._id} review={review} />
-            : <ReviewCard key={review._id} review={review} />
-          ))}
-
+          {professionalReviews.map((review, index) =>
+            index % 2 === 0 ? (
+              <ReviewCard isLeft key={review._id} review={review} />
+            ) : (
+              <ReviewCard key={review._id} review={review} />
+            )
+          )}
         </ProfessionalReviewsHiddenContent>
       </Container>
       <Modal
