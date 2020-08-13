@@ -23,13 +23,10 @@ const ReviewCard: React.FC<IProps> = ({ isLeft = false, review }) => {
         <div>
           <strong>{review.patient.name}</strong>
           <div>
-            <Star fill={review.rate >= 1 ? salmon : 'none'} />
-            <Star fill={review.rate >= 2 ? salmon : 'none'} />
-            <Star fill={review.rate >= 3 ? salmon : 'none'} />
-            <Star fill={review.rate >= 4 ? salmon : 'none'} />
-            <Star fill={review.rate >= 5 ? salmon : 'none'} />
+            {new Array(5).fill(null).map((_, index) => (
+              <Star key={index} fill={review.rate >= index + 1 ? salmon : 'none'} />
+            ))}
           </div>
-          {/* <img src={ratingStars} alt="estrelas de avaliação" /> */}
         </div>
 
         <small>
