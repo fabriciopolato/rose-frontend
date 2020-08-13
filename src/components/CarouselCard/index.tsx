@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Button } from '..';
 import { Card } from './styles';
 
-import polatinho from '../../assets/polato.jpeg';
 import ratingStars from '../../assets/rating-stars.svg';
 
 import { useTheme } from 'styled-components';
