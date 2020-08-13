@@ -26,24 +26,22 @@ const Psychologist: React.FC = () => {
 
   useEffect(() => {
     if (search) {
-      getFilteredProfessionals();
+      (async () => {
+        try {
+          const response = await fetchFilteredProfessionals(search);
+          setPsychologists(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      })();
     } else {
       getAllProfessionals();
     }
-  }, []);
+  }, [search]);
 
   const getAllProfessionals = async () => {
     try {
       const response = await fetchAllProfessionals();
-      setPsychologists(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getFilteredProfessionals = async () => {
-    try {
-      const response = await fetchFilteredProfessionals(search);
       setPsychologists(response.data);
     } catch (error) {
       console.error(error);

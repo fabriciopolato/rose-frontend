@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as StarFromSvg } from '../../assets/review-star.svg';
 
 interface IProps {
   isLeft: boolean;
@@ -30,5 +31,15 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+  }
+`;
+
+export const Star = styled(StarFromSvg)`
+  width: 11px;
+  height: 11px;
+  color: ${props => props.theme.salmon};
+
+  path {
+    stroke: ${props => props.theme.salmon};
   }
 `;

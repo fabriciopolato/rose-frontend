@@ -34,23 +34,21 @@ const PsychologistDetails: React.FC = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { 
-    scheduleToggle, handleScheduleToggle, handleProfessionalReviewToggle
-  } = useContext(ModalContext)
+  const { scheduleToggle, handleScheduleToggle, handleProfessionalReviewToggle } = useContext(
+    ModalContext
+  );
 
   useEffect(() => {
-    getProfessional();
-  }, []);
-
-  const getProfessional = async () => {
-    try {
-      const response = await fetchOneProfessional(id);
-      setProfessional(response.data);
-    } catch (error) {
-      history.push('busque-profissionais');
-      console.error(error);
-    }
-  };
+    (async () => {
+      try {
+        const response = await fetchOneProfessional(id);
+        setProfessional(response.data);
+      } catch (error) {
+        history.push('busque-profissionais');
+        console.error(error);
+      }
+    })();
+  }, [id, history]);
 
   const { white, black, orange, salmon } = useTheme();
 
@@ -70,7 +68,7 @@ const PsychologistDetails: React.FC = () => {
       await fetchCreateReview(reviewData);
       handleProfessionalReviewToggle();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
@@ -132,7 +130,11 @@ const PsychologistDetails: React.FC = () => {
         >
           20:30h
         </Button>
-        <Modal toggle={scheduleToggle} handleToggle={handleScheduleToggle} id="schedule-confirmation">
+        <Modal
+          toggle={scheduleToggle}
+          handleToggle={handleScheduleToggle}
+          id="schedule-confirmation"
+        >
           <ModalContent>
             <h2>Confirmar sessão</h2>
             <h4>Hoje - 29/05/2020</h4>

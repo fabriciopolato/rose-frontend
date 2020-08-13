@@ -1,9 +1,11 @@
 import React from 'react';
-import { Content, Container } from './styles';
+import { Content, Container, Star } from './styles';
 import ratingStars from '../../assets/rating-stars.svg';
 import { IProfesionalReview } from '../../services/api';
 import Moment from 'react-moment';
+
 import 'moment-timezone';
+import { useTheme } from 'styled-components';
 
 interface IProps {
   isLeft?: boolean;
@@ -11,6 +13,8 @@ interface IProps {
 }
 
 const ReviewCard: React.FC<IProps> = ({ isLeft = false, review }) => {
+  const { salmon } = useTheme();
+
   return (
     <Container isLeft={isLeft}>
       <Content>
@@ -18,7 +22,11 @@ const ReviewCard: React.FC<IProps> = ({ isLeft = false, review }) => {
 
         <div>
           <strong>{review.patient.name}</strong>
-          <img src={ratingStars} alt="estrelas de avaliação" />
+          <div>
+            {new Array(5).fill(null).map((_, index) => (
+              <Star key={index} fill={review.rate >= index + 1 ? salmon : 'none'} />
+            ))}
+          </div>
         </div>
 
         <small>
