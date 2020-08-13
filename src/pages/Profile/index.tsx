@@ -27,20 +27,18 @@ const Profile: React.FC = () => {
   const [isPaymentsOpen, setIsPaymentsOpen] = useState(false);
 
   const { id } = useParams();
-  const { push } = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
-    getPatient();
-  }, []);
-
-  const getPatient = async () => {
-    try {
-      const response = await fetchPatient(id);
-      setPatient(response.data);
-    } catch (error) {
-      push('/');
-    }
-  };
+    (async () => {
+      try {
+        const response = await fetchPatient(id);
+        setPatient(response.data);
+      } catch (error) {
+        history.push('/');
+      }
+    })();
+  }, [id, history]);
 
   const { red, white, black, salmon, lightSteelBlue } = useTheme();
 

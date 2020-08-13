@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Footer, ProfileCard, FullDescription, Button } from '../../components';
+import { Navbar, Footer, ProfileCard, Button } from '../../components';
 import { useTheme } from 'styled-components';
 import { Container, ProfessionalInfo, Schedules } from './styles';
 import { ShortDescription } from '../PsychologistDetails/styles';
@@ -13,18 +13,16 @@ const TherapyGroupDetails: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getProfessional();
-  }, []);
-
-  const getProfessional = async () => {
-    try {
-      const response = await fetchOneProfessional(id);
-      setProfessional(response.data);
-    } catch (error) {
-      history.push('grupos-terapia');
-      console.error(error);
-    }
-  };
+    (async () => {
+      try {
+        const response = await fetchOneProfessional(id);
+        setProfessional(response.data);
+      } catch (error) {
+        history.push('grupos-terapia');
+        console.error(error);
+      }
+    })();
+  }, [history, id]);
 
   return (
     <Container>
