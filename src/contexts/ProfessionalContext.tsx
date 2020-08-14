@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
-import { Professional, fetchCreateReview } from '../services/api';
+import React, { createContext, useState, useContext, ChangeEvent } from 'react';
+import { Professional, fetchCreateReview, IProfesionalReview, fetchProfessionalReviews } from '../services/api';
 import { ModalContext } from './ModalContext';
 import { getUserFromLocalStorage } from '../services/localStorage';
 
@@ -11,21 +11,42 @@ import { getUserFromLocalStorage } from '../services/localStorage';
 
 interface IProfessionalContext {
   professional: Professional;
-  handleProfessional: (professional: Professional) => void
-  handleSubmitReview: (starReview: number, reviewTextArea: string, id: string) => void
+  reviewTextArea: string;
+  starReview: number;
+  professionalReviews: IProfesionalReview[];
+  handleProfessional: (professional: Professional) => void;
+  handleSubmitReview: (starReview: number, reviewTextArea: string, id: string) => void;
+  handleReviewTextArea: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  handleStarReview: (rate: number) => void;
+  handleProfessionalReview: (professionalReviewsFromApi: IProfesionalReview[]) => void;
 }
 
 export const ProfessionalContext = createContext({} as IProfessionalContext);
 
 const ProfessionalContextProvider: React.FC = ({ children }) => {
   const [professional, setProfessional] = useState({} as Professional);
-  const { handleScheduleToggle, handleProfessionalReviewToggle } = useContext(
+  const [reviewTextArea, setReviewTextArea] = useState('');
+  const [starReview, setStarReview] = useState(0);
+  const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([]);
+
+  const { handleProfessionalReviewToggle } = useContext(
     ModalContext
   );
 
+  const handleReviewTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewTextArea(event.target.value);
+  };
+
+  const handleStarReview = (rate: number) => {
+    setStarReview(rate);
+  };
 
   const handleProfessional = (professional: Professional) => {
-    setProfessional(professional)
+    setProfessional(professional);
+  }
+
+  const handleProfessionalReview = (professionalReviewsFromApi: IProfesionalReview[]) => {
+    setProfessionalReviews(professionalReviewsFromApi);
   }
 
   const handleSubmitReview = async (starReview: number, reviewTextArea: string, id: string) => {
@@ -39,15 +60,30 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
     try {
       await fetchCreateReview(reviewData);
       handleProfessionalReviewToggle();
+      handleStarReview(0);
+      setReviewTextArea('');
+
+      const response = await fetchProfessionalReviews(id);
+      console.log(response.data)
+      setProfessionalReviews(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-
   return (
     <ProfessionalContext.Provider value={
-      { professional, handleProfessional, handleSubmitReview }
+      { 
+        professional,
+        reviewTextArea,
+        starReview,
+        professionalReviews,
+        handleProfessional,
+        handleSubmitReview,
+        handleReviewTextArea,
+        handleStarReview,
+        handleProfessionalReview
+      }
     }>
       {children}
     </ProfessionalContext.Provider>
