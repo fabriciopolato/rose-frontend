@@ -1,6 +1,5 @@
 import React from 'react';
 import { Content, Container, Star } from './styles';
-import ratingStars from '../../assets/rating-stars.svg';
 import { IProfesionalReview } from '../../services/api';
 import Moment from 'react-moment';
 
