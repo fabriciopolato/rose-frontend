@@ -1,4 +1,4 @@
-import React, { createContext, useState  } from 'react';
+import React, { createContext, useState, useCallback  } from 'react';
 
 
 interface IModalContext {
@@ -14,13 +14,13 @@ const ModalContextProvider: React.FC = ({ children }) => {
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [professionalReviewToggle, setProfessionalReviewToggle] = useState(false);
 
-  const handleScheduleToggle = () => {
+  const handleScheduleToggle = useCallback(() => {
     setScheduleToggle(!scheduleToggle);
-  };
+  }, []);
 
-  const handleProfessionalReviewToggle = () => {
+  const handleProfessionalReviewToggle = useCallback(() => {
     setProfessionalReviewToggle(!professionalReviewToggle);
-  };
+  }, []);
 
   return (
     <ModalContext.Provider value={
