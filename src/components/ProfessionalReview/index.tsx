@@ -55,7 +55,7 @@ const ProfessionalReview: React.FC = () => {
 
   useEffect(() => {
     handleProfessionalReview(id);
-  }, [id]);
+  }, [handleProfessionalReview, id]);
 
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
@@ -67,6 +67,8 @@ const ProfessionalReview: React.FC = () => {
       if (patientId) {
         return (review.patient._id === JSON.parse(patientId));
       }
+      
+      return false;
     });
     
     return !!foundReview;

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
@@ -38,7 +38,7 @@ const PsychologistDetails: React.FC = () => {
   
   useEffect(() => {
     handleProfessional(id);
-  }, [id]);
+  }, [handleProfessional, id]);
 
   const { white, black, orange, salmon } = useTheme();
 
