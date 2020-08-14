@@ -1,13 +1,16 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
-import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
+
 import { ReviewCard, Modal, Button } from '../../components';
+import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
+
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
+
 import { ModalContext } from '../../contexts/ModalContext';
-import { fetchProfessionalReviews } from '../../services/api';
-import { useParams } from 'react-router-dom';
 import { ProfessionalContext } from '../../contexts/ProfessionalContext';
+
 import { getUserFromLocalStorage } from '../../services/localStorage';
 
 interface IParams {
@@ -51,15 +54,7 @@ const ProfessionalReview: React.FC = () => {
   }, [isReviewsOpen, professionalReviews]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetchProfessionalReviews(id);
-
-        handleProfessionalReview(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    handleProfessionalReview(id);
   }, [id]);
 
   const handleReviewsDropdown = () => {

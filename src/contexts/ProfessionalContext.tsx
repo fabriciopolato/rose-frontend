@@ -1,7 +1,8 @@
 import React, { createContext, useState, useContext, ChangeEvent } from 'react';
-import { Professional, fetchCreateReview, IProfesionalReview, fetchProfessionalReviews } from '../services/api';
+import { Professional, fetchCreateReview, IProfesionalReview, fetchProfessionalReviews, fetchOneProfessional } from '../services/api';
 import { ModalContext } from './ModalContext';
 import { getUserFromLocalStorage } from '../services/localStorage';
+import { useHistory } from 'react-router-dom';
 
 
 //professional
@@ -14,11 +15,11 @@ interface IProfessionalContext {
   reviewTextArea: string;
   starReview: number;
   professionalReviews: IProfesionalReview[];
-  handleProfessional: (professional: Professional) => void;
+  handleProfessional: (id: string) => void;
   handleSubmitReview: (starReview: number, reviewTextArea: string, id: string) => void;
   handleReviewTextArea: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   handleStarReview: (rate: number) => void;
-  handleProfessionalReview: (professionalReviewsFromApi: IProfesionalReview[]) => void;
+  handleProfessionalReview: (id: string) => void;
 }
 
 export const ProfessionalContext = createContext({} as IProfessionalContext);
@@ -33,6 +34,8 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
     ModalContext
   );
 
+  const history = useHistory();
+
   const handleReviewTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewTextArea(event.target.value);
   };
@@ -41,12 +44,23 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
     setStarReview(rate);
   };
 
-  const handleProfessional = (professional: Professional) => {
-    setProfessional(professional);
+  const handleProfessional = async (id: string) => {
+    try {
+      const response = await fetchOneProfessional(id);
+      setProfessional(response.data);
+    } catch (error) {
+      history.push('busque-profissionais');
+      console.error(error);
+    }
   }
 
-  const handleProfessionalReview = (professionalReviewsFromApi: IProfesionalReview[]) => {
-    setProfessionalReviews(professionalReviewsFromApi);
+  const handleProfessionalReview = async (id: string) => {
+    try {
+      const response = await fetchProfessionalReviews(id);
+      setProfessionalReviews(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const handleSubmitReview = async (starReview: number, reviewTextArea: string, id: string) => {
