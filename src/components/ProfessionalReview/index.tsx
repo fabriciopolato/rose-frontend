@@ -7,30 +7,27 @@ import { ReactComponent as Star } from '../../assets/review-star.svg';
 import { ModalContext } from '../../contexts/ModalContext';
 import { fetchProfessionalReviews, IProfesionalReview } from '../../services/api';
 import { useParams } from 'react-router-dom';
-
-interface Props {
-  handleSubmit(starReview: number, reviewTextArea: string): void;
-}
+import { ProfessionalContext } from '../../contexts/ProfessionalContext';
 
 interface IParams {
   id: string;
 }
 
-const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
+const ProfessionalReview: React.FC = () => {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [reviewHeight, setReviewHeight] = useState(0);
   const [reviewTextArea, setReviewTextArea] = useState('');
   const [starReview, setStarReview] = useState(0);
-
   const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([]);
 
+  const { handleSubmitReview } = useContext(ProfessionalContext)
   const { id } = useParams() as IParams;
-
   const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext);
-
   const { black, salmon, orange } = useTheme();
-
   const reviewElement = useRef({} as HTMLDivElement);
+
+
+
 
   useEffect(() => {
     const element = reviewElement.current;
@@ -61,6 +58,8 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
   };
+
+
 
   // TODO: refactor context to handle form
   // const handleToggleReview = () => {
@@ -154,7 +153,7 @@ const ProfessionalReview: React.FC<Props> = ({ handleSubmit }) => {
           />
         </label>
         <Button
-          onClick={() => handleSubmit(starReview, reviewTextArea)}
+          onClick={() => handleSubmitReview(starReview, reviewTextArea, id)}
           backgroundColor={salmon}
           backgroundColorOnHover={salmon}
           textColor={black}

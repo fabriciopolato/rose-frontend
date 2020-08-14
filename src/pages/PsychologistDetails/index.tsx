@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   Navbar,
   Footer,
@@ -12,8 +12,6 @@ import {
 import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
 import { useTheme } from 'styled-components';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { fetchCreateReview } from '../../services/api';
-import { getUserFromLocalStorage } from '../../services/localStorage';
 
 import {
   Container,
@@ -28,13 +26,13 @@ import {
 import { fetchOneProfessional, Professional } from '../../services/api';
 
 import { ModalContext } from '../../contexts/ModalContext';
+import { ProfessionalContext } from '../../contexts/ProfessionalContext';
 
 const PsychologistDetails: React.FC = () => {
-  const [professional, setProfessional] = useState({} as Professional);
   const { id } = useParams();
   const history = useHistory();
-
-  const { scheduleToggle, handleScheduleToggle, handleProfessionalReviewToggle } = useContext(
+  const {professional, handleProfessional} = useContext(ProfessionalContext)
+  const { scheduleToggle, handleScheduleToggle } = useContext(
     ModalContext
   );
 
@@ -42,7 +40,8 @@ const PsychologistDetails: React.FC = () => {
     (async () => {
       try {
         const response = await fetchOneProfessional(id);
-        setProfessional(response.data);
+
+        handleProfessional(response.data);
       } catch (error) {
         history.push('busque-profissionais');
         console.error(error);
@@ -56,21 +55,7 @@ const PsychologistDetails: React.FC = () => {
     return <span>loading...</span>;
   }
 
-  const handleSubmitReview = async (starReview: number, reviewTextArea: string) => {
-    const reviewData = {
-      psychologistId: id,
-      patientId: JSON.parse(getUserFromLocalStorage()!),
-      rate: starReview,
-      description: reviewTextArea,
-    };
 
-    try {
-      await fetchCreateReview(reviewData);
-      handleProfessionalReviewToggle();
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <Container>
@@ -162,7 +147,7 @@ const PsychologistDetails: React.FC = () => {
         description={professional.longDescription}
       />
 
-      <ProfessionalReview handleSubmit={handleSubmitReview} />
+      <ProfessionalReview  />
       <Footer />
     </Container>
   );
