@@ -1,13 +1,17 @@
-import React, { useState, useRef, useEffect, ChangeEvent, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
-import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
+
 import { ReviewCard, Modal, Button } from '../../components';
+import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
+
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
+
 import { ModalContext } from '../../contexts/ModalContext';
-import { fetchProfessionalReviews, IProfesionalReview } from '../../services/api';
-import { useParams } from 'react-router-dom';
 import { ProfessionalContext } from '../../contexts/ProfessionalContext';
+
+import { getUserFromLocalStorage } from '../../services/localStorage';
 
 interface IParams {
   id: string;
@@ -16,18 +20,24 @@ interface IParams {
 const ProfessionalReview: React.FC = () => {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [reviewHeight, setReviewHeight] = useState(0);
-  const [reviewTextArea, setReviewTextArea] = useState('');
-  const [starReview, setStarReview] = useState(0);
-  const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([]);
 
-  const { handleSubmitReview } = useContext(ProfessionalContext)
-  const { id } = useParams() as IParams;
+  const { 
+    reviewTextArea,
+    starReview,
+    professionalReviews,
+    handleProfessionalReview,
+    handleReviewTextArea,
+    handleStarReview,
+    handleSubmitReview,
+  } = useContext(ProfessionalContext);
+
   const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext);
+
+  const { id } = useParams() as IParams;
+  
   const { black, salmon, orange } = useTheme();
+  
   const reviewElement = useRef({} as HTMLDivElement);
-
-
-
 
   useEffect(() => {
     const element = reviewElement.current;
@@ -41,36 +51,28 @@ const ProfessionalReview: React.FC = () => {
     });
 
     setReviewHeight(totalHeight);
-  }, [isReviewsOpen]);
+  }, [isReviewsOpen, professionalReviews]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetchProfessionalReviews(id);
-
-        setProfessionalReviews(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [id]);
+    handleProfessionalReview(id);
+  }, [handleProfessionalReview, id]);
 
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
   };
 
-
-
-  // TODO: refactor context to handle form
-  // const handleToggleReview = () => {
-  //   setToggleReview(!toggleReview);
-  //   setStarReview(0);
-  //   setReviewTextArea('');
-  // };
-
-  const handleReviewTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewTextArea(e.target.value);
-  };
+  const hasPatientAlreadyReviewedProffesional = () => {
+    const foundReview = professionalReviews.find(review => {
+      const patientId = getUserFromLocalStorage();
+      if (patientId) {
+        return (review.patient._id === JSON.parse(patientId));
+      }
+      
+      return false;
+    });
+    
+    return !!foundReview;
+  }
 
   return (
     <>
@@ -84,17 +86,21 @@ const ProfessionalReview: React.FC = () => {
           height={reviewHeight}
           isOpen={isReviewsOpen}
         >
-          <p onClick={handleProfessionalReviewToggle}>
-            <u>Avalie o profissional</u>
-          </p>
+          
+          {!hasPatientAlreadyReviewedProffesional() && (
+            <p onClick={handleProfessionalReviewToggle}>
+              <u>Avalie o profissional</u>
+            </p>
+          )}
 
-          {professionalReviews.map((review, index) =>
+          {professionalReviews.map((review, index) => (
             index % 2 === 0 ? (
               <ReviewCard isLeft key={review._id} review={review} />
             ) : (
               <ReviewCard key={review._id} review={review} />
             )
-          )}
+          ))}
+          
         </ProfessionalReviewsHiddenContent>
       </Container>
       <Modal
@@ -114,27 +120,27 @@ const ProfessionalReview: React.FC = () => {
           <span>Fabiana Guedes</span>
           <div>
             <Star
-              onClick={() => setStarReview(1)}
+              onClick={() => handleStarReview(1)}
               color={orange}
               fill={starReview >= 1 ? orange : 'none'}
             />
             <Star
-              onClick={() => setStarReview(2)}
+              onClick={() => handleStarReview(2)}
               color={orange}
               fill={starReview >= 2 ? orange : 'none'}
             />
             <Star
-              onClick={() => setStarReview(3)}
+              onClick={() => handleStarReview(3)}
               color={orange}
               fill={starReview >= 3 ? orange : 'none'}
             />
             <Star
-              onClick={() => setStarReview(4)}
+              onClick={() => handleStarReview(4)}
               color={orange}
               fill={starReview >= 4 ? orange : 'none'}
             />
             <Star
-              onClick={() => setStarReview(5)}
+              onClick={() => handleStarReview(5)}
               color={orange}
               fill={starReview >= 5 ? orange : 'none'}
             />

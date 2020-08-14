@@ -59,6 +59,7 @@ interface CreateReview {
 export interface IProfesionalReview {
   _id: string;
   patient: {
+    _id: string;
     name: string,
   };
   rate: number;

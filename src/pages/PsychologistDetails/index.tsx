@@ -1,4 +1,9 @@
 import React, { useEffect, useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useTheme } from 'styled-components';
+
+import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
+
 import {
   Navbar,
   Footer,
@@ -9,9 +14,6 @@ import {
   ProfileCard,
   FullDescription,
 } from '../../components';
-import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
-import { useTheme } from 'styled-components';
-import { Link, useParams, useHistory } from 'react-router-dom';
 
 import {
   Container,
@@ -23,39 +25,26 @@ import {
   ModalContent,
 } from './styles';
 
-import { fetchOneProfessional, Professional } from '../../services/api';
 
 import { ModalContext } from '../../contexts/ModalContext';
 import { ProfessionalContext } from '../../contexts/ProfessionalContext';
 
 const PsychologistDetails: React.FC = () => {
+  const {professional, handleProfessional} = useContext(ProfessionalContext);
+  const { scheduleToggle, handleScheduleToggle } = useContext(ModalContext);
+    
+  
   const { id } = useParams();
-  const history = useHistory();
-  const {professional, handleProfessional} = useContext(ProfessionalContext)
-  const { scheduleToggle, handleScheduleToggle } = useContext(
-    ModalContext
-  );
-
+  
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetchOneProfessional(id);
-
-        handleProfessional(response.data);
-      } catch (error) {
-        history.push('busque-profissionais');
-        console.error(error);
-      }
-    })();
-  }, [id, history]);
+    handleProfessional(id);
+  }, [handleProfessional, id]);
 
   const { white, black, orange, salmon } = useTheme();
 
   if (!professional.name) {
     return <span>loading...</span>;
   }
-
-
 
   return (
     <Container>
