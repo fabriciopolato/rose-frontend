@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ChangeEvent } from 'react';
+import React, { createContext, useState, useContext, ChangeEvent, useCallback } from 'react';
 import { Professional, fetchCreateReview, IProfesionalReview, fetchProfessionalReviews, fetchOneProfessional } from '../services/api';
 import { ModalContext } from './ModalContext';
 import { getUserFromLocalStorage } from '../services/localStorage';
@@ -36,15 +36,15 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
 
   const history = useHistory();
 
-  const handleReviewTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleReviewTextArea = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewTextArea(event.target.value);
-  };
+  }, []);
 
-  const handleStarReview = (rate: number) => {
+  const handleStarReview = useCallback((rate: number) => {
     setStarReview(rate);
-  };
+  }, []);
 
-  const handleProfessional = async (id: string) => {
+  const handleProfessional = useCallback(async (id: string) => {
     try {
       const response = await fetchOneProfessional(id);
       setProfessional(response.data);
@@ -52,18 +52,18 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
       history.push('busque-profissionais');
       console.error(error);
     }
-  }
+  }, [history]);
 
-  const handleProfessionalReview = async (id: string) => {
+  const handleProfessionalReview = useCallback(async (id: string) => {
     try {
       const response = await fetchProfessionalReviews(id);
       setProfessionalReviews(response.data);
     } catch (error) {
       console.error(error);
     }
-  }
+  }, []);
 
-  const handleSubmitReview = async (starReview: number, reviewTextArea: string, id: string) => {
+  const handleSubmitReview = useCallback(async (starReview: number, reviewTextArea: string, id: string) => {
     const reviewData = {
       psychologistId: id,
       patientId: JSON.parse(getUserFromLocalStorage()!),
@@ -83,7 +83,7 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [handleProfessionalReviewToggle, handleStarReview]);
 
   return (
     <ProfessionalContext.Provider value={
