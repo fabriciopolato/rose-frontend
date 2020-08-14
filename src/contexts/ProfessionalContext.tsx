@@ -78,7 +78,6 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
       setReviewTextArea('');
 
       const response = await fetchProfessionalReviews(id);
-      console.log(response.data)
       setProfessionalReviews(response.data);
     } catch (error) {
       console.error(error);

@@ -15,11 +15,11 @@ const ModalContextProvider: React.FC = ({ children }) => {
   const [professionalReviewToggle, setProfessionalReviewToggle] = useState(false);
 
   const handleScheduleToggle = useCallback(() => {
-    setScheduleToggle(!scheduleToggle);
+    setScheduleToggle(prevState => !prevState);
   }, []);
 
   const handleProfessionalReviewToggle = useCallback(() => {
-    setProfessionalReviewToggle(!professionalReviewToggle);
+    setProfessionalReviewToggle(prevState => !prevState);
   }, []);
 
   return (
