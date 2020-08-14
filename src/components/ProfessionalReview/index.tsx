@@ -1,13 +1,14 @@
-import React, { useState, useRef, useEffect, ChangeEvent, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useTheme } from 'styled-components';
 import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
 import { ReviewCard, Modal, Button } from '../../components';
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
 import { ModalContext } from '../../contexts/ModalContext';
-import { fetchProfessionalReviews, IProfesionalReview } from '../../services/api';
+import { fetchProfessionalReviews } from '../../services/api';
 import { useParams } from 'react-router-dom';
 import { ProfessionalContext } from '../../contexts/ProfessionalContext';
+import { getUserFromLocalStorage } from '../../services/localStorage';
 
 interface IParams {
   id: string;
@@ -65,6 +66,17 @@ const ProfessionalReview: React.FC = () => {
     setIsReviewsOpen(!isReviewsOpen);
   };
 
+  const hasPatientAlreadyReviewedProffesional = () => {
+    const foundReview = professionalReviews.find(review => {
+      const patientId = getUserFromLocalStorage();
+      if (patientId) {
+        return (review.patient._id === JSON.parse(patientId));
+      }
+    });
+    
+    return !!foundReview;
+  }
+
   return (
     <>
       <Container>
@@ -77,9 +89,12 @@ const ProfessionalReview: React.FC = () => {
           height={reviewHeight}
           isOpen={isReviewsOpen}
         >
-          <p onClick={handleProfessionalReviewToggle}>
-            <u>Avalie o profissional</u>
-          </p>
+          
+          {!hasPatientAlreadyReviewedProffesional() && (
+            <p onClick={handleProfessionalReviewToggle}>
+              <u>Avalie o profissional</u>
+            </p>
+          )}
 
           {professionalReviews.map((review, index) => (
             index % 2 === 0 ? (
