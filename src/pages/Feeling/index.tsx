@@ -1,9 +1,14 @@
 import React, { useState, ChangeEvent } from 'react';
-
-import { Navbar, Footer, FeelingCheckbox, Input, Button } from '../../components';
-import { Container, Content, CardQuestions, CardCheckboxes } from './styles';
-import { useTheme } from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import { useTheme } from 'styled-components';
+
+import {
+  Navbar, Footer, FeelingCheckbox, Input, Button,
+} from '../../components';
+
+import {
+  Container, Content, CardQuestions, CardCheckboxes,
+} from './styles';
 
 interface Feelings {
   [key: string]: boolean;
@@ -40,7 +45,7 @@ const Feeling: React.FC = () => {
     query = queryArr.join('');
 
     if (query === '?') {
-      history.push(`busque-profissionais`);
+      history.push('busque-profissionais');
     }
 
     history.push(`busque-profissionais${query}`);
@@ -100,9 +105,10 @@ const Feeling: React.FC = () => {
             name="orientação"
             id="guidance"
           >
-            Orientação{' '}
+            Orientação
+            {' '}
           </FeelingCheckbox>
-          <Input type="text" placeholder="Outro:"></Input>
+          <Input type="text" placeholder="Outro:" />
           <Button
             onClick={handlePushQuery}
             backgroundColor={orange}

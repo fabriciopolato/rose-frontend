@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Footer, ProfileCard, Button } from '../../components';
-import { useTheme } from 'styled-components';
-import { Container, ProfessionalInfo, Schedules } from './styles';
-import { ShortDescription } from '../PsychologistDetails/styles';
-import { fetchOneProfessional, Professional } from '../../services/api';
 import { useParams, useHistory } from 'react-router-dom';
+import { useTheme } from 'styled-components';
+
+import {
+  Navbar, Footer, ProfileCard, Button,
+} from '../../components';
+import { Container, ProfessionalInfo, Schedules } from './styles';
+
+import { ShortDescription } from '../PsychologistDetails/styles';
+
+import { fetchOneProfessional, Professional } from '../../services/api';
 
 const TherapyGroupDetails: React.FC = () => {
   const [professional, setProfessional] = useState({} as Professional);
@@ -38,7 +43,11 @@ const TherapyGroupDetails: React.FC = () => {
 
           <ProfessionalInfo>
             <h2>{professional.name}</h2>
-            <p>CRP: {professional.crp}</p>
+            <p>
+              CRP:
+              {' '}
+              {professional.crp}
+            </p>
           </ProfessionalInfo>
         </div>
       </ProfileCard>

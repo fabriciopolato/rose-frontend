@@ -1,7 +1,9 @@
 import React from 'react';
-import { Route, Redirect, useLocation, RouteProps } from 'react-router-dom';
+import {
+  Route, Redirect, useLocation, RouteProps,
+} from 'react-router-dom';
 
-import { isAuthenticated } from '../services/auth';
+import isAuthenticated from '../services/auth';
 
 interface Props extends RouteProps {
   component: React.FC;

@@ -1,5 +1,9 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
+import { FiCreditCard } from 'react-icons/fi';
+import { FaLock } from 'react-icons/fa';
+
+import { Navbar, Footer, Button } from '../../components';
 import {
   Container,
   Content,
@@ -10,9 +14,6 @@ import {
   ProtectedInfo,
   SaveInfoToggle,
 } from './styles';
-import { Navbar, Footer, Button } from '../../components';
-import { FiCreditCard } from 'react-icons/fi';
-import { FaLock } from 'react-icons/fa';
 
 const Payment: React.FC = () => {
   const { red, white, orange } = useTheme();

@@ -8,16 +8,16 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
 }
 
-const ProfileCardDropDown: React.FC<IProps> = ({ title, isOpen, children, ...rest }) => {
-  return (
-    <Container isOpen={isOpen} {...rest}>
-      <CardTitle>
-        <h2>{title}</h2>
-        {isOpen && <img src={closeIcon} alt="Fechar" />}
-      </CardTitle>
-      <Content isOpen={isOpen}>{children}</Content>
-    </Container>
-  );
-};
+const ProfileCardDropDown: React.FC<IProps> = ({
+  title, isOpen, children, ...rest
+}) => (
+  <Container isOpen={isOpen} {...rest}>
+    <CardTitle>
+      <h2>{title}</h2>
+      {isOpen && <img src={closeIcon} alt="Fechar" />}
+    </CardTitle>
+    <Content isOpen={isOpen}>{children}</Content>
+  </Container>
+);
 
 export default ProfileCardDropDown;

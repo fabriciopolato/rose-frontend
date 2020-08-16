@@ -12,8 +12,7 @@ export const InputContainer = styled.div<IProps>`
   width: 92px;
   height: 20px;
 
-  background: ${props =>
-    props.isChecked ? props.theme.lightSteelBlue : props.theme.salmon};
+  background: ${props => (props.isChecked ? props.theme.lightSteelBlue : props.theme.salmon)};
   border-radius: 11px;
 `;
 

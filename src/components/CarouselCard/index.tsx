@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 
 import { Button } from '..';
+
 import { Card } from './styles';
 
 import ratingStars from '../../assets/rating-stars.svg';
-
-import { useTheme } from 'styled-components';
 
 export interface IProps {
   isTherapyGroup?: boolean;
@@ -27,7 +27,9 @@ const CarouselCard: React.FC<IProps> = ({
   crp,
   _id: id,
 }) => {
-  const { salmon, red, white, black, lightSteelBlue } = useTheme();
+  const {
+    salmon, red, white, black, lightSteelBlue,
+  } = useTheme();
 
   return (
     <Card isTherapyGroup={isTherapyGroup}>
@@ -42,8 +44,16 @@ const CarouselCard: React.FC<IProps> = ({
           ))}
         </ul>
         <div>
-          <strong>50 min / R${price}</strong>
-          <p>CRP: {crp} </p>
+          <strong>
+            50 min / R$
+            {price}
+          </strong>
+          <p>
+            CRP:
+            {' '}
+            {crp}
+            {' '}
+          </p>
           <img src={ratingStars} alt="estrelas de avaliação" />
         </div>
       </section>
@@ -66,7 +76,9 @@ const CarouselCard: React.FC<IProps> = ({
             textColor={black}
             textColorOnHover={white}
           >
-            Estou livre. <br />
+            Estou livre.
+            {' '}
+            <br />
             Faça sua sessão
           </Button>
         </Link>

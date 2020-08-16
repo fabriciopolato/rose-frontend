@@ -10,15 +10,15 @@ interface IProps {
   closeIconLeft?: boolean;
 }
 
-const Modal: React.FC<IProps> = ({ toggle, handleToggle, id, children, closeIconLeft = false }) => {
-  return (
-    <Container toggle={toggle}>
-      <Content id={id}>
-        <CloseIcon src={close} alt="Fechar" onClick={handleToggle} isLeft={closeIconLeft} />
-        {children}
-      </Content>
-    </Container>
-  );
-};
+const Modal: React.FC<IProps> = ({
+  toggle, handleToggle, id, children, closeIconLeft = false,
+}) => (
+  <Container toggle={toggle}>
+    <Content id={id}>
+      <CloseIcon src={close} alt="Fechar" onClick={handleToggle} isLeft={closeIconLeft} />
+      {children}
+    </Content>
+  </Container>
+);
 
 export default Modal;

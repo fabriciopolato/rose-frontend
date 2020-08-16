@@ -1,15 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Button, HomeCard, Testimonials, Footer } from '../../components/';
-import { Container, Header, ButtonSection, Title } from './styles';
+import { useTheme } from 'styled-components';
+
+import {
+  Navbar, Button, HomeCard, Testimonials, Footer,
+} from '../../components';
+
+import {
+  Container, Header, ButtonSection, Title,
+} from './styles';
+
 import headerImg from '../../assets/home/header_img.png';
 import card1 from '../../assets/home/card1.png';
 import card2 from '../../assets/home/card2.png';
 import card3 from '../../assets/home/card3.png';
-import { useTheme } from 'styled-components';
 
 const Home: React.FC = () => {
-  const { red, white, black, orange } = useTheme();
+  const {
+    red, white, black, orange,
+  } = useTheme();
 
   return (
     <Container>

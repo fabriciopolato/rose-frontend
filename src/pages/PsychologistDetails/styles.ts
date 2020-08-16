@@ -303,9 +303,8 @@ export const Triangle = styled.div<IPropsTriangle>`
   border-top: 20px solid ${props => props.theme.white};
   margin-left: 31px;
 
-  ${props =>
-    props.isReversed &&
-    css`
+  ${props => props.isReversed
+    && css`
       transform: rotate(180deg);
     `}
 `;

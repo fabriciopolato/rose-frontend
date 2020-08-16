@@ -1,35 +1,16 @@
-import Button from './Button';
-import HomeCard from './HomeCard';
-import Input from './Input';
-import Modal from './Modal';
-import Navbar from './Navbar';
-import ReviewCard from './ReviewCard';
-import Testimonials from './Testimonials';
-import Footer from './Footer';
-import FeelingCheckbox from './FeelingCheckbox';
-import CarouselCard from './CarouselCard';
-import SpecialtyCheckbox from './SpecialtyCheckbox';
-import Slider from './Slider';
-import ProfileCardDropDown from './ProfileCardDropDown';
-import ProfileCard from './ProfileCard';
-import FullDescription from './FullDescription';
-import ProfessionalReview from './ProfessionalReview';
-
-export {
-  Button,
-  HomeCard,
-  Input,
-  Modal,
-  Navbar,
-  ReviewCard,
-  Footer,
-  Testimonials,
-  FeelingCheckbox,
-  CarouselCard,
-  SpecialtyCheckbox,
-  Slider,
-  ProfileCardDropDown,
-  ProfileCard,
-  FullDescription,
-  ProfessionalReview,
-};
+export { default as Button } from './Button';
+export { default as HomeCard } from './HomeCard';
+export { default as Input } from './Input';
+export { default as Modal } from './Modal';
+export { default as Navbar } from './Navbar';
+export { default as ReviewCard } from './ReviewCard';
+export { default as Testimonials } from './Testimonials';
+export { default as Footer } from './Footer';
+export { default as FeelingCheckbox } from './FeelingCheckbox';
+export { default as CarouselCard } from './CarouselCard';
+export { default as SpecialtyCheckbox } from './SpecialtyCheckbox';
+export { default as Slider } from './Slider';
+export { default as ProfileCardDropDown } from './ProfileCardDropDown';
+export { default as ProfileCard } from './ProfileCard';
+export { default as FullDescription } from './FullDescription';
+export { default as ProfessionalReview } from './ProfessionalReview';

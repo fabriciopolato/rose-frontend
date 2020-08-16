@@ -1,22 +1,20 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useTheme } from 'styled-components';
+
+import { Modal, Button, Input } from '../../components';
+
+import {
+  Container, Nav, SocialMediaIcons, PrivacyTerms, DivisionLine, BackgroundImage,
+} from './styles';
+
 import logo from '../../assets/navbar/logo.svg';
 import magnifier from '../../assets/navbar/magnifier.svg';
 import profile from '../../assets/navbar/profile.svg';
 import menu from '../../assets/navbar/menu.svg';
-import { Modal, Button, Input } from '../../components/';
-import { Link, useHistory } from 'react-router-dom';
 import bgMenu from '../../assets/bg-menu.svg';
-import { useTheme } from 'styled-components';
 import facebook from '../../assets/navbar/facebook.svg';
 import gmail from '../../assets/navbar/gmail.svg';
-import {
-  Container,
-  Nav,
-  SocialMediaIcons,
-  PrivacyTerms,
-  DivisionLine,
-  BackgroundImage,
-} from './styles';
 import bgLogin from '../../assets/bg-login.svg';
 import { fetchPatientLogin } from '../../services/api';
 import { setTokenInLocalStorage, setUserInLocalStorage } from '../../services/localStorage';
@@ -64,7 +62,9 @@ const Navbar: React.FC = () => {
     setToggleLogin(!toggleLogin);
   };
 
-  const { salmon, black, white, lightSteelBlue } = useTheme();
+  const {
+    salmon, black, white, lightSteelBlue,
+  } = useTheme();
 
   return (
     <Container>
@@ -128,7 +128,12 @@ const Navbar: React.FC = () => {
           </Button>
         </form>
         <PrivacyTerms>
-          Ao criar uma conta você concorda com nossos <u>Termos de Uso</u> e nossa{' '}
+          Ao criar uma conta você concorda com nossos
+          {' '}
+          <u>Termos de Uso</u>
+          {' '}
+          e nossa
+          {' '}
           <u>Política de Privacidade</u>
         </PrivacyTerms>
       </Modal>

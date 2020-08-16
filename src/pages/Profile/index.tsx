@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
+import { useTheme } from 'styled-components';
+
+import {
+  Navbar, Footer, ProfileCardDropDown, Button,
+} from '../../components';
 
 import {
   Container,
@@ -13,13 +20,8 @@ import {
 
 import { Patient, fetchPatient } from '../../services/api';
 
-import { FaHeart } from 'react-icons/fa';
-import { Navbar, Footer, ProfileCardDropDown, Button } from '../../components';
-import { useTheme } from 'styled-components';
-import { useParams, useHistory } from 'react-router-dom';
-
 const Profile: React.FC = () => {
-  const [patient, setPatient] = useState({} as Patient);
+  const [, setPatient] = useState({} as Patient);
   const [isMyDoctorsOpen, setIsMyDoctorsOpen] = useState(false);
   const [isNextSchedulesOpen, setIsNextSchedulesOpen] = useState(false);
   const [isGroupsOpen, setIsGroupsOpen] = useState(false);
@@ -40,7 +42,9 @@ const Profile: React.FC = () => {
     })();
   }, [id, history]);
 
-  const { red, white, black, salmon, lightSteelBlue } = useTheme();
+  const {
+    red, white, black, salmon, lightSteelBlue,
+  } = useTheme();
 
   return (
     <Container>
@@ -83,7 +87,9 @@ const Profile: React.FC = () => {
             <section>
               <h2>Fabiana Guedes</h2>
               <p>
-                Hoje - 29/05/2020 <br />
+                Hoje - 29/05/2020
+                {' '}
+                <br />
                 20:30
               </p>
             </section>
