@@ -17,6 +17,7 @@ import { ModalContext } from '../../contexts/ModalContext';
 import { ProfessionalContext } from '../../contexts/ProfessionalContext';
 
 import { getUserFromLocalStorage } from '../../services/localStorage';
+import { UserContext } from '../../contexts/UserContext';
 
 interface IParams {
   id: string;
@@ -38,6 +39,8 @@ const ProfessionalReview: React.FC = () => {
 
   const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext);
 
+  const { user, handleUser } = useContext(UserContext);
+
   const { id } = useParams() as IParams;
 
   const { black, salmon, orange } = useTheme();
@@ -51,6 +54,10 @@ const ProfessionalReview: React.FC = () => {
     let totalHeight = parseInt(parentStyles.paddingBottom, 10);
 
     element.childNodes.forEach(child => {
+      const isNotAnElement = Object.keys(child).length === 1
+      if (isNotAnElement) {
+        return
+      }
       const childStyles = getComputedStyle(child as HTMLElement);
       totalHeight += parseInt(childStyles.height, 10) + parseInt(childStyles.marginBottom, 10);
     });
@@ -60,17 +67,21 @@ const ProfessionalReview: React.FC = () => {
 
   useEffect(() => {
     handleProfessionalReview(id);
+    const patientId = getUserFromLocalStorage();
+    if (patientId) {
+      handleUser(patientId);
+    }
   }, [handleProfessionalReview, id]);
 
   const handleReviewsDropdown = () => {
     setIsReviewsOpen(!isReviewsOpen);
   };
 
-  const hasPatientAlreadyReviewedProffesional = () => {
+  const hasPatientAlreadyReviewedProfessional = () => {
     const foundReview = professionalReviews.find(review => {
-      const patientId = getUserFromLocalStorage();
-      if (patientId) {
-        return (review.patient._id === JSON.parse(patientId));
+      // const patientId = getUserFromLocalStorage();
+      if (user) {
+        return (review.patient._id === JSON.parse(user));
       }
 
       return false;
@@ -92,7 +103,7 @@ const ProfessionalReview: React.FC = () => {
           isOpen={isReviewsOpen}
         >
 
-          {!hasPatientAlreadyReviewedProffesional() && (
+          {user && !hasPatientAlreadyReviewedProfessional() && (
             <p onClick={handleProfessionalReviewToggle}>
               <u>Avalie o profissional</u>
             </p>
