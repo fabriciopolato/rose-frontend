@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import styled, { css } from 'styled-components';
 
 interface IProps {
@@ -5,13 +6,12 @@ interface IProps {
 }
 
 export const Card = styled.div<IProps>`
-  ${props =>
-    props.isTherapyGroup
-      ? css`
+  ${props => (props.isTherapyGroup
+    ? css`
           background: ${props => props.theme.red};
           color: ${props => props.theme.white};
         `
-      : css`
+    : css`
           background: ${props => props.theme.orange};
           color: ${props => props.theme.black};
 
@@ -34,7 +34,7 @@ export const Card = styled.div<IProps>`
               color: ${props => props.theme.black};
             }
           }
-        `}
+        `)}
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;

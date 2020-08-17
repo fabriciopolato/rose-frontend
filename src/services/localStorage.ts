@@ -1,18 +1,18 @@
 const TOKEN_KEY = 'ROSE_TOKEN';
 const USER_ID = 'USER_ID';
 
-export const setTokenInLocalStorage = (token: string) => {
+export function setTokenInLocalStorage(token: string) {
   localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
-};
+}
 
-export const getTokenFromLocalStorage = () => {
+export function getTokenFromLocalStorage() {
   return localStorage.getItem(TOKEN_KEY);
-};
+}
 
-export const setUserInLocalStorage = (id: string) => {
+export function setUserInLocalStorage(id: string) {
   localStorage.setItem(USER_ID, JSON.stringify(id));
-};
+}
 
-export const getUserFromLocalStorage = () => {
+export function getUserFromLocalStorage() {
   return localStorage.getItem(USER_ID);
-};
+}

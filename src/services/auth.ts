@@ -2,7 +2,7 @@ import jwtDecode from 'jwt-decode';
 import { api } from './api';
 import { getTokenFromLocalStorage } from './localStorage';
 
-export const isAuthenticated = () => {
+const isAuthenticated = () => {
   const token = getTokenFromLocalStorage();
 
   if (token) {
@@ -17,4 +17,8 @@ export const isAuthenticated = () => {
       return false;
     }
   }
+
+  return false;
 };
+
+export default isAuthenticated;

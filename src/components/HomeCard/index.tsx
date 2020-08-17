@@ -9,24 +9,19 @@ interface IProps {
 }
 
 const HomeCard: React.FC<IProps> = ({
-  isReversed = false,
-  image,
-  title,
-  children,
-}) => {
-  return (
-    <Container isReversed={isReversed}>
-      <article data-testid="row">
-        <figure>
-          <img src={image} alt={title} />
-        </figure>
-        <aside>
-          <h3>{title}</h3>
-          <p>{children}</p>
-        </aside>
-      </article>
-    </Container>
-  );
-};
+  isReversed = false, image, title, children,
+}) => (
+  <Container isReversed={isReversed}>
+    <article data-testid="row">
+      <figure>
+        <img src={image} alt={title} />
+      </figure>
+      <aside>
+        <h3>{title}</h3>
+        <p>{children}</p>
+      </aside>
+    </article>
+  </Container>
+);
 
 export default HomeCard;

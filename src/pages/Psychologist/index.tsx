@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import data from '../../utils/filters.json';
+import { useLocation } from 'react-router-dom';
 import Carousel from 'react-slick';
+import { useTheme } from 'styled-components';
+
+import data from '../../utils/filters.json';
 
 import {
   Navbar,
@@ -12,12 +15,11 @@ import {
   Input,
 } from '../../components';
 
-import { Container, Content, Controls, FiltersSection } from './styles';
+import {
+  Container, Content, Controls, FiltersSection,
+} from './styles';
 
-import { useTheme } from 'styled-components';
-import { fetchAllProfessionals, fetchFilteredProfessionals } from '../../services/api';
-import { Professional } from '../../services/api';
-import { useLocation } from 'react-router-dom';
+import { fetchAllProfessionals, fetchFilteredProfessionals, Professional } from '../../services/api';
 
 const Psychologist: React.FC = () => {
   const [toggle, setToggle] = useState(false);
@@ -35,24 +37,24 @@ const Psychologist: React.FC = () => {
         }
       })();
     } else {
-      getAllProfessionals();
+      (async () => {
+        try {
+          const response = await fetchAllProfessionals();
+          setPsychologists(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      })();
     }
   }, [search]);
-
-  const getAllProfessionals = async () => {
-    try {
-      const response = await fetchAllProfessionals();
-      setPsychologists(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handleToggle = () => {
     setToggle(!toggle);
   };
 
-  const { white, black, orange, lightSteelBlue } = useTheme();
+  const {
+    white, black, orange, lightSteelBlue,
+  } = useTheme();
 
   const settings = {
     dots: false,
@@ -82,8 +84,8 @@ const Psychologist: React.FC = () => {
         <Carousel {...settings}>
           {psychologists.length
             ? psychologists.map(professional => (
-                <CarouselCard key={professional._id} {...professional} />
-              ))
+              <CarouselCard key={professional._id} {...professional} />
+            ))
             : null}
         </Carousel>
       </Content>
@@ -92,8 +94,8 @@ const Psychologist: React.FC = () => {
           <section key={item.title}>
             <h2>{item.title}</h2>
             <FiltersSection>
-              {item.buttons.map((button, index) => (
-                <SpecialtyCheckbox key={index}>{button}</SpecialtyCheckbox>
+              {item.buttons.map(button => (
+                <SpecialtyCheckbox key={button}>{button}</SpecialtyCheckbox>
               ))}
             </FiltersSection>
           </section>

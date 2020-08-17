@@ -1,10 +1,12 @@
 import React from 'react';
-import { Content, Container, Star } from './styles';
-import { IProfesionalReview } from '../../services/api';
-import Moment from 'react-moment';
 
 import 'moment-timezone';
+import Moment from 'react-moment';
 import { useTheme } from 'styled-components';
+
+import { Content, Container, Star } from './styles';
+
+import { IProfesionalReview } from '../../services/api';
 
 interface IProps {
   isLeft?: boolean;
@@ -23,6 +25,7 @@ const ReviewCard: React.FC<IProps> = ({ isLeft = false, review }) => {
           <strong>{review.patient.name}</strong>
           <div>
             {new Array(5).fill(null).map((_, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <Star key={index} fill={review.rate >= index + 1 ? salmon : 'none'} />
             ))}
           </div>

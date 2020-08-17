@@ -2,7 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
-import { FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope } from 'react-icons/fa';
+import {
+  FaRegHeart, FaStar, FaWhatsapp, FaRegEnvelope,
+} from 'react-icons/fa';
 
 import {
   Navbar,
@@ -25,22 +27,22 @@ import {
   ModalContent,
 } from './styles';
 
-
 import { ModalContext } from '../../contexts/ModalContext';
 import { ProfessionalContext } from '../../contexts/ProfessionalContext';
 
 const PsychologistDetails: React.FC = () => {
-  const {professional, handleProfessional} = useContext(ProfessionalContext);
+  const { professional, handleProfessional } = useContext(ProfessionalContext);
   const { scheduleToggle, handleScheduleToggle } = useContext(ModalContext);
-    
-  
+
   const { id } = useParams();
-  
+
   useEffect(() => {
     handleProfessional(id);
   }, [handleProfessional, id]);
 
-  const { white, black, orange, salmon } = useTheme();
+  const {
+    white, black, orange, salmon,
+  } = useTheme();
 
   if (!professional.name) {
     return <span>loading...</span>;
@@ -55,7 +57,11 @@ const PsychologistDetails: React.FC = () => {
             <h1>{professional.name}</h1>
           </div>
           <CredentialSection>
-            <p>CRP: {professional.crp}</p>
+            <p>
+              CRP:
+              {' '}
+              {professional.crp}
+            </p>
             <FaRegHeart size={20} color={white} />
           </CredentialSection>
           <ReviewSection>
@@ -64,7 +70,11 @@ const PsychologistDetails: React.FC = () => {
             <FaStar size={9} color={white} />
             <FaStar size={9} color={white} />
             <FaStar size={9} color={white} />
-            <p>{professional.reviews.length} avaliações</p>
+            <p>
+              {professional.reviews.length}
+              {' '}
+              avaliações
+            </p>
           </ReviewSection>
           <IconsContact>
             <FaWhatsapp color={white} size={20} />
@@ -72,13 +82,15 @@ const PsychologistDetails: React.FC = () => {
           </IconsContact>
 
           <strong>
-            50 min /{' '}
+            50 min /
+            {' '}
             {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
-              professional.price
+              professional.price,
             )}
           </strong>
           <p>
-            Planos de saúde:{' '}
+            Planos de saúde:
+            {' '}
             {professional.healthInsurance.map((insurance, index, arr) => {
               if (index === arr.length - 1) {
                 return insurance;
@@ -136,7 +148,7 @@ const PsychologistDetails: React.FC = () => {
         description={professional.longDescription}
       />
 
-      <ProfessionalReview  />
+      <ProfessionalReview />
       <Footer />
     </Container>
   );

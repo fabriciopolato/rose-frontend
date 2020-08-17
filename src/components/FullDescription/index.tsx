@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Container, Triangle, FullDescriptionHiddenContent, FullDescriptionItem } from './styles';
+import {
+  Container, Triangle, FullDescriptionHiddenContent, FullDescriptionItem,
+} from './styles';
 
 interface Props {
   experiences: string[];
@@ -8,7 +10,9 @@ interface Props {
   description: string;
 }
 
-const FullDescription: React.FC<Props> = ({ experiences, specialties, education, description }) => {
+const FullDescription: React.FC<Props> = ({
+  experiences, specialties, education, description,
+}) => {
   const [isFullDescriptionOpen, setIsFullDescriptionOpen] = useState(false);
   const [descriptionHeight, setDescriptionHeight] = useState(0);
 
@@ -18,11 +22,11 @@ const FullDescription: React.FC<Props> = ({ experiences, specialties, education,
     const element = descriptionElement.current;
     const parentStyles = getComputedStyle(element);
 
-    let totalHeight = parseInt(parentStyles.paddingBottom);
+    let totalHeight = parseInt(parentStyles.paddingBottom, 10);
 
     element.childNodes.forEach(child => {
       const childStyles = getComputedStyle(child as HTMLElement);
-      totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
+      totalHeight += parseInt(childStyles.height, 10) + parseInt(childStyles.marginBottom, 10);
     });
 
     setDescriptionHeight(totalHeight);

@@ -1,11 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
-export const api = axios.create({ baseURL: 'http://localhost:3001' });
-
-interface WorkingHours {
-  startTime: string;
-  endTime: string;
-}
+export const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
 
 export interface Professional {
   _id: string;
@@ -15,7 +12,10 @@ export interface Professional {
   crp: string;
   avatar: string;
   whatsapp?: string;
-  workingHours?: WorkingHours;
+  workingHours?: {
+    startTime: string;
+    endTime: string;
+  };
   education: string[];
   specialties: string[];
   experience: string[];
@@ -67,34 +67,20 @@ export interface IProfesionalReview {
   createdAt: string;
 }
 
-export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professional[]>> => {
-  return await api.get('psychologist');
-};
+export const fetchAllProfessionals = async (): Promise<AxiosResponse<Professional[]>> => api.get('psychologist');
 
-export const fetchOneProfessional = async (id: string): Promise<AxiosResponse<Professional>> => {
-  return await api.get(`psychologist/${id}`);
-};
+export const fetchOneProfessional = async (id: string): Promise<AxiosResponse<Professional>> => api.get(`psychologist/${id}`);
 
 export const fetchFilteredProfessionals = async (
-  query: string
-): Promise<AxiosResponse<Professional[]>> => {
-  return await api.get(`psychologist${query}`);
-};
+  query: string,
+): Promise<AxiosResponse<Professional[]>> => api.get(`psychologist${query}`);
 
 export const fetchPatientLogin = async (
-  loginData: LoginData
-): Promise<AxiosResponse<PatientLogin>> => {
-  return await api.post('patient/login', loginData);
-};
+  loginData: LoginData,
+): Promise<AxiosResponse<PatientLogin>> => api.post('patient/login', loginData);
 
-export const fetchPatient = async (id: string): Promise<AxiosResponse<Patient>> => {
-  return await api.get(`patient/${id}`);
-};
+export const fetchPatient = async (id: string): Promise<AxiosResponse<Patient>> => api.get(`patient/${id}`);
 
-export const fetchCreateReview = async (reviewData: CreateReview): Promise<AxiosResponse<CreateReview>> => {
-  return await api.post('reviews', reviewData);
-};
+export const fetchCreateReview = async (reviewData: CreateReview): Promise<AxiosResponse<CreateReview>> => api.post('reviews', reviewData);
 
-export const fetchProfessionalReviews = async (id: string): Promise<AxiosResponse<IProfesionalReview[]>> => {
-  return await api.get(`reviews/${id}`);
-}
+export const fetchProfessionalReviews = async (id: string): Promise<AxiosResponse<IProfesionalReview[]>> => api.get(`reviews/${id}`);

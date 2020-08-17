@@ -90,12 +90,11 @@ export const CloseIcon = styled.img<IPropsCloseIcon>`
   position: absolute;
   top: 24px;
 
-  ${props =>
-    props.isLeft
-      ? css`
+  ${props => (props.isLeft
+    ? css`
           left: 24px;
         `
-      : css`
+    : css`
           right: 24px;
-        `}
+        `)}
 `;

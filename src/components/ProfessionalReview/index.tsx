@@ -1,9 +1,14 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, {
+  useState, useRef, useEffect, useContext,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
 import { ReviewCard, Modal, Button } from '../../components';
-import { Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage } from './styles';
+
+import {
+  Container, Triangle, ProfessionalReviewsHiddenContent, BackgroundImage,
+} from './styles';
 
 import bgReview from '../../assets/bg-login.svg';
 import { ReactComponent as Star } from '../../assets/review-star.svg';
@@ -21,7 +26,7 @@ const ProfessionalReview: React.FC = () => {
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [reviewHeight, setReviewHeight] = useState(0);
 
-  const { 
+  const {
     reviewTextArea,
     starReview,
     professionalReviews,
@@ -34,20 +39,20 @@ const ProfessionalReview: React.FC = () => {
   const { professionalReviewToggle, handleProfessionalReviewToggle } = useContext(ModalContext);
 
   const { id } = useParams() as IParams;
-  
+
   const { black, salmon, orange } = useTheme();
-  
+
   const reviewElement = useRef({} as HTMLDivElement);
 
   useEffect(() => {
     const element = reviewElement.current;
     const parentStyles = getComputedStyle(element);
 
-    let totalHeight = parseInt(parentStyles.paddingBottom);
+    let totalHeight = parseInt(parentStyles.paddingBottom, 10);
 
     element.childNodes.forEach(child => {
       const childStyles = getComputedStyle(child as HTMLElement);
-      totalHeight += parseInt(childStyles.height) + parseInt(childStyles.marginBottom);
+      totalHeight += parseInt(childStyles.height, 10) + parseInt(childStyles.marginBottom, 10);
     });
 
     setReviewHeight(totalHeight);
@@ -67,12 +72,12 @@ const ProfessionalReview: React.FC = () => {
       if (patientId) {
         return (review.patient._id === JSON.parse(patientId));
       }
-      
+
       return false;
     });
-    
+
     return !!foundReview;
-  }
+  };
 
   return (
     <>
@@ -86,7 +91,7 @@ const ProfessionalReview: React.FC = () => {
           height={reviewHeight}
           isOpen={isReviewsOpen}
         >
-          
+
           {!hasPatientAlreadyReviewedProffesional() && (
             <p onClick={handleProfessionalReviewToggle}>
               <u>Avalie o profissional</u>
@@ -100,7 +105,7 @@ const ProfessionalReview: React.FC = () => {
               <ReviewCard key={review._id} review={review} />
             )
           ))}
-          
+
         </ProfessionalReviewsHiddenContent>
       </Container>
       <Modal
@@ -112,7 +117,9 @@ const ProfessionalReview: React.FC = () => {
         <BackgroundImage src={bgReview} alt="Flores Rose" />
 
         <h2>
-          Avalie o <br />
+          Avalie o
+          {' '}
+          <br />
           Profissional
         </h2>
 

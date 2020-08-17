@@ -18,8 +18,7 @@ export const Container = styled.div<IProps>`
     justify-content: space-between;
     align-items: center;
 
-    background: ${props =>
-      props.isReversed ? props.theme.salmon : props.theme.orange};
+    background: ${props => (props.isReversed ? props.theme.salmon : props.theme.orange)};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 

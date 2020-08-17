@@ -1,14 +1,19 @@
-import React, { createContext, useState, useContext, ChangeEvent, useCallback } from 'react';
-import { Professional, fetchCreateReview, IProfesionalReview, fetchProfessionalReviews, fetchOneProfessional } from '../services/api';
-import { ModalContext } from './ModalContext';
-import { getUserFromLocalStorage } from '../services/localStorage';
+import React, {
+  createContext, useState, useContext, ChangeEvent, useCallback,
+} from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { ModalContext } from './ModalContext';
 
-//professional
-//campo de review - textarea / rate
+import {
+  Professional,
+  fetchCreateReview,
+  IProfesionalReview,
+  fetchProfessionalReviews,
+  fetchOneProfessional,
+} from '../services/api';
 
-
+import { getUserFromLocalStorage } from '../services/localStorage';
 
 interface IProfessionalContext {
   professional: Professional;
@@ -31,7 +36,7 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
   const [professionalReviews, setProfessionalReviews] = useState<IProfesionalReview[]>([]);
 
   const { handleProfessionalReviewToggle } = useContext(
-    ModalContext
+    ModalContext,
   );
 
   const history = useHistory();
@@ -63,41 +68,42 @@ const ProfessionalContextProvider: React.FC = ({ children }) => {
     }
   }, []);
 
-  const handleSubmitReview = useCallback(async (starReview: number, reviewTextArea: string, id: string) => {
-    const reviewData = {
-      psychologistId: id,
-      patientId: JSON.parse(getUserFromLocalStorage()!),
-      rate: starReview,
-      description: reviewTextArea,
-    };
+  const handleSubmitReview = useCallback(
+    async (rate: number, description: string, id: string) => {
+      const reviewData = {
+        psychologistId: id,
+        patientId: JSON.parse(getUserFromLocalStorage()!),
+        rate,
+        description,
+      };
 
-    try {
-      await fetchCreateReview(reviewData);
-      handleProfessionalReviewToggle();
-      handleStarReview(0);
-      setReviewTextArea('');
+      try {
+        await fetchCreateReview(reviewData);
+        handleProfessionalReviewToggle();
+        handleStarReview(0);
+        setReviewTextArea('');
 
-      const response = await fetchProfessionalReviews(id);
-      setProfessionalReviews(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [handleProfessionalReviewToggle, handleStarReview]);
+        const response = await fetchProfessionalReviews(id);
+        setProfessionalReviews(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }, [handleProfessionalReviewToggle, handleStarReview],
+  );
 
   return (
-    <ProfessionalContext.Provider value={
-      { 
-        professional,
-        reviewTextArea,
-        starReview,
-        professionalReviews,
-        handleProfessional,
-        handleSubmitReview,
-        handleReviewTextArea,
-        handleStarReview,
-        handleProfessionalReview
-      }
-    }>
+    <ProfessionalContext.Provider value={{
+      professional,
+      reviewTextArea,
+      starReview,
+      professionalReviews,
+      handleProfessional,
+      handleSubmitReview,
+      handleReviewTextArea,
+      handleStarReview,
+      handleProfessionalReview,
+    }}
+    >
       {children}
     </ProfessionalContext.Provider>
   );

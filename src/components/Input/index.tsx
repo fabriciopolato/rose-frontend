@@ -4,8 +4,6 @@ import { StyledInput } from './styles';
 
 const Input: React.FC<InputHTMLAttributes<HTMLInputElement>> = ({
   ...rest
-}) => {
-  return <StyledInput {...rest} />;
-};
+}) => <StyledInput {...rest} />;
 
 export default Input;

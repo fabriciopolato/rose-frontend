@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Container } from './styles';
-import InputRange, { Range } from 'react-input-range';
+
 import 'react-input-range/lib/css/index.css';
+import InputRange, { Range } from 'react-input-range';
+
+import { Container } from './styles';
 
 const Slider: React.FC = () => {
   const [value, setValue] = useState<number | Range>(50);
@@ -10,7 +12,7 @@ const Slider: React.FC = () => {
     <Container>
       <InputRange
         // formatLabel={() => ''}
-        onChange={value => setValue(value)}
+        onChange={inputValue => setValue(inputValue)}
         value={value}
         minValue={0}
         maxValue={300}
